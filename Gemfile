@@ -15,3 +15,8 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'carrierwave'
 gem "mini_magick"
 gem 'rack-rewrite'
+
+group :production do
+  gem 'unicorn'
+  gem 'pg'
+end
