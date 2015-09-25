@@ -7,7 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'spring',        group: :development
-gem 'bcrypt-ruby', '3.1.2'
+gem 'bcrypt'
 gem "wysiwyg-rails"
 gem 'font-awesome-rails'
 gem "paperclip", "~> 4.2"
