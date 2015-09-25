@@ -1,0 +1,16 @@
+#admin_header
+  %h1 Listing Orders
+
+#admin_table
+
+
+
+  %table
+    %thead
+      %tr
+        %th ID
+
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td= order.id

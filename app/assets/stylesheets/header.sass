@@ -1,0 +1,88 @@
+#site_switcher
+  font-size: 0.75rem
+  text-transform: uppercase
+  font-weight: 300
+  height: 30px 
+  line-height: 30px
+  padding-left: 40px 
+  box-sizing: border-box
+  border-bottom: 1px solid white
+  a 
+    text-decoration: none 
+    color: white 
+    margin: 0 5px
+
+#main_header
+  height: $header_height
+  position: relative
+
+#logo
+  width: 300px
+  height: $header_height
+  width: 25%
+  max-width: 350px
+  min-width: 200px
+  position: relative
+  z-index: 100
+  overflow: hidden
+  &:after 
+    content: ""
+    height: $header_height
+    width: 100%
+    -webkit-transform: skew(-20deg)
+    position: relative
+    z-index: 1
+    right: 23px
+    display: block
+  a 
+    position: absolute
+    top: 10px 
+    left: 10px
+  img 
+    max-height: $header_height - 20px
+    display: block
+    margin: 0 auto
+    position: relative
+    z-index: 100
+
+#navigation_menu
+  position: absolute
+  top: 10px
+  right: 10px
+  ul 
+    padding: 0
+    margin: 0
+  li 
+    display: inline-block
+
+#main_menu
+  position: absolute
+  bottom: 0
+  padding-left: 350px
+  width: 100%
+  box-sizing: border-box
+  background: #333
+  color: white
+  height: 45px
+  line-height: 45px
+  ul 
+    padding: 0
+    margin: 0
+  li 
+    display: inline-block
+    list-style: none
+  a 
+    color: white 
+    text-decoration: none
+    text-transform: uppercase
+    font-size: 0.875rem
+    letter-spacing: 1px 
+    display: block
+    padding: 0 20px
+
+.signline 
+  #logo:after, #footer
+    background-image: url("http://www.signsandprinting.co.uk/images/headerBG.jpg")
+    background-size: 150%
+  #site_switcher
+    background-color: black

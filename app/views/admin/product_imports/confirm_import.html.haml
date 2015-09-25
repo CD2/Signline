@@ -1,0 +1,36 @@
+= "Do you want to import the following #{pluralize(@file.css(:product).count, 'files')}?"
+= button_to "Confirm", admin_product_import_process_import_path
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Brand
+      %th Category
+      %th Body
+      %th Features
+      %th MPN
+      %th Technical Details
+      %th Images
+      %th Price
+  - @file.css("products product").each do |product|
+    %tr
+      %td= product.at_css("title").content
+      %td= product.at_css("brand").try(:content)
+      %td= product.at_css("catagory").content
+      %td= product.at_css("product_body").content
+      %td
+        %ul
+          = product.css("features feature").to_s.gsub("feature>", "li>").html_safe
+      %td= product.at_css("Manufacturer_Part_Number").try(:content)
+      %td
+        %ul
+          - product.css("technical_details *").each do |td|
+            %li= "#{td.xpath('name()').gsub("_", " ")}: #{td.xpath('text()')}"
+      %td
+        - product.css("images image").each do |image|
+          = image_tag(image.content, width: "50")
+      %td= product.at_css("price").content
+
+
+

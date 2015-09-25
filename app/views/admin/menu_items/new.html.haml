@@ -1,0 +1,10 @@
+#admin_form_header
+  %h1= "New #{controller.controller_name.titleize.singularize}"
+
+#admin_form
+  = form_for [:admin, @site, @object] do |f|
+    - if @object.errors.any? 
+      = render 'layouts/errors', object: f.object
+    = render 'fields', f: f
+    .actions
+      = f.submit 'Save'

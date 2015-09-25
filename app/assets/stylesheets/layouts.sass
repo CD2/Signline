@@ -1,0 +1,20 @@
+#layout_columns
+  display: flex
+
+  .sidebar_column
+    flex: 0 0 200px
+
+    &.second_sidebar
+      padding: 20px
+      margin-top: 40px 
+
+
+  &.single_sidebar 
+    max-width: 1100px
+    margin: 0 auto
+
+    .sidebar_column
+      flex: 0 0 250px
+
+  .main_column
+    flex: 1

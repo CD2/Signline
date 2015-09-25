@@ -1,0 +1,17 @@
+#admin_form_header
+  .admin_secondary_links
+    %ul
+      %li
+        = link_to admin_products_path do
+          %i.fa.fa-chevron-left
+          Back
+  %h1= "Import Products"
+
+#admin_form
+  = form_for [:admin, @product_import] do |f|
+    - if @product_import.errors.any? 
+      = render 'layouts/errors', object: f.object
+    = f.file_field :file
+    = f.hidden_field :validating_field, value: "X"
+    .actions
+      = f.submit 'Save'

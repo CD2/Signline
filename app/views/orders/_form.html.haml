@@ -1,0 +1,55 @@
+= form_for @order do |f|
+  - if @order.errors.any? 
+    = render 'layouts/errors', object: f.object
+
+  - unless signed_in?
+
+    .field
+      = f.label :name
+      = f.text_field :new_account_name
+
+    .field 
+      = f.label :email
+      = f.text_field :new_account_email
+
+  - else
+
+    = f.hidden_field :user_id, value: current_user.id
+
+  - if signed_in? && current_user.addresses.any?
+
+    .field   
+      = f.label :use_saved_billing_address do
+        = f.check_box :use_saved_billing_address
+        %span Use Saved Address
+
+    .field
+      = f.label :shipping_address_id
+      = f.number_field :shipping_address_id
+
+  .field
+    = f.fields_for :billing_address do |ff|
+      = render 'address_fields', f: ff
+
+  .field   
+    = f.check_box :ship_to_billing_address, checked: true, class: "checked_toggle_hide"
+    = f.label :ship_to_billing_address, "Deliver to Shipping Address"
+
+
+    - if signed_in? && current_user.addresses.any?
+    
+      .field   
+        = f.label :use_saved_shipping_address do
+          = f.check_box :use_saved_shipping_address
+          %span Use Saved Address
+
+      .field
+        = f.label :shipping_address_id
+        = f.number_field :shipping_address_id
+
+    .field
+      = f.fields_for :shipping_address do |ff|
+        = render 'address_fields', f: ff
+
+  .actions
+    = f.submit 'Submit', name: :to_shipping

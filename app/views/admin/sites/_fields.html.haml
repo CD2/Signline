@@ -1,0 +1,34 @@
+
+.field
+  = f.label :name
+  = f.text_field :name
+.field
+  = f.label :machine_name
+  = f.text_field :machine_name
+.field
+  = label_tag :urls
+  = text_field_tag :urls, @object.urls.map { |site| site.url }.join(",")
+.field
+  = f.label :logo
+  = f.file_field :logo
+
+.field  
+  = f.check_box :second_sidebar_option, checked: second_sidebar
+  = f.label :second_sidebar_option, "Include Second Sidebar"
+  .field
+    = f.label :second_sidebar
+    = f.text_area :second_sidebar, class: "editable"
+.field 
+  = f.label :home_body
+  = f.text_area :home_body, class: "editable"
+.field 
+  = f.label :banner_image
+  = f.file_field :banner_image
+.field 
+  = f.label :include_products
+  = f.check_box :include_products
+
+.field
+  = f.label :color
+  .colorpicker
+  = f.hidden_field :color, class: "color_picker_reciever"

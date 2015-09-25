@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Signline
+  machine_name: signline
+  email: "web@signline.com"
+  url: http://localhost:3000
+  default_site: true
+
+two:
+  name: CD2
+  machine_name: cd2
+  email: "web@cd2.com"
+  url: http://cd2solutions.co.uk

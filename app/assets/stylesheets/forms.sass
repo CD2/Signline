@@ -1,0 +1,124 @@
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select,
+.chosen-container-single .chosen-single
+  box-sizing: border-box
+  position: relative
+  background-color: #fff
+  padding: 11px
+  line-height: 22px
+  height: 44px
+  width: 100%
+  color: #3e3e3e
+  border: 1px solid #ddd
+  margin-bottom: 10px
+  font-size: 0.875rem
+  &:focus
+    outline: none
+
+.chosen-container-single .chosen-single
+  border-radius: 0
+
+textarea
+  height: auto
+
+label 
+  font-weight: 600
+  font-size: 0.875rem
+  display: block
+  opacity: 0.6
+  line-height: 1.3rem
+
+input[type="submit"]
+  border: 0
+  background-color: #1b1b1b
+  padding: 15px 40px
+  font-size: 0.875rem
+  border-radius: 100px
+  display: block
+  color: white
+  text-transform: uppercase
+  letter-spacing: 1px
+  margin-top: 15px
+
+#site_form, #admin_form
+  box-shadow: 0 5px 15px rgba(0,0,0,0.21), 0 0 4px 0px rgba(0,0,0,0.06)
+  max-width: 600px
+  margin: 0 auto 50px
+  width: 100%
+  box-sizing: border-box
+  padding: 30px
+  background: white
+  h1, h2, h3, p
+    margin: 0
+  h1 
+    @extend h1_admin
+    margin-bottom: 15px
+
+#admin_form
+  max-width: 1200px
+
+.secondary_form_link
+  float: right 
+  color: #666 
+  font-size: 0.875rem
+
+.checked_toggle_hide:checked ~ .field
+  display: none 
+
+.checked_toggle_hide ~ .field
+  display: block
+
+.colorpicker
+  width: 60px 
+  height: 60px
+
+.split_form
+  display: flex 
+
+.split_form_left
+  flex: 2
+  padding-right: 15px
+
+
+.split_form_right
+  flex: 1
+  padding-left: 15px
+  img   
+    width: 120px
+
+.split_fields_form
+  display: flex
+
+  .left_main_fields
+    flex: 2
+    margin-right: 10px 
+
+  .right_sub_fields
+    flex: 1
+    margin-left: 10px
+.froala-wrapper.f-basic
+  height: 300px
+  margin-bottom: 20px
+
+.inline_check_box
+  input, label 
+    display: inline-block
+
+.reveal_check_box input[type="checkbox"] ~ .reveal_field
+  display: none 
+
+.reveal_check_box input[type="checkbox"]:checked ~ .reveal_field
+  display: block

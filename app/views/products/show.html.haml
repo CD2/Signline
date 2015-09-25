@@ -1,0 +1,29 @@
+#product_page
+  #product_title_section.display_block
+    %h1= @product.name
+    %span.brand_information= "from #{link_to @product.brand.name, @product.brand}".html_safe if @product.brand
+  #product_display
+    #product_page_image_section.display_block
+      %img#zoom1.cloudzoom{"data-cloudzoom" => "zoomImage: '#{@product.product_images.first.try(:image)}', zoomSizeMode:'image', autoInside: 550", :src => @product.product_images.first.try(:image).try(:product_standard)}/
+    #product_page_info.display_block
+      .info_section
+        .price= number_to_currency @product.price, locale: :en
+      .cart_button.info_section
+        = button_to "Add to Cart", add_to_cart_path(product_id: @product)
+      .info_section
+        .product_page_info_features
+          %h4 Features
+          %ul
+            - @features.each do |feature|
+              %li= feature
+      .info_section
+        %h4 Description
+        .description_preview
+          = truncate @product.body, length: 250, escape: false, omission: "... #{link_to('more', '#description')}"
+
+#product_page_detailed_section
+  #description.body_section
+    = @product.body.try(:html_safe)
+
+
+    

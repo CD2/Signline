@@ -1,0 +1,13 @@
+#admin_box
+  .hide
+    HIDE
+  = "Signed in a #{current_user.name}"
+  %ul
+    %li= link_to "Users", admin_users_path
+    %li= link_to "Sites", admin_sites_path
+    %li= link_to "Feeds", feeds_path
+    %li= link_to "Categories", admin_categories_path
+    %li= link_to "Pages", admin_pages_path
+    %li= link_to "Products", admin_products_path
+    %li= link_to "Users", admin_users_path
+    %li= link_to "Orders", admin_orders_path

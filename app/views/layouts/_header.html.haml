@@ -1,0 +1,31 @@
+#site_switcher
+  - active_sites.each do |site|
+    = link_to site.name, site.urls.first.url
+#main_header
+  #logo 
+    = link_to image_tag(current_site.logo), root_path
+  #navigation_menu
+    %ul
+      %li= link_to "Home", root_path
+      = render_navigation_menu
+
+      - if signed_in?
+        %li= link_to "Sign Out", logout_path, method: :delete
+        %li= link_to "My Account", user_path(current_user)
+      - else
+        %li= link_to "Sign In", login_path
+
+      - if cart?
+        %li= link_to "Cart", carts_path
+      - else
+        %li 0 items in cart
+  #main_menu
+    - main_menu_items.each do |menu|
+      - if menu.page
+        %li= link_to menu.name, menu.page
+      - else
+        %li= link_to menu.name, menu.path
+
+
+
+

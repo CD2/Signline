@@ -1,0 +1,16 @@
+#admin_form_header
+  .admin_secondary_links
+    %ul
+      %li
+        = link_to [:admin, @object] do
+          %i.fa.fa-chevron-left
+          Back
+  %h1= "New #{controller.controller_name.titleize.singularize}"
+
+#admin_form
+  = form_for [:admin, @object] do |f|
+    - if @object.errors.any? 
+      = render 'layouts/errors', object: f.object
+    = render 'fields', f: f
+    .actions
+      = f.submit 'Save'

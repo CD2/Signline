@@ -1,0 +1,13 @@
+= form_for @user do |f|
+  - if @user.errors.any? 
+    = render 'layouts/errors', object: f.object
+  .field
+    = f.text_field :name, placeholder: "Name"
+  .field
+    = f.text_field :email, placeholder: "Email"
+  .field
+    = f.text_field :password, placeholder: "Password"
+  .field
+    = f.text_field :password_confirmation, placeholder: "Confirm Password"
+  .actions
+    = f.submit

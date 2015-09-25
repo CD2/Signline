@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+user:
+  name: Shane
+  email: shane@cd2solutions.co.uk
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  activated: true
+
+second_user:
+  name: Shane2
+  email: shane2@cd2solutions.co.uk
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  activated: true
+
+admin_user:
+  name: Shane2
+  email: shane2@cd2solutions.co.uk
+  password_digest: <%= User.digest('password') %>
+  admin: true
+  activated: true

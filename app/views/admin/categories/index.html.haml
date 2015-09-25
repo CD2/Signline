@@ -1,0 +1,23 @@
+%h1 Listing categories
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Machine name
+      %th Sites
+      %th
+      %th
+      %th
+
+  %tbody
+    - @categories.each do |category|
+      %tr
+        %td= category.name
+        %td= category.machine_name
+        %td
+          - category.sites.each do |site|
+            = Site.find(site.id).name
+        %td= link_to 'Show', category
+        %td= link_to 'Edit', edit_admin_category_path(category)
+        %td= link_to 'Destroy', [:admin, category], :method => :delete, :data => { :confirm => 'Are you sure?' }

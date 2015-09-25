@@ -1,0 +1,43 @@
+.split_form
+  .split_form_left
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :body
+      = f.text_area :body, rows: 8
+    .field 
+      = label_tag :features
+      - if @features
+        - @features.each do |feature|
+          = text_field_tag "features[]", feature
+      - else
+        = text_field_tag "features[]"
+    .additional_features
+    = link_to "+ Add Feature", "javascript:void(0)", class: "add_product_feature"
+    .field
+      = f.label :price
+      = f.text_field :price
+  .split_form_right
+    .field
+      = f.label :images
+      - if @images
+        %table
+          %tbody
+            - @images.each do |image|
+              %tr
+                %td
+                  = image_tag(image.image.thumbnail)
+                %td
+                  = link_to "x", "javascript:void(0)", method: :post, class: "remove_image_link", data: {'product_image_id' => image.id}
+      = f.file_field :images, name: "images[image][]", multiple: true
+    .field 
+      = f.label :sku, "SKU"
+      = f.text_field :sku
+    .field 
+      = label_tag :brand_id
+      = select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name), class: "chosen-select"
+    .field 
+      = label_tag :categories
+      = select_tag :categories, options_from_collection_for_select(Category.all, :id, :name, @object.categories.collect {|c| c.id}), {multiple: true, name: 'categories[category][]', class: "chosen-select"}
+

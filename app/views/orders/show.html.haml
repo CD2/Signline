@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @order.user_id
+%p
+  %b Billing address:
+  = @order.billing_address_id
+%p
+  %b Shipping address:
+  = @order.shipping_address_id
+
+= link_to 'Edit', edit_order_path(@order)
+\|
+= link_to 'Back', orders_path

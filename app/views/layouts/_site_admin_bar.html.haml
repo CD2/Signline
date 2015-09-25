@@ -1,0 +1,14 @@
+#admin_bar
+  %ul.site_admin_items
+    %li.admin_bar_site_name= current_site.name
+    %li= link_to "Site Settings", edit_admin_site_path(current_site)
+    %li= link_to "Pages", admin_site_pages_path(current_site) 
+    %li= link_to "Main Menu", admin_site_main_menu_path(current_site)
+    %li= link_to "Side Menu", admin_site_side_menu_path(current_site)
+
+  .split_flex_box
+
+  %ul.general_admin_items
+    %li= link_to "Products", admin_products_path
+    %li= link_to "Categories", admin_categories_path
+    %li= link_to "All Sites", admin_sites_path

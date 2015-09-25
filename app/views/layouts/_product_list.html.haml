@@ -1,0 +1,4 @@
+#product_list_container
+  %ul.product_list
+    - @products.each do |product|
+      %li= render 'products/product_category_view', product: product

@@ -1,0 +1,11 @@
+#site_form
+  %h1 Reset password
+  = form_for(@user, url: password_reset_path(params[:id])) do |f|
+    = render 'layouts/errors', object: f.object
+    = hidden_field_tag :email, @user.email
+    .field
+      = f.password_field :password, placeholder: "Password"
+    .field
+      = f.password_field :password_confirmation, placeholder: "Confirm Password"
+    .actions
+      = f.submit "Update password"

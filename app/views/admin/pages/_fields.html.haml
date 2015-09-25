@@ -1,0 +1,39 @@
+.split_fields_form
+  .left_main_fields
+    .field
+      = f.text_field :name, placeholder: "Name"
+    .field
+      = f.label :body
+      = f.text_area :body, class: "editable"
+  .right_sub_fields
+    .field
+      = f.text_field :page_title, placeholder: "Page Title"
+    .field
+      = f.text_field :url_alias, placeholder: "URL Alias"
+    .field
+      = f.label :meta_description
+      = f.text_area :meta_description
+    .field.inline_check_box
+      = f.check_box :published
+      = f.label :published
+
+    %hr
+    
+      
+    .field.inline_check_box.reveal_check_box
+      - if @object.menu_items.where(menu_type: 2).count > 0
+        = f.check_box :include_in_side_menu, checked: true
+      - else
+        = f.check_box :include_in_side_menu
+      = f.label :include_in_side_menu
+
+      = f.fields_for :menu_items do |ff|
+
+        .field.reveal_field
+          = ff.label :name
+          = ff.text_field :name
+        = ff.hidden_field :menu_type, value: 2
+        = ff.hidden_field :site_id, value: current_site.id
+
+- if params[:site_id]
+  = f.hidden_field :site_id, value: current_site.id

@@ -1,0 +1,9 @@
+= link_to "PRICE high low", category_path(@category, sort: {price: :desc})
+= link_to "PRICE low high", category_path(@category, sort: {price: :asc})
+= link_to "NAME A-Z", category_path(@category, sort: {name: :desc})
+= link_to "NAME Z-A", category_path(@category, sort: {name: :asc})
+= link_to "Newest", category_path(@category, sort: {id: :desc})
+= link_to "OLDEST", category_path(@category, sort: {id: :asc})
+
+- cache ['store', Product.latest] do
+  = render 'layouts/product_list'
