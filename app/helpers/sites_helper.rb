@@ -57,11 +57,5 @@ module SitesHelper
     @page = current_site.home_page
   end
 
-  def curent
-    require 'httparty'
-    response = HTTParty.get('http://localhost:3000')
-    json = JSON.parse(response.body)
-  end
-
 
 end
