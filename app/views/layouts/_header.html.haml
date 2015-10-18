@@ -6,7 +6,8 @@
     = link_to image_tag(current_site.logo), root_path
   #navigation_menu
     %ul
-      %li= link_to "Home", root_path
+      %li Tel: 01379 677 699
+      %li Email: sales@signsandprinting.co.uk
       = render_navigation_menu
 
       - if signed_in?
@@ -25,7 +26,7 @@
         %li= link_to menu.name, menu.page
       - else
         %li= link_to menu.name, menu.path
-
+    %li= link_to "Contact Us", enquiries_path
 
 
 

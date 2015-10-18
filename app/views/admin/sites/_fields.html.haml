@@ -25,8 +25,9 @@
   = f.label :banner_image
   = f.file_field :banner_image
 .field 
-  = f.label :include_products
-  = f.check_box :include_products
+  = f.label :include_products do
+    = f.check_box :include_products
+    %span Include Products on Home Page
 
 .field
   = f.label :color

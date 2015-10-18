@@ -5,6 +5,9 @@
     .field
       = f.label :body
       = f.text_area :body, class: "editable"
+    .field
+      = f.label :image
+      = f.file_field :image
   .right_sub_fields
     .field
       = f.text_field :page_title, placeholder: "Page Title"

@@ -13,6 +13,7 @@ class CreateSites < ActiveRecord::Migration
       t.boolean :active, default: false
       t.text :second_sidebar
       t.integer :homepage_id
+      t.integer :include_cart
 
       t.timestamps null: false
     end

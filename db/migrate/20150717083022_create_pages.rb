@@ -2,6 +2,7 @@ class CreatePages < ActiveRecord::Migration
   def change
     create_table :pages do |t|
       t.string :name
+      t.string :image
       t.text :body
       t.string :page_title
       t.string :url_alias

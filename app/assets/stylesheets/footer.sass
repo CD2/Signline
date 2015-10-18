@@ -1,0 +1,62 @@
+#footer
+  background-color: rgb(18, 18, 18)
+  font-size: 0.75rem
+  color: #aaa
+  line-height: 1.4rem
+  position: relative
+  z-index: 100
+  ul, .add_sect
+    padding: 0
+    margin: 0
+    float: left
+    margin-right: 2rem
+    ul 
+      float: none 
+      li 
+        display: inline-block
+        i 
+          width: 1.3rem
+          font-size: 1.1rem
+          line-height: 3rem
+  li 
+    list-style: none
+  a 
+    text-decoration: none
+    color: #fff
+
+#footer-inner
+  display: none
+  padding-bottom: 1rem
+  @extend clearfix
+  @media screen and (min-width: $medium)
+    display: block
+    width: 90%
+    max-width: 1350px
+    margin: 0 auto
+
+.list-footer-panel
+  h4 
+    font-size: 0.875rem
+    text-transform: uppercase
+    margin: 1.5rem 0 0.5rem
+
+.footer-logo.footer-div
+  width: 30%
+  text-align: center
+  opacity: 0.1
+  padding-top: 4rem
+
+.footer-div
+  width: 35%
+  float: left
+
+#copyright
+  background: rgba(0,0,0,0.5)
+  text-align: center
+  padding: 1rem
+  color: #777
+  font-weight: 200
+  text-transform: uppercase
+
+.background_footer
+  height: 15px

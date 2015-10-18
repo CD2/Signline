@@ -78,6 +78,6 @@ class Admin::PagesController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def page_params
-      params.require(:page).permit(:name, :body, :page_title, :url_alias, :meta_description, :published, :site_id, :homepage_id, :include_in_side_menu, menu_items_attributes: [:name, :menu_type, :site_id, :id])
+      params.require(:page).permit(:name, :body, :image, :page_title, :url_alias, :meta_description, :published, :site_id, :homepage_id, :include_in_side_menu, menu_items_attributes: [:name, :menu_type, :site_id, :id])
     end
 end

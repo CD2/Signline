@@ -2,6 +2,8 @@ class Page < ActiveRecord::Base
 
   before_save :assign_url
 
+  mount_uploader :image, ImageUploader
+
   attr_accessor :site_id
   attr_accessor :homepage_id
   attr_accessor :include_in_side_menu

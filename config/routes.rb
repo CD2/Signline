@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :enquiries
   resources :brands
   resources :orders do 
     get :shipping_method, path: "shipping"

@@ -1,2 +1,5 @@
 #page_body.body_section
+  - if @page.image
+    = image_tag @page.image
+  %h1= @page.name
   = @page.body.try(:html_safe)

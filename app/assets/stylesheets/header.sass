@@ -47,13 +47,23 @@
 
 #navigation_menu
   position: absolute
-  top: 10px
-  right: 10px
+  padding: 10px 50px
+  right: 50px
+  bottom: 46px
+  background: rgba(0, 0, 0, 0.81)
+  color: white
+  -webkit-transform: skew(-20deg)
   ul 
     padding: 0
     margin: 0
+    -webkit-transform: skew(20deg)
   li 
     display: inline-block
+    padding: 0 10px
+    font-size: 0.875rem 
+  a 
+    color: white
+
 
 #main_menu
   position: absolute
@@ -61,10 +71,11 @@
   padding-left: 350px
   width: 100%
   box-sizing: border-box
-  background: #333
+  background: #121212
   color: white
   height: 45px
   line-height: 45px
+  we
   ul 
     padding: 0
     margin: 0
@@ -81,8 +92,9 @@
     padding: 0 20px
 
 .signline 
-  #logo:after, #footer
+  #main_header, #footer .background_footer, #logo:after
     background-image: url("http://www.signsandprinting.co.uk/images/headerBG.jpg")
     background-size: 150%
+    background-attachment: fixed
   #site_switcher
     background-color: black
