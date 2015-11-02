@@ -239,37 +239,37 @@ namespace :pages do
     image: "protection_banner.jpg"
   },
   "Business Cards" => {
-    body: "signline/business_cards.html",
+    body: "printing/business_cards.html",
     site_id: 2,
     menu: 2,
     image: "business_cards_banner.jpg"
   },
     "Leaflets" => {
-    body: "shield/leaflets.html",
+    body: "printing/leaflets.html",
     site_id: 2,
     menu: 1,
     image: "leaflets_banner.jpg"
   },
     "Booklets" => {
-    body: "shield/booklets.html",
+    body: "printing/booklets.html",
     site_id: 2,
     menu: 1,
     image: "booklets_banner.jpg"
   },
     "Folders" => {
-    body: "shield/folders.html",
+    body: "printing/folders.html",
     site_id: 2,
     menu: 2,
     image: "folders_banner.jpg"
   },
     "Letterheads" => {
-    body: "shield/letterheads.html",
+    body: "printing/letterheads.html",
     site_id: 2,
     menu: 2,
     image: "letterheads_banner.jpg"
   },
     "Postcards" => {
-    body: "shield/postcards.html",
+    body: "printing/postcards.html",
     site_id: 2,
     menu: 2,
     image: "postcards_banner.jpg"
