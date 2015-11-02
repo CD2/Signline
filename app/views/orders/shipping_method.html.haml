@@ -9,6 +9,20 @@
   .field
     = f.label :shipping_type
     = f.select :shipping_type, Order::SHIPPING_TYPES
+
+  - unless signed_in?
+
+    .field
+      = f.label :name
+      = f.text_field :new_account_name
+
+    .field 
+      = f.label :email
+      = f.text_field :new_account_email
+
+  - else
+
+    = f.hidden_field :user_id, value: current_user.id
   .actions
     = f.submit 'Save', name: :to_summary
     = f.submit 'Back', name: :to_checkout

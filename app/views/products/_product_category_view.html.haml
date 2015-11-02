@@ -1,6 +1,7 @@
 
 - cache ['product', product] do
-  = image_tag(product.product_images.first.image.thumbnail)
+  - if product.product_images.any?
+    = link_to(image_tag(product.product_images.first.image.thumbnail), product)
   %h3= link_to product.name, product
   .price
     = number_to_currency product.price, locale: :en

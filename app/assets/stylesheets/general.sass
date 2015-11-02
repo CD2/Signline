@@ -8,7 +8,7 @@ img
   min-height: 100%
 
 body 
-  font-family: "proxima-nova", sans-serif
+  font-family: "Proxima Nova", "proxima-nova", sans-serif
 
 #page
   background: #e7e7e7
@@ -17,6 +17,7 @@ body
   margin: 0 auto
   box-shadow: 0 0 5px rgba(0,0,0,0.3), 0 0 30px rgba(0,0,0,0.08)
   background-color: #e7e7e7
+  max-width: 1150px
 
 #content_wrapper
   box-sizing: border-box
@@ -30,16 +31,18 @@ clearfix
     clear: both
     
 #side_menu_list
-  padding: 15px 0 
-  margin: 40px 0 0 0
+  margin: 0
   background: #4DA2D2
+  padding: 0
+  border-top: 1px solid rgba(255,255,255,0.3)
   li 
     list-style: none 
-    padding: 5px 
+    line-height: 42px
+    border-bottom: 1px solid rgba(255,255,255,0.3)
   a 
     color: rgba(255,255,255,0.85)
     text-transform: uppercase
-    font-weight: bold
+    font-weight: 100
     letter-spacing: 1px 
     font-size: 0.8rem
     text-decoration: none 
@@ -48,7 +51,6 @@ clearfix
 
 .body_section
   padding: 20px
-  margin: 20px 0
   font-size: 0.875rem
   line-height: 1.7rem
   color: rgba(0,0,0,0.7)

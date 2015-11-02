@@ -19,7 +19,7 @@ class Product < ActiveRecord::Base
   end
 
   def categorise category
-    categorisations.create(category_id: category.id)
+    categorisations.create(category_id: category.id) unless categorisations.find_by(product_id: self.id, category_id: category.id)
   end
 
   def uncategorise category

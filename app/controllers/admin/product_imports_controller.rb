@@ -36,19 +36,16 @@ class Admin::ProductImportsController < AdminController
       }
       category_name = product.at_css("catagory").content.to_s.gsub("&amp;", "&")
       unless @category = Category.find_by(name: category_name)
-        @category = Category.create(name: category_name, machine_name: category_name.gsub(/(.)([A-Z])/,'\1_\2').downcase)
+        @category = Category.create(name: category_name, machine_name: category_name.parameterize)
       end
-      unless @product = Product.find_by(name: import_params[:name])
+      if @product = Product.find_by(name: import_params[:name])
+        @product.update(import_params)
+      else
         @product = Product.new(import_params)
-        if @product.save
-          @product.categorise @category
-          product.css("images image").each do |image|
-            image_params = {
-              remote_image_url: image.content, product_id: @product.id
-            }
-            ProductImage.create(image_params)
-          end
-        end
+      end
+      if @product.save
+        @product.categorise @category
+        product.css("images image").each { |image| @product.product_images.create(remote_image_url: image.content) }
       end
     end
     redirect_to admin_products_path

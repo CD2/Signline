@@ -1,7 +1,7 @@
 body {
 
 }
-#main_header, #side_menu_list {
+#main_header, #side_menu_list, a.filter_link, #layout_columns.single_sidebar .sidebar_column  {
   background-color: <%= current_site.color %>;
 }
 
@@ -11,6 +11,9 @@ body {
 
 #logo {
   color: <%= current_site.color %>;
+}
+#logo:after {
+    background-color: <%= current_site.color %>;
 }
 
 

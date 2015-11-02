@@ -1,3 +1,4 @@
+
 - content_for :highlight do
   .home_banner_image 
     = image_tag(current_site.banner_image)
@@ -5,3 +6,6 @@
 
 #home_body.body_section
   = current_site.home_body.try(:html_safe)
+
+  - if current_site.include_products
+    = render 'layouts/product_list'

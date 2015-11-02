@@ -99,7 +99,7 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:user_id, :ship_to_billing_address, :use_saved_billing_address, :use_saved_shipping_address, :shipping_address_id, :payment_type, :shipping_type, 
+      params.require(:order).permit(:user_id, :ship_to_billing_address, :use_saved_billing_address, :use_saved_shipping_address, :shipping_address_id, :payment_type, :shipping_type, :new_account_name, :new_account_email,
           billing_address_attributes: [:id, :address_one, :address_two, :city, :county, :postcode, :country], 
           shipping_address_attributes: [:id, :address_one, :address_two, :city, :county, :postcode, :country])
     end

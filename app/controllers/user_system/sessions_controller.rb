@@ -10,7 +10,7 @@ class UserSystem::SessionsController < ApplicationController
         log_in user
         set_admin_active
         remember(user)
-        redirect_to user
+        redirect_to root_url
       else
         message  = "Account not activated. "
         message += "Check your email for the activation link."

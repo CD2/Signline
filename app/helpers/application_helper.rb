@@ -2,6 +2,7 @@ module ApplicationHelper
 
   def body_classes
     classes = [
+                "#{'not_front' unless current_page?(root_path)}",
                "#{'signline' if current_site.default_site }", 
                "#{'admin_section' if admin_section?}",
                "#{'logged_in' if signed_in?}",

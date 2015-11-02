@@ -9,6 +9,54 @@ namespace :pages do
     menu: 1,
     image: "about.jpg"
     },
+    "About Us" => {
+    body: "signline/about.html",
+    site_id: 2,
+    menu: 1,
+    image: "temp_banner.jpg"
+    },
+    "About Us" => {
+    body: "signline/about.html",
+    site_id: 3,
+    menu: 1,
+    image: "temp_banner.jpg"
+    },
+    "About Us" => {
+    body: "signline/about.html",
+    site_id: 4,
+    menu: 1,
+    image: "temp_banner.jpg"
+    },
+    "About Us" => {
+    body: "signline/about.html",
+    site_id: 5,
+    menu: 1,
+    image: "temp_banner.jpg"
+    },
+    "About Us" => {
+    body: "signline/about.html",
+    site_id: 6,
+    menu: 1,
+    image: "temp_banner.jpg"
+    },
+    "About Us" => {
+    body: "signline/about.html",
+    site_id: 7,
+    menu: 1,
+    image: "temp_banner.jpg"
+    },
+    "About Us" => {
+    body: "signline/about.html",
+    site_id: 8,
+    menu: 1,
+    image: "temp_banner.jpg"
+    },
+    "About Us" => {
+    body: "signline/about.html",
+    site_id: 9,
+    menu: 1,
+    image: "temp_banner.jpg"
+    },
   "Case Histories" => {
     body: "signline/case_histories.html",
     site_id: 1,
@@ -18,6 +66,46 @@ namespace :pages do
     body: "signline/company_policy.html",
     site_id: 1,
     menu: 1
+  },
+  "Company Policy" => {
+    body: "signline/company_policy.html",
+    site_id: 1,
+    menu: 2
+  },
+  "Company Policy" => {
+    body: "signline/company_policy.html",
+    site_id: 1,
+    menu: 3
+  },
+  "Company Policy" => {
+    body: "signline/company_policy.html",
+    site_id: 1,
+    menu: 4
+  },
+  "Company Policy" => {
+    body: "signline/company_policy.html",
+    site_id: 1,
+    menu: 5
+  },
+  "Company Policy" => {
+    body: "signline/company_policy.html",
+    site_id: 1,
+    menu: 6
+  },
+  "Company Policy" => {
+    body: "signline/company_policy.html",
+    site_id: 1,
+    menu: 7
+  },
+  "Company Policy" => {
+    body: "signline/company_policy.html",
+    site_id: 1,
+    menu: 8
+  },
+  "Company Policy" => {
+    body: "signline/company_policy.html",
+    site_id: 1,
+    menu: 9
   },
   "Materials" => {
     body: "signline/materials.html",
@@ -119,8 +207,76 @@ namespace :pages do
     site_id: 1,
     menu: 2,
     image: "tradeshop.jpg"
+  },
+    "Bike Protection" => {
+    body: "shield/bikeprotection.html",
+    site_id: 4,
+    menu: 1,
+    image: "motorbike_protection_banner.jpg"
+  },
+    "Car Protection" => {
+    body: "shield/carprotection.html",
+    site_id: 4,
+    menu: 1,
+    image: "car_protection_banner.jpg"
+  },
+    "Installation" => {
+    body: "shield/install.html",
+    site_id: 4,
+    menu: 2,
+    image: "installation_banner.jpg"
+  },
+    "Materials" => {
+    body: "shield/material.html",
+    site_id: 4,
+    menu: 2,
+    image: "materials_banner.jpg"
+  },
+    "Protection" => {
+    body: "shield/protection.html",
+    site_id: 4,
+    menu: 2,
+    image: "protection_banner.jpg"
+  },
+  "Business Cards" => {
+    body: "signline/business_cards.html",
+    site_id: 2,
+    menu: 2,
+    image: "business_cards_banner.jpg"
+  },
+    "Leaflets" => {
+    body: "shield/leaflets.html",
+    site_id: 2,
+    menu: 1,
+    image: "leaflets_banner.jpg"
+  },
+    "Booklets" => {
+    body: "shield/booklets.html",
+    site_id: 2,
+    menu: 1,
+    image: "booklets_banner.jpg"
+  },
+    "Folders" => {
+    body: "shield/folders.html",
+    site_id: 2,
+    menu: 2,
+    image: "folders_banner.jpg"
+  },
+    "Letterheads" => {
+    body: "shield/letterheads.html",
+    site_id: 2,
+    menu: 2,
+    image: "letterheads_banner.jpg"
+  },
+    "Postcards" => {
+    body: "shield/postcards.html",
+    site_id: 2,
+    menu: 2,
+    image: "postcards_banner.jpg"
   }
+
 }
+
 
   @pages.each do |k, v|
     Rails.logger.debug v
@@ -131,6 +287,8 @@ namespace :pages do
     end
     MenuItem.create(name: @page.name, menu_type: v[:menu], site_id: @page.site_id, page_id: @page.id)
   end
+
+
 
   end
 end

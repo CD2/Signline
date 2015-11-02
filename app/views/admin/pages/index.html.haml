@@ -35,6 +35,7 @@
         %tr
           %td= page.name
           %td= page.published ? "Yes" : "No"
+          %td= page.site_id
           %td= link_to 'Show', page
           %td= link_to 'Edit', [:edit, :admin, page]
           %td= link_to 'Destroy', [:admin, page], :method => :delete, :data => { :confirm => 'Are you sure?' }

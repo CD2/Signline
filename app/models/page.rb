@@ -4,7 +4,6 @@ class Page < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  attr_accessor :site_id
   attr_accessor :homepage_id
   attr_accessor :include_in_side_menu
   attr_accessor :include_in_main_menu

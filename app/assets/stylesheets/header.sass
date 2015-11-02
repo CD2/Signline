@@ -15,16 +15,21 @@
 #main_header
   height: $header_height
   position: relative
+  overflow: hidden
+  @media screen and (max-width: $large)
+    height: 155px
+  @media screen and (max-width: $medium)
+    height: 80px
+    border-bottom: 5px solid black
 
 #logo
-  width: 300px
+  width: 320px
   height: $header_height
-  width: 25%
-  max-width: 350px
-  min-width: 200px
-  position: relative
   z-index: 100
   overflow: hidden
+  @media screen and (max-width: $large)
+    height: 105px
+
   &:after 
     content: ""
     height: $header_height
@@ -44,6 +49,11 @@
     margin: 0 auto
     position: relative
     z-index: 100
+    @media screen and (max-width: $large)
+      height: 85px
+    @media screen and (max-width: $medium)
+      height: 65px
+
 
 #navigation_menu
   position: absolute
@@ -53,6 +63,12 @@
   background: rgba(0, 0, 0, 0.81)
   color: white
   -webkit-transform: skew(-20deg)
+  @media screen and (max-width: $large)
+    right: -20px
+    max-width: 400px
+    text-align: right
+  @media screen and (max-width: $medium)
+    display: none
   ul 
     padding: 0
     margin: 0
@@ -75,7 +91,7 @@
   color: white
   height: 45px
   line-height: 45px
-  we
+  font-size: 0.875rem
   ul 
     padding: 0
     margin: 0
@@ -86,10 +102,20 @@
     color: white 
     text-decoration: none
     text-transform: uppercase
-    font-size: 0.875rem
     letter-spacing: 1px 
     display: block
     padding: 0 20px
+  @media screen and (max-width: $xlarge)
+    padding-left: 320px
+    font-size: 0.8rem
+    a 
+      padding: 0 10px
+  @media screen and (max-width: $large)
+    padding-left: 0
+    ul 
+      text-align: center
+  @media screen and (max-width: $medium)
+    display: none
 
 .signline 
   #main_header, #footer .background_footer, #logo:after

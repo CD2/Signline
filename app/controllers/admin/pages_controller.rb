@@ -31,7 +31,8 @@ class Admin::PagesController < AdminController
 
   # POST /pages
   def create
-    @object = Page.new(page_params)
+    @site = Site.find(params[:site_id])
+    @object = @site.pages.new(page_params)
     if @object.save
       remove_menu_items
       redirect_to @object

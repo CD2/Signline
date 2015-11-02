@@ -8,6 +8,7 @@ class CreateSites < ActiveRecord::Migration
       t.string :logo
       t.text :home_body
       t.string :banner_image
+      t.text :banner_text
       t.boolean :include_products
       t.boolean :default_site, default: false
       t.boolean :active, default: false

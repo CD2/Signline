@@ -11,66 +11,66 @@ namespace :sites do
         }, 
       "Printing Goods" => {
         url: "http://printing:3000", 
-        color: "#000",
+        color: "#D30060",
         logo: "printing_logo.png",
         banner_image: "printing_banner.jpg",
         home_body: "printing_home.html"
         }, 
       "Car and Bike Accessories" => {
         url: "http://carandbike:3000", 
-        color: "#000",
+        color: "#44b5ca",
         logo: "carandbike_logo.png",
-                banner_image: "signline_banner.jpg",
-        home_body: "signline_home.html"
+          banner_image: "carandbike_banner.jpg",
+        home_body: "carandbike_home.html"
         }, 
       "Shield & Protect" => {
         url: "http://shieldandprotect:3000", 
-        color: "#000",
+        color: "#EEC106",
         logo: "shieldandprotect_logo.png",
-                banner_image: "signline_banner.jpg",
-        home_body: "signline_home.html"
+                banner_image: "shieldandprotect_banner.jpg",
+        home_body: "shieldandprotect_home.html"
         }, 
-      "Slate Signs" => {
-        url: "http://slatesigns:3000", 
-        color: "#000",
-        logo: "slatesigns_logo.png",
-                banner_image: "signline_banner.jpg",
-        home_body: "signline_home.html"
-        }, 
+      #"Slate Signs" => {
+      #  url: "http://slatesigns:3000", 
+      #  color: "#000",
+      #  logo: "slatesigns_logo.png",
+      #          banner_image: "signline_banner.jpg",
+      #  home_body: "slatesigns_home.html"
+      #  }, 
       "Outdoor Furniture" => {
         url: "http://outdoor:3000", 
-        color: "#000",
+        color: "#0051ba",
         logo: "outdoor_logo.png",
         banner_image: "outdoor_banner.jpg",
         home_body: "outdoor_home.html"
         }, 
       "Animal Feed" => {
         url: "http://animalfeed:3000", 
-        color: "#000",
+        color: "#B78A33",
         logo: "animalfeed_logo.png",
-        banner_image: "signline_banner.jpg",
-        home_body: "signline_home.html"
+        banner_image: "animalfeed_banner.jpg",
+        home_body: "animalfeed_home.html"
         }, 
       "Retail" => {
         url: "http://retail:3000", 
-        color: "#000",
+        color: "#B73333",
         logo: "retail_logo.png",
-        banner_image: "signline_banner.jpg",
-        home_body: "signline_home.html"
+        banner_image: "retail_banner.jpg",
+        home_body: "retail_home.html"
         }, 
       "Eduart" => {
         url: "http://eduart:3000", 
-        color: "#000",
+        color: "#33B757",
         logo: "eduart_logo.png",
-        banner_image: "signline_banner.jpg",
-        home_body: "signline_home.html"
+        banner_image: "eduart_banner.jpg",
+        home_body: "eduart_home.html"
         }, 
       "Electronics" => {
         url: "http://electronics:3000", 
-        color: "#000",
+        color: "#007CC2",
         logo: "electronics_logo.png",
-        banner_image: "signline_banner.jpg",
-        home_body: "signline_home.html"
+        banner_image: "electronics_banner.jpg",
+        home_body: "electronics_home.html"
         }, 
     }
     @sites.each_with_index do |(k, v), i|

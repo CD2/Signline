@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20151018135544) do
     t.string   "logo"
     t.text     "home_body"
     t.string   "banner_image"
+    t.text     "banner_text"
     t.boolean  "include_products"
     t.boolean  "default_site",     default: false
     t.boolean  "active",           default: false

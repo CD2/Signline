@@ -1,7 +1,7 @@
 .background_footer
 #footer-inner
   .footer-logo.footer-div
-    = image_tag("white-logo.png")
+    = link_to image_tag(current_site.logo), root_path
   .footer-services.list-footer-panel.footer-div
     %h4 Services
     %ul
