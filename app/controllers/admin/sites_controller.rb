@@ -48,10 +48,12 @@ class Admin::SitesController < AdminController
   end
 
   def side_menu
+    @site = Site.find(params[:site_id])
     @menu_items = current_site.menu_items.where(menu_type: 2)
   end
 
   def main_menu
+    @site = Site.find(params[:site_id])
     @menu_items = current_site.menu_items.where(menu_type: 1)
   end
 
