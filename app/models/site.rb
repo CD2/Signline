@@ -4,8 +4,7 @@ class Site < ActiveRecord::Base
   validates :machine_name, presence: true, uniqueness: true
   has_many :urls
   has_many :categories
-  has_many :site_pages
-  has_many :pages, through: :site_pages
+  has_many :pages
   mount_uploader :logo, ImageUploader
   has_many :products, through: :categories
   has_many :menu_items

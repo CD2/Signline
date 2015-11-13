@@ -23,20 +23,20 @@
     %hr
     
       
-    .field.inline_check_box.reveal_check_box
-      - if @object.menu_items.where(menu_type: 2).count > 0
-        = f.check_box :include_in_side_menu, checked: true
-      - else
-        = f.check_box :include_in_side_menu
-      = f.label :include_in_side_menu
-
-      = f.fields_for :menu_items do |ff|
-
-        .field.reveal_field
-          = ff.label :name
-          = ff.text_field :name
-        = ff.hidden_field :menu_type, value: 2
-        = ff.hidden_field :site_id, value: current_site.id
+    //.field.inline_check_box.reveal_check_box
+    //  - if @object.menu_items.where(menu_type: 2).count > 0
+    //    = f.check_box :include_in_side_menu, checked: true
+    //  - else
+    //    = f.check_box :include_in_side_menu
+    //  = f.label :include_in_side_menu
+    //
+    //  = f.fields_for :menu_items do |ff|
+    //
+    //    .field.reveal_field
+    //      = ff.label :name
+    //      = ff.text_field :name
+    //    = ff.hidden_field :menu_type, value: 2
+    //    = ff.hidden_field :site_id, value: current_site.id
 
 - if params[:site_id]
   = f.hidden_field :site_id, value: current_site.id

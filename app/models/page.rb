@@ -7,8 +7,7 @@ class Page < ActiveRecord::Base
   attr_accessor :include_in_side_menu
   attr_accessor :include_in_main_menu
 
-  has_many :site_pages, dependent: :destroy
-  has_many :sites, through: :site_pages
+  belongs_to :site
   has_one :menu_item
   accepts_nested_attributes_for :menu_item
 

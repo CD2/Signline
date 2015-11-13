@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   namespace :admin do 
     resources :sites, only: [:new, :create, :index, :update, :edit, :destroy] do 
       get :toggle_status
-      resources :pages, only: [:index, :new]
+      resources :pages, only: [:new, :create, :index, :update, :edit, :destroy]
       get :side_menu
       get :main_menu
       resources :menu_items, only: [:new, :create, :update, :edit, :destroy]
@@ -38,7 +38,6 @@ Rails.application.routes.draw do
       get :confirm_import
       post :process_import
     end
-    resources :pages, only: [:new, :create, :index, :update, :edit, :destroy]
     resources :orders, only: :index
   end
 

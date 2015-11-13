@@ -1,16 +1,13 @@
 class Admin::PagesController < AdminController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_site
   before_action :set_new, only: :new
 
   # GET /pages
   def index
-    if params[:site_id]
-      @site = Site.find(params[:site_id])
-      @pages = @site.pages 
-      @pages << Page.includes(:site_pages).where(site_pages: { page_id: nil })
-    else
-      @pages = Page.all
-    end
+    @site = Site.find(params[:site_id])
+    @pages = @site.pages 
+    @pages << Page.where(site_id: nil)
   end
 
   # GET /pages/1
@@ -22,11 +19,12 @@ class Admin::PagesController < AdminController
   end
 
   def edit
-    if @object.menu_items.where(menu_type: 2).count > 0
-      @side_menu_item = @object.menu_items
+    if @object.menu_item
+      @side_menu_item = @object.menu_item
     else
-      @object.menu_items.build
+      @object.menu_item.build
     end
+    render 'edit'
   end
 
   # POST /pages
@@ -69,12 +67,16 @@ class Admin::PagesController < AdminController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      @page = Page.friendly.find(params[:id])
       @object = @page
     end
 
     def set_new
       @object = Page.new 
+    end
+
+    def set_site
+      @site = Site.find(params[:site_id])
     end
 
     # Only allow a trusted parameter "white list" through.
