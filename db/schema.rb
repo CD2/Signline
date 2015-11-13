@@ -106,9 +106,11 @@ ActiveRecord::Schema.define(version: 20151018135544) do
     t.string   "page_title"
     t.string   "url_alias"
     t.text     "meta_description"
+    t.integer  "site_id"
     t.boolean  "published"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.boolean  "all_sites",        default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "product_images", force: :cascade do |t|

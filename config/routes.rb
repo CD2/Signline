@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :enquiries
+  
+  resources :enquiries, only: [:index, :create] do 
+    collection { get :thanks }
+  end
   resources :brands
   resources :orders do 
     get :shipping_method, path: "shipping"
@@ -39,7 +42,7 @@ Rails.application.routes.draw do
     resources :orders, only: :index
   end
 
-  resources :pages, only: :show
+  
   resources :products, only: :show do 
     collection do 
       get :amazon, defaults: { format: :xml }
@@ -64,5 +67,7 @@ Rails.application.routes.draw do
   get 'feeds'=> 'static_pages#feeds' 
 
   match '/uploads', to: 'images#upload', via: 'post'
+
+  resources :pages, path: "", only: :show
 
 end

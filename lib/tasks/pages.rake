@@ -7,55 +7,8 @@ namespace :pages do
     body: "signline/about.html",
     site_id: 1,
     menu: 1,
-    image: "about.jpg"
-    },
-    "About Us" => {
-    body: "signline/about.html",
-    site_id: 2,
-    menu: 1,
-    image: "temp_banner.jpg"
-    },
-    "About Us" => {
-    body: "signline/about.html",
-    site_id: 3,
-    menu: 1,
-    image: "temp_banner.jpg"
-    },
-    "About Us" => {
-    body: "signline/about.html",
-    site_id: 4,
-    menu: 1,
-    image: "temp_banner.jpg"
-    },
-    "About Us" => {
-    body: "signline/about.html",
-    site_id: 5,
-    menu: 1,
-    image: "temp_banner.jpg"
-    },
-    "About Us" => {
-    body: "signline/about.html",
-    site_id: 6,
-    menu: 1,
-    image: "temp_banner.jpg"
-    },
-    "About Us" => {
-    body: "signline/about.html",
-    site_id: 7,
-    menu: 1,
-    image: "temp_banner.jpg"
-    },
-    "About Us" => {
-    body: "signline/about.html",
-    site_id: 8,
-    menu: 1,
-    image: "temp_banner.jpg"
-    },
-    "About Us" => {
-    body: "signline/about.html",
-    site_id: 9,
-    menu: 1,
-    image: "temp_banner.jpg"
+    image: "about.jpg",
+    all_sites: true
     },
   "Case Histories" => {
     body: "signline/case_histories.html",
@@ -65,52 +18,14 @@ namespace :pages do
   "Company Policy" => {
     body: "signline/company_policy.html",
     site_id: 1,
-    menu: 1
+    menu: 1,
+    all_sites: true
   },
-  "Company Policy" => {
-    body: "signline/company_policy.html",
-    site_id: 1,
-    menu: 2
-  },
-  "Company Policy" => {
-    body: "signline/company_policy.html",
-    site_id: 1,
-    menu: 3
-  },
-  "Company Policy" => {
-    body: "signline/company_policy.html",
-    site_id: 1,
-    menu: 4
-  },
-  "Company Policy" => {
-    body: "signline/company_policy.html",
-    site_id: 1,
-    menu: 5
-  },
-  "Company Policy" => {
-    body: "signline/company_policy.html",
-    site_id: 1,
-    menu: 6
-  },
-  "Company Policy" => {
-    body: "signline/company_policy.html",
-    site_id: 1,
-    menu: 7
-  },
-  "Company Policy" => {
-    body: "signline/company_policy.html",
-    site_id: 1,
-    menu: 8
-  },
-  "Company Policy" => {
-    body: "signline/company_policy.html",
-    site_id: 1,
-    menu: 9
-  },
-  "Materials" => {
+  "Our Materials" => {
     body: "signline/materials.html",
     site_id: 1,
-    menu: 1
+    menu: 1,
+    all_sites: true
   },
   "Vehicle Graphics" => {
     body: "signline/vehicle_graphics.html",
@@ -280,11 +195,14 @@ namespace :pages do
 
   @pages.each do |k, v|
     Rails.logger.debug v
+    @page = Page.new(name: k, body: File.open(File.join(Rails.root, "seed_html/#{v[:body]}")).read, site_id: v[:site_id], published: true)
     if v[:image]
-      @page = Page.create(name: k, body: File.open(File.join(Rails.root, "seed_html/#{v[:body]}")).read, site_id: v[:site_id], published: true, image: File.open(File.join(Rails.root, "seed_images/page_images/#{v[:image]}")))
-    else
-      @page = Page.create(name: k, body: File.open(File.join(Rails.root, "seed_html/#{v[:body]}")).read, site_id: v[:site_id], published: true)
+      @page.image = File.open(File.join(Rails.root, "seed_images/page_images/#{v[:image]}"))
     end
+    if v[:all_sites]
+      @page.all_sites = true
+    end
+    @page.save!
     MenuItem.create(name: @page.name, menu_type: v[:menu], site_id: @page.site_id, page_id: @page.id)
   end
 

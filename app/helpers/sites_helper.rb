@@ -30,6 +30,8 @@ module SitesHelper
 
   def main_menu_items
     @menu_items = current_site.menu_items.where(menu_type: 1)
+    Page.where(all_sites: true).each { |page| @menu_items << page.menu_item }
+    return @menu_items
   end
 
   def side_menu_items

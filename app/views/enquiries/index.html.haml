@@ -1,25 +1,31 @@
-%h1 Listing enquiries
+#page_body.body_section
+  %h1 Get in Touch
+  %p If you need any help, then please get in touch.
+  %p
+    Signs and Print House 
+    %br
+    Thistledown Farm 
+    %br
+    Station Road 
+    %br
+    Tivetshall Saint Margaret 
+    %br
+    Norfolk 
+    %br
+    NR15 2DL Tel: 01379 677 699 
+    %br
+    sales@signsandprinting.co.uk
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Email
-      %th Body
-      %th
-      %th
-      %th
 
-  %tbody
-    - @enquiries.each do |enquiry|
-      %tr
-        %td= enquiry.name
-        %td= enquiry.email
-        %td= enquiry.body
-        %td= link_to 'Show', enquiry
-        %td= link_to 'Edit', edit_enquiry_path(enquiry)
-        %td= link_to 'Destroy', enquiry, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Enquiry', new_enquiry_path
+  = form_for @enquiry do |f|
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :email
+      = f.text_field :email
+    .field
+      = f.label :body
+      = f.text_area :body
+    .actions
+      = f.submit 'Send'
