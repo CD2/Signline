@@ -6,5 +6,4 @@
   = link_to "Newest", category_path(@category, sort: {id: :desc}), class: "filter_link"
   = link_to "OLDEST", category_path(@category, sort: {id: :asc}), class: "filter_link"
 
-- cache ['store', Product.latest] do
-  = render 'layouts/product_list'
+= render 'layouts/product_list'
