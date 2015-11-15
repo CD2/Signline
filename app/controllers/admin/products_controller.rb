@@ -5,7 +5,7 @@ class Admin::ProductsController < AdminController
 
   # GET /products
   def index
-    @products = Product.all
+    @products = Product.paginate(:page => params[:page], :per_page => 50)
   end
 
   # GET /products/1

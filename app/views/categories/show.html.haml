@@ -1,9 +1,28 @@
 #filters
-  = link_to "PRICE high low", category_path(@category, sort: {price: :desc}), class: "filter_link"
-  = link_to "PRICE low high", category_path(@category, sort: {price: :asc}), class: "filter_link"
-  = link_to "NAME A-Z", category_path(@category, sort: {name: :desc}), class: "filter_link"
-  = link_to "NAME Z-A", category_path(@category, sort: {name: :asc}), class: "filter_link"
-  = link_to "Newest", category_path(@category, sort: {id: :desc}), class: "filter_link"
-  = link_to "OLDEST", category_path(@category, sort: {id: :asc}), class: "filter_link"
+
+  - if params[:sort][:id] == "desc"
+    = link_to "DATE &#8595;".html_safe, category_path(@category, sort: {id: :asc}), class: "filter_link"
+  - elsif params[:sort][:id] == "asc"
+    = link_to "DATE &#8593;".html_safe, category_path(@category, sort: {id: :desc}), class: "filter_link"
+  - else
+    = link_to "DATE", category_path(@category, sort: {id: :desc}), class: "filter_link" unless params[:sort][:id]
+
+  - if params[:sort][:name] == "desc"
+    = link_to "NAME &#8595;".html_safe, category_path(@category, sort: {name: :asc}), class: "filter_link"
+  - elsif params[:sort][:name] == "asc"
+    = link_to "NAME &#8593;".html_safe, category_path(@category, sort: {name: :desc}), class: "filter_link"
+  - else
+    = link_to "NAME", category_path(@category, sort: {name: :desc}), class: "filter_link"
+
+  - if params[:sort][:price] == "desc"
+    = link_to "PRICE &#8595;".html_safe, category_path(@category, sort: {price: :asc}), class: "filter_link"
+  - elsif params[:sort][:price] == "asc"
+    = link_to "PRICE &#8593;".html_safe, category_path(@category, sort: {price: :desc}), class: "filter_link"
+  - else
+    = link_to "PRICE", category_path(@category, sort: {price: :desc}), class: "filter_link" unless params[:sort][:price]
+
+- if params[:sort][:name] == "asc"
+  o
 
 = render 'layouts/product_list'
+//= will_paginate @products

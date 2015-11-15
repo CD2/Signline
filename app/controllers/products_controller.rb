@@ -5,16 +5,4 @@ class ProductsController < ApplicationController
     @features = @product.features.split("///")
   end
 
-  def amazon
-    @products = Product.all
-  end
-
-  def ebay
-    @products = Product.all
-  end
-
-  def google
-    @products = Product.all
-  end
-
 end

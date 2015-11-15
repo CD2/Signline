@@ -16,6 +16,7 @@ gem 'carrierwave'
 gem "mini_magick"
 gem 'rack-rewrite'
 gem 'resque'
+gem 'will_paginate'
 group :production do
   gem 'unicorn'
   gem 'pg'

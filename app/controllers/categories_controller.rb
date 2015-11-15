@@ -5,11 +5,13 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
     if params[:sort]
-      @products = @category.products.order(params[:sort]).all
+      @products_c = @category.products.order(params[:sort]).all
+      @products = @products_c.paginate(:page => params[:page], :per_page => 24)
     else 
-      @products = @category.products
+      @products_c = @category.products
+      @products = @products_c.paginate(:page => params[:page], :per_page => 24)
     end
   end
 

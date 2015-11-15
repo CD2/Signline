@@ -1,11 +1,13 @@
 class Category < ActiveRecord::Base
-  validates :machine_name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
   has_many :categorisations, dependent: :destroy
   has_many :products, through: :categorisations
 
   has_many :site_categories
   has_many :sites, through: :site_categories
+
+  before_save :create_machine_name
 
   def assigned_to_site? site
     sites.include? site
@@ -18,4 +20,13 @@ class Category < ActiveRecord::Base
   def unassign_to_site site
     site_categories.find_by(site_id: site.id).destroy
   end
+
+  def create_machine_name
+    self.machine_name = self.name.parameterize
+  end
+
+  extend FriendlyId
+  friendly_id :machine_name
+
+
 end
