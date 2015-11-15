@@ -24,8 +24,7 @@ namespace :pages do
   "Our Materials" => {
     body: "signline/materials.html",
     site_id: 1,
-    menu: 1,
-    all_sites: true
+    menu: 1
   },
   "Vehicle Graphics" => {
     body: "signline/vehicle_graphics.html",

@@ -17,7 +17,7 @@
     %tr
       %td= product.at_css("title").try(:content)
       %td= product.at_css("brand").try(:content)
-      %td= product.at_css("catagory").try(:content)
+      %td= product.at_css("category").try(:content)
       %td= product.at_css("product_body").try(:content)
       %td
         %ul
@@ -30,7 +30,7 @@
       %td
         - product.css("images image").each do |image|
           = image_tag(image.content, width: "50")
-      %td= product.at_css("price").try(:content)
+      %td= product.at_css("price").try(:content).gsub('£', '')
 
 
 

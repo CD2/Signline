@@ -9,7 +9,8 @@
       .info_section
         .price= number_to_currency @product.price, locale: :en
       .cart_button.info_section
-        = button_to "Add to Cart", add_to_cart_path(product_id: @product)
+        //= button_to "Add to Cart", add_to_cart_path(product_id: @product)
+        = button_to "Coming Soon", "#", remote: true, disabled: true
       .info_section
         .product_page_info_features
           %h4 Features

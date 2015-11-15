@@ -1,9 +1,10 @@
-= link_to "PRICE high low", category_path(@category, sort: {price: :desc}), class: "filter_link"
-= link_to "PRICE low high", category_path(@category, sort: {price: :asc}), class: "filter_link"
-= link_to "NAME A-Z", category_path(@category, sort: {name: :desc}), class: "filter_link"
-= link_to "NAME Z-A", category_path(@category, sort: {name: :asc}), class: "filter_link"
-= link_to "Newest", category_path(@category, sort: {id: :desc}), class: "filter_link"
-= link_to "OLDEST", category_path(@category, sort: {id: :asc}), class: "filter_link"
+#filters
+  = link_to "PRICE high low", category_path(@category, sort: {price: :desc}), class: "filter_link"
+  = link_to "PRICE low high", category_path(@category, sort: {price: :asc}), class: "filter_link"
+  = link_to "NAME A-Z", category_path(@category, sort: {name: :desc}), class: "filter_link"
+  = link_to "NAME Z-A", category_path(@category, sort: {name: :asc}), class: "filter_link"
+  = link_to "Newest", category_path(@category, sort: {id: :desc}), class: "filter_link"
+  = link_to "OLDEST", category_path(@category, sort: {id: :asc}), class: "filter_link"
 
 - cache ['store', Product.latest] do
   = render 'layouts/product_list'

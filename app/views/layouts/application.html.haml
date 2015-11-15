@@ -35,9 +35,6 @@
                     = render 'layouts/site_categories_sidebar'
               .main_column
                 = yield
-
-                = @user
-                = @cart
               - if second_sidebar
                 - unless admin_section?
                   .sidebar_column.second_sidebar
