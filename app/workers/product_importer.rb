@@ -25,14 +25,12 @@ class ProductImporter
       unless @category = Category.find_by(name: category_name)
         @category = Category.create(name: category_name, machine_name: category_name.parameterize)
       end
-      if @product = Product.find_by(name: import_params[:name])
-        @product.update(import_params)
-      else
+      unless @product = Product.find_by(name: import_params[:name])
         @product = Product.new(import_params)
-      end
-      if @product.save
-        @product.categorise @category
-        product.css("images image").each { |image| @product.product_images.create(remote_image_url: image.content) }
+        if @product.save
+          @product.categorise @category
+          product.css("images image").each { |image| @product.product_images.create(remote_image_url: image.content) }
+        end
       end
     end
   end
