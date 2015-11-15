@@ -34,20 +34,14 @@ Rails.application.routes.draw do
     resources :products, only: [:new, :create, :index, :update, :edit, :destroy] do 
       collection { get :export }
     end 
-    resources :product_imports, only: [:new, :create] do 
-      get :confirm_import
-      post :process_import
-    end
     resources :orders, only: :index
   end
 
   
-  resources :products, only: :show do 
-    collection do 
-      get :amazon, defaults: { format: :xml }
-      get :ebay, defaults: { format: :xml }
-      get :google, defaults: { format: :xml }
-    end
+  resources :products, only: :show
+  resources :product_imports, only: [:new, :create] do 
+    get :confirm_import
+    post :process_import
   end
   resources :categories, only: [:index, :show]
   resources :carts, only: [:index, :destroy], path: "cart"

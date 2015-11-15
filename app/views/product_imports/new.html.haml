@@ -8,7 +8,7 @@
   %h1= "Import Products"
 
 #admin_form
-  = form_for [:admin, @product_import] do |f|
+  = form_for [@product_import] do |f|
     - if @product_import.errors.any? 
       = render 'layouts/errors', object: f.object
     = f.file_field :file
