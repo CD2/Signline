@@ -4,6 +4,9 @@ class Admin::CategoriesController < AdminController
 
   # GET /categories
   def index
+    @site = Site.find(params[:site_id])
+    @categories = @site.categories
+  rescue ActiveRecord::RecordNotFound
     @categories = Category.all
   end
 

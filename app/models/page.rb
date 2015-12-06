@@ -4,13 +4,12 @@ class Page < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   attr_accessor :homepage_id
-  attr_accessor :include_in_side_menu
-  attr_accessor :include_in_main_menu
+  attr_accessor :side_menu
+  attr_accessor :main_menu
 
   belongs_to :site
-  has_one :menu_item
-  accepts_nested_attributes_for :menu_item
-
+  has_many :menu_items
+  
   extend FriendlyId
   friendly_id :url_alias
 

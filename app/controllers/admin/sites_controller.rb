@@ -47,16 +47,6 @@ class Admin::SitesController < AdminController
     redirect_to admin_sites_path
   end
 
-  def side_menu
-    @site = Site.find(params[:site_id])
-    @menu_items = current_site.menu_items.where(menu_type: 2)
-  end
-
-  def main_menu
-    @site = Site.find(params[:site_id])
-    @menu_items = current_site.menu_items.where(menu_type: 1)
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site

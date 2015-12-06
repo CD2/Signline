@@ -1,14 +1,18 @@
-#admin_bar
+#admin_bar{ style: "background-color: #{@site ? @site.color : current_site.color}" }
   %ul.site_admin_items
-    %li.admin_bar_site_name= current_site.name
-    %li= link_to "Site Settings", edit_admin_site_path(current_site)
-    %li= link_to "Pages", admin_site_pages_path(current_site) 
-    %li= link_to "Main Menu", admin_site_main_menu_path(current_site)
-    %li= link_to "Side Menu", admin_site_side_menu_path(current_site)
-
+    - if admin_section?
+      %li= link_to @nav_site.name, @nav_site.urls.first.url
+    %li= link_to "Settings", edit_admin_site_path(@nav_site)
+    %li= link_to "Pages", admin_site_pages_path(@nav_site) 
+    %li= link_to "Categories", admin_site_categories_path(@nav_site)
+    %li= link_to "Products", admin_site_products_path(@nav_site)
+    %li= link_to "Menus", admin_site_menu_items_path(@nav_site)
+    
   .split_flex_box
 
   %ul.general_admin_items
-    %li= link_to "Products", admin_products_path
-    %li= link_to "Categories", admin_categories_path
+    %li= link_to "All Products", admin_products_path
+    %li= link_to "All Categories", admin_categories_path
+    %li= link_to "Users", admin_users_path
+    %li= link_to "Orders", admin_orders_path
     %li= link_to "All Sites", admin_sites_path

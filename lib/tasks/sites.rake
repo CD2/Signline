@@ -74,7 +74,7 @@ namespace :sites do
         }, 
     }
     @sites.each_with_index do |(k, v), i|
-      i == 0 ? default_site = true : default_site = false
+      i == 6 ? default_site = true : default_site = false
       @site = Site.create!(name: k, email: "web@signandprinting.co.uk", home_body: File.open(File.join(Rails.root, "seed_html/#{v[:home_body]}")).read, machine_name: k.gsub(" ", "").downcase, default_site: default_site, active:true, color: v[:color], banner_image: File.open(File.join(Rails.root, "seed_images/#{v[:banner_image]}")), logo: File.open(File.join(Rails.root, "seed_images/#{v[:logo]}")))
       Url.create!(url: v[:url], site_id: @site.id)
     end

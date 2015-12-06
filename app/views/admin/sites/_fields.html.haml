@@ -1,35 +1,35 @@
+.split_form
+  .split_form_left
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = label_tag :urls
+      = text_field_tag :urls, @object.urls.map { |site| site.url }.join(",")
+    .field 
+      = f.label :home_body, "Home Page Text"
+      = f.text_area :home_body, class: "editable"
+    .field  
+      = f.check_box :second_sidebar_option, checked: second_sidebar
+      = f.label :second_sidebar_option, "Include Second Sidebar"
+      .field
+        = f.label :second_sidebar
+        = f.text_area :second_sidebar, class: "editable"
 
-.field
-  = f.label :name
-  = f.text_field :name
-.field
-  = f.label :machine_name
-  = f.text_field :machine_name
-.field
-  = label_tag :urls
-  = text_field_tag :urls, @object.urls.map { |site| site.url }.join(",")
-.field
-  = f.label :logo
-  = f.file_field :logo
-
-.field  
-  = f.check_box :second_sidebar_option, checked: second_sidebar
-  = f.label :second_sidebar_option, "Include Second Sidebar"
-  .field
-    = f.label :second_sidebar
-    = f.text_area :second_sidebar, class: "editable"
-.field 
-  = f.label :home_body
-  = f.text_area :home_body, class: "editable"
-.field 
-  = f.label :banner_image
-  = f.file_field :banner_image
-.field 
-  = f.label :include_products do
-    = f.check_box :include_products
-    %span Include Products on Home Page
-
-.field
-  = f.label :color
-  .colorpicker
-  = f.hidden_field :color, class: "color_picker_reciever"
+  .split_form_right
+    .field
+      = f.label :color
+      .colorpicker
+      = f.hidden_field :color, class: "color_picker_reciever"
+    .field.image_field
+      = image_tag(@site.logo) if @site.logo
+      = f.label :logo
+      = f.file_field :logo
+    .field.image_field
+      = image_tag(@site.banner_image) if @site.banner_image
+      = f.label :banner_image
+      = f.file_field :banner_image
+    .field 
+      = f.label :include_products do
+        = f.check_box :include_products
+        %span Include Products on Home Page

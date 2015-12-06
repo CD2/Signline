@@ -14,22 +14,23 @@
     %thead
       %tr
         %th Name
-        %th Main Menu
-        %th Side Menu
-        %th
-        %th
-        %th
-        %th
+        %th Settings
+        %th Pages
+        %th Categories
+        %th Products
+        %th Menus
+        %th Status
 
     %tbody
       - @sites.each do |site|
-        %tr
+        %tr{class: cycle("odd", "even")}
           %td= site.name
-          %td= link_to 'main', "#{site.main_url}#{admin_site_main_menu_path(site)}"
-          %td= link_to 'side', "#{site.main_url}#{admin_site_side_menu_path(site)}"
-          %td= link_to 'Pages', "#{site.main_url}#{admin_site_pages_path(site)}"
-          %td= link_to 'Edit', "#{site.main_url}#{edit_admin_site_path(site)}"
-          %td= link_to 'Destroy', "#{site.main_url}#{[:admin, site]}", :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td= link_to 'Settings', edit_admin_site_path(site)
+          %td= link_to 'Pages', admin_site_pages_path(site)
+          %td= link_to 'Categories', admin_site_categories_path(site)
+          %td= link_to 'Products', admin_site_products_path(site)
+          %td= link_to 'Menus', admin_site_menu_items_path(site)
+
           %td
             = link_to admin_site_toggle_status_path site do
               = site.active ? "Suspend" : "Go Live"

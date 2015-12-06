@@ -8,6 +8,14 @@ class Admin::ProductsController < AdminController
     @products = Product.paginate(:page => params[:page], :per_page => 50)
   end
 
+  def index
+    @site = Site.find(params[:site_id])
+    @prod = @site.products
+    @products = @prod.paginate(:page => params[:page], :per_page => 50)
+  rescue ActiveRecord::RecordNotFound
+    @products = Product.paginate(:page => params[:page], :per_page => 50)
+  end
+
   # GET /products/1
   def show
   end

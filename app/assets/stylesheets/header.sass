@@ -16,6 +16,7 @@
   height: $header_height
   position: relative
   overflow: hidden
+  +flexbox
   @media screen and (max-width: $large)
     height: 155px
   @media screen and (max-width: $medium)
@@ -23,22 +24,14 @@
     border-bottom: 5px solid black
 
 #logo
+  +flex(0 0 300px)
   width: 320px
   height: $header_height
   z-index: 100
   overflow: hidden
+  position: relative
   @media screen and (max-width: $large)
     height: 105px
-
-  &:after 
-    content: ""
-    height: $header_height
-    width: 100%
-    -webkit-transform: skew(-20deg)
-    position: relative
-    z-index: 1
-    right: 23px
-    display: block
   a 
     position: absolute
     top: 10px 
@@ -54,15 +47,15 @@
     @media screen and (max-width: $medium)
       height: 65px
 
-
+#header_menus
+  +flex(1)
 #navigation_menu
   position: absolute
   padding: 10px 50px
   right: 50px
   bottom: 46px
-  background: rgba(0, 0, 0, 0.81)
+  background: rgba(0, 0, 0, 0.2)
   color: white
-  -webkit-transform: skew(-20deg)
   @media screen and (max-width: $large)
     right: -20px
     max-width: 400px
@@ -72,7 +65,6 @@
   ul 
     padding: 0
     margin: 0
-    -webkit-transform: skew(20deg)
   li 
     display: inline-block
     padding: 0 10px
@@ -84,14 +76,15 @@
 #main_menu
   position: absolute
   bottom: 0
-  padding-left: 350px
   width: 100%
   box-sizing: border-box
-  background: #121212
+  background: rgba(0, 0, 0, 0.25)
   color: white
   height: 45px
   line-height: 45px
+  padding: 0 20px
   font-size: 0.875rem
+  font-weight: 100
   ul 
     padding: 0
     margin: 0

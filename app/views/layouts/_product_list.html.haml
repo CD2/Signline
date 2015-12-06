@@ -1,4 +1,9 @@
-#product_list_container
-  %ul.product_list
+
+#product_grid_container
+  #product_grid
     - @products.each do |product|
-      %li= render 'products/product_category_view', product: product
+      .product_grid_item_container
+        .product_grid_item
+          = link_to(image_tag(product.preview_image), product)
+          %h3= link_to product.name, product
+          .price= number_to_currency product.price, locale: :en

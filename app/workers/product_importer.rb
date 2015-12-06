@@ -21,7 +21,7 @@ class ProductImporter
         features: product.at_css("feature").to_s.gsub('<feature>', '').gsub('</feature>', '///'),
         mpn: product.at_css("Manufacturer_Part_Number").try(:content)
       }
-      category_name = product.at_css("category").content.to_s.gsub("&amp;", "&")
+      category_name = product.at_css("category").try{ content.to_s.gsub("&amp;", "&") }
       unless @category = Category.find_by(name: category_name)
         @category = Category.create(name: category_name, machine_name: category_name.parameterize)
       end

@@ -1,0 +1,160 @@
+/*
+ *= require froala_editor.min.css
+ *= require froala_style.min.css
+ *= require font-awesome
+ */
+
+@import normalize
+@import flex_mixins
+@import chosen.css
+@import variables 
+@import forms
+
+@import general
+@import header
+@import footer
+
+@import products
+@import pages
+
+h1_admin, .admin_section h1
+  text-transform: uppercase
+  font-size: 1.5rem
+  color: #666
+  font-weight: 500
+
+#admin_box
+  position: fixed
+  bottom: 50px
+  width: 200px
+  right: 30px
+  padding: 15px
+  box-sizing: border-box
+  transform: translateY(100%)
+  transition: 0.8s cubic-bezier(0.15, 0.57, 0.58, 1)
+  background: rgba(0,0,0,0.9)
+  color: white 
+  font-size: 0.875rem
+  ul 
+    padding: 0
+  li 
+    list-style: none
+  a 
+    color: white 
+    text-decoration: none 
+
+.admin_box_active
+  #admin_box
+    transform: translateY(0)
+    bottom: 30px
+
+#admin_table
+  margin: 0 auto
+  padding: 40px
+  box-sizing: border-box
+
+.admin_secondary_links
+  float: right
+  li 
+    display: inline-block
+    a 
+      display: block
+      color: #666
+      text-decoration: none 
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 0.875rem
+      letter-spacing: 1px 
+      border-bottom: 2px solid
+      padding-bottom: 3px 
+      position: relative
+      bottom: 10px
+
+.admin_section
+  table
+    width: 100%
+    th
+      font-weight: 600
+      text-transform: uppercase
+      text-align: left
+      color: rgba(0, 0, 0, 0.65)
+      white-space: nowrap
+      border-bottom: 1px solid #666
+    th, td
+      padding: 0.5rem 1rem 0.5rem 0
+      font-size: 0.875rem
+    .sub-service-title
+      width: 50%
+    tr.light
+      background: #f1f1f1
+    tr.dark
+      background: #ddd
+
+  #content_wrapper
+    padding: 30px 40px 80px
+
+  #page_wrapper
+    background: #fff
+
+input#site_second_sidebar_option ~ .field 
+  display: none
+
+input#site_second_sidebar_option:checked ~ .field 
+  display: block
+
+#admin_bar
+  width: 100%
+  left: 0
+  bottom: 0
+  background: #1b1b1b
+  display: flex 
+  padding: 0 30px
+  color: white 
+  z-index: 100
+  text-transform: uppercase
+  font-weight: 600
+  box-sizing: border-box
+  font-size: 0.75rem
+  ul 
+    padding: 0 
+    margin: 0
+  li 
+    display: inline-block 
+    list-style: none
+    &.admin_bar_site_name
+      margin-right: 20px
+  a 
+    margin: 5px 0 
+    color: white 
+    text-decoration: none
+    font-weight: 100
+    display: block
+    padding: 10px
+    &:hover 
+      color: rgba(255,255,255,0.7) 
+
+  .split_flex_box 
+    flex: 1
+
+#admin_content
+  table
+    border: 1px solid #333
+  thead 
+    tr 
+      background: #333 
+    th 
+      color: white
+  tr.even
+    background-color: #ddd
+  tr 
+    height: 60px
+  td, th
+    padding: 10px 20px
+    
+.admin_index_action 
+  width: 1px
+
+.field.image_field 
+  background: #ddd
+  padding: 11px
+  margin: 10px 0

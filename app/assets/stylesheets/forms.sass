@@ -22,11 +22,14 @@ select,
   height: 44px
   width: 100%
   color: #3e3e3e
-  border: 1px solid #ddd
+  border: 1px solid #333
   margin-bottom: 10px
   font-size: 0.875rem
   &:focus
     outline: none
+
+.chosen-container-multi .chosen-choices
+  border: 1px solid #333
 
 .chosen-container-single .chosen-single
   border-radius: 0
@@ -58,7 +61,7 @@ div#user_form
   margin: 0 auto
   padding-top: 10%
 
-#site_form, #admin_form
+#site_form
   box-shadow: 0 5px 15px rgba(0,0,0,0.21), 0 0 4px 0px rgba(0,0,0,0.06)
   max-width: 600px
   margin: 0 auto 50px
@@ -71,9 +74,6 @@ div#user_form
   h1 
     @extend h1_admin
     margin-bottom: 15px
-
-#admin_form
-  max-width: 1200px
 
 .secondary_form_link
   float: right 
@@ -101,8 +101,6 @@ div#user_form
 .split_form_right
   flex: 1
   padding-left: 15px
-  img   
-    width: 120px
 
 .split_fields_form
   display: flex
@@ -127,3 +125,9 @@ div#user_form
 
 .reveal_check_box input[type="checkbox"]:checked ~ .reveal_field
   display: block
+
+input[type="checkbox"], input[type="checkbox"] + label 
+  display: inline-block
+  color: black
+  opacity: 1
+  font-size: 1rem

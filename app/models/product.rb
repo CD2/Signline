@@ -14,6 +14,10 @@ class Product < ActiveRecord::Base
 
   belongs_to :brand
 
+  searchable do 
+    text :name
+  end
+
   def categorised? category
     categories.include? category
   end
@@ -36,6 +40,22 @@ class Product < ActiveRecord::Base
     else
       errors.add(:base, 'Cart Items present')
       return false
+    end
+  end
+
+  def preview_image
+    if self.product_images.any?
+      return self.product_images.first.image.thumbnail
+    else
+      return "default_image.jpg"
+    end
+  end
+
+  def primary_image
+    if self.product_images.any?
+      return self.product_images.first.image.product_standard
+    else
+      return "default_image.jpg"
     end
   end
 

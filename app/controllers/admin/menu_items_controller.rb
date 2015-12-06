@@ -13,11 +13,7 @@ class Admin::MenuItemsController < AdminController
     @object = MenuItem.new(menu_item_params)
     @object.site = @site
     if @object.save
-      if @object.menu_type == 1
-        redirect_to admin_site_main_menu_path @object.site
-      else
-        redirect_to admin_site_side_menu_path @object.site
-      end
+      redirect_to admin_site_menu_items_path @site
       flash[:notice] = 'MenuItem was successfully created.'
     else
       render :new
@@ -41,6 +37,11 @@ class Admin::MenuItemsController < AdminController
     @object.destroy
     redirect_to [:admin, @menu]
     flash[:notice] = 'MenuItem was successfully destroyed.'
+  end
+
+  def index
+    @main_menu_items = @site.main_menu_items
+    @side_menu_items = @site.side_menu_items
   end
 
   private

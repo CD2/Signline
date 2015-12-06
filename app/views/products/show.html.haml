@@ -1,30 +1,28 @@
-#product_page
-  #product_title_section.display_block
-    %h1= @product.name
-    %span.brand_information= "from #{link_to @product.brand.name, @product.brand}".html_safe if @product.brand
-  #product_display
-    #product_page_image_section.display_block
-      %img#zoom1.cloudzoom{"data-cloudzoom" => "zoomImage: '#{@product.product_images.first.try(:image)}', zoomSizeMode:'image', autoInside: 550", :src => @product.product_images.first.try(:image).try(:product_standard)}/
-    #product_page_info.display_block
-      .info_section
-        .price= number_to_currency @product.price, locale: :en
-      .cart_button.info_section
-        //= button_to "Add to Cart", add_to_cart_path(product_id: @product)
-        = button_to "Coming Soon", "#", remote: true, disabled: true
-      .info_section
-        .product_page_info_features
-          %h4 Features
-          %ul
-            - @features.each do |feature|
-              %li= feature
-      .info_section
-        %h4 Description
-        .description_preview
-          = truncate @product.body, length: 250, escape: false, omission: "... #{link_to('more', '#description')}"
+= render "breadcrumb"
+#product_content_container
+  #product_content
+    #left_product_panel
+      #main_image
+        = image_tag(@product.primary_image)
+      #alternate_images
+        - @images.each do |image|
+          .alternate_image
+            = image_tag(image.image)
+    #right_product_panel
+      - if session[:editmode]
+        = link_to "Edit", edit_product_path(@product), remote: true, class: "edit_link"
+      %h1= @product.name
+      .product_code
+        = @product.mpn
+      .product_price 
+        = number_to_currency @product.price, locale: :en
+      .product_description_preview
+        = truncate @product.body.gsub("h2", "p"), length: 250, escape: false, omission: "... #{link_to('more', '#description')}"
+      
+      = button_to "Coming Soon", "#", remote: true, disabled: true
 
-#product_page_detailed_section
-  #description.body_section
-    = @product.body.try(:html_safe)
+      
 
-
-    
+  #product_tab_area
+    .tab_content
+      = @product.body.try(:html_safe)

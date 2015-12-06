@@ -28,16 +28,6 @@ module SitesHelper
     @sites = Site.where(active: true).includes(:urls).where.not(urls: { site_id: nil })
   end
 
-  def main_menu_items
-    @menu_items = current_site.menu_items.where(menu_type: 1)
-    Page.where(all_sites: true).each { |page| @menu_items << page.menu_item }
-    return @menu_items
-  end
-
-  def side_menu_items
-    @menu_items = current_site.menu_items.where(menu_type: 2)
-  end
-
   def render_navigation_menu
     @nav_menu_items = MenuItem.where(menu_type: 3)
     @render_nav_menu = @nav_menu_items.collect { |i| "<li>#{link_to i.name, i.path}</li>" }.join().html_safe

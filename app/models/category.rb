@@ -9,6 +9,8 @@ class Category < ActiveRecord::Base
 
   before_save :create_machine_name
 
+  default_scope -> { order name: :asc }
+
   def assigned_to_site? site
     sites.include? site
   end

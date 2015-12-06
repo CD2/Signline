@@ -1,133 +1,173 @@
-#product_list_container
-  font-size: 0.875rem 
-  background-color: white 
-  line-height: 1.7rem
-  padding: 25px
-  margin: 14px 0 
-  border: 1px solid #dedbd2
-
-.product_list
-  font-size: 0
+#product_grid_container
   text-align: center
-  padding: 0
-  li 
-    font-size: 0.875rem
-    list-style: none 
-    width: 33%
-    display: inline-block
-    vertical-align: top
-    padding: 15px 
-    box-sizing: border-box
+#product_grid
 
-  img 
-    max-width: 150px
-
-  h3 
-    font-size: 0.875rem
-    font-weight: 500
-    margin: 0
-    height: 32px
-    overflow: hidden
-    margin-bottom: 4px
-    a 
-      color: black
-      text-decoration: none 
-      padding: 0 15px 
-      box-sizing: border-box
-
-  .price
-    font-weight: 500
-    font-size: 1.125rem
-    margin-bottom: 6px
-
-  input[type="submit"]
-    border-radius: 0
-    padding: 7px 12px
-    letter-spacing: 0
-    font-size: 0.75rem
-    display: initial
-    margin: 0
-
-.single_sidebar .product_list
-  li 
-    width: 100%
-    @media screen and (min-width: $small)
-      width: 50%
-    @media screen and (min-width: $medium)
-      width: 33.3333%
-
-#product_page
-  max-width: 1040px 
-  color: rgba(0,0,0,0.75)
-
-  h1 
-    -webkit-font-smoothing: antialiased
-    margin: 0
-    font-size: 1.375rem
-    font-weight: 500
-
-  h4 
-    text-transform: uppercase
-    -webkit-font-smoothing: antialiased
-
-  .brand_information
-    font-size: 0.875rem
-
-  .display_block
-    padding: 14px
-    margin: 14px
-    background: #fff
-    outline: 1px solid #dedbd2
-
-  .price
-    font-size: 1.375rem
-
-  .description_preview
-    line-height: 1.8rem
-
-  .cart_button
-    input[type="submit"]
-      width: 100%
-      border-radius: 4px
-
-#product_display
-  display: flex
-  #product_page_image_section, #product_page_info, #page_page_actions
-    position: relative
-    padding: 28px
-    box-sizing: border-box
-  #product_page_image_section
-    flex: 3
-    text-align: center
-  #product_page_info
-    flex: 0 0 360px
-
-  .info_section
-    border-bottom: 1px solid rgba(0,0,0,0.15)
-    padding-bottom: 25px
-    margin-bottom: 10px
-
-#product_page_detailed_section
-  font-size: 0.875rem 
-  background-color: white 
-  line-height: 1.7rem
-  padding: 25px
-  margin: 14px 0 
-  border: 1px solid #dedbd2
-#filters
-  text-align: right
-  padding-right: 25px
-a.filter_link 
-  color: white
-  background: black
-  font-weight: 100
-  text-decoration: none
-  margin: 15px 0 0
+.product_grid_item_container
   display: inline-block
+  vertical-align: top 
+  width: 400px
+  padding-bottom: 40px
+
+.product_grid_item
+  width: 300px
+  margin: 0 auto
+  h3 
+    font-size: 1rem
+    font-weight: 400
+    margin-bottom: 10px
+  .price
+    font-size: 1.125rem
+  a 
+    color: rgba(0,0,0,0.6)
+    text-decoration: none
+
+#product_content_container 
+  max-width: 1000px
+  padding: 0 20px
+  margin: 0 auto
+
+#product_content
+  @media screen and (min-width: $medium)
+    +flexbox 
+  padding-top: 40px
+
+#left_product_panel
+  +flex(1)
+  @media screen and (min-width: $medium)
+    margin-right: 50px
+  margin-top: 10px
+  #main_image
+    border: 1px solid #ddd
+
+#right_product_panel
+  +flex(0 0 400px)
+  padding-top: 20px
+  h1
+    margin: 0
+    font-size: 1.55rem
+    color: rgba(0,0,0,0.75)
+    font-weight: 100
+  .product_code
+    font-weight: 600
+    color: rgba(0,0,0,0.6)
+
+.product_price 
+  font-weight: 600
+  font-size: 1.75rem
+  padding: 15px 0 0
+
+.product_perks
+  padding: 10px 20px
+  box-sizing: border-box
+  text-transform: uppercase
+  font-weight: 600
+  line-height: 2.4rem
+  background: #e3e3e3
+  color: rgba(0,0,0,0.67)
+  margin: 20px 0
+  ul 
+    margin: 0
+    padding: 0
+  li 
+    list-style: none 
+
+.product_description_preview
+  line-height: 2.1rem
   font-size: 0.875rem
-  padding: 10px
-  border-radius: 4px
 
+.product_enquiry a 
+  padding: 15px 30px
+  color: white
+  display: inline-block
+  margin: 15px 0
 
-#home_body.body_section #product_list_container
-  border: none 
+#alternate_images
+  padding: 20px 
+  box-sizing: border-box 
+  .alternate_image
+    display: inline-block
+    max-width: 75px
+    padding: 10px
+
+#product_tab_area
+  position: relative
+
+  .product_tab 
+    float: left
+    width: 100%
+
+  label 
+    padding: 0 10px
+    cursor: pointer
+    text-transform: uppercase
+    opacity: 0.4
+    position: absolute
+    top: 15px
+    color: white
+    z-index: 100
+    left: 20px 
+    font-size: 1rem
+    &.label_2
+      left: 137px 
+    &.label_3
+      left: 240px
+
+  .tab_content 
+    position: absolute
+    left: 0
+    right: 0
+    padding: 10px 30px
+    line-height: 1.7rem
+    width: 100%
+    box-sizing: border-box
+    background: #e7e7e7
+    font-size: 0.875rem
+    table 
+      width: 100%
+      font-size: 0.875rem
+      td 
+        padding-right: 30px
+
+  [type=radio]:checked ~ label 
+    z-index: 2
+    opacity: 1
+
+  [type=radio]:checked ~ label ~ .tab_content 
+    z-index: 1
+    position: relative
+    display: block
+
+#breadcrumbs 
+  line-height: 68px
+  background: #E6E6E6
+  padding: 0 30px
+  font-size: 0.875rem
+  text-transform: uppercase 
+  > * 
+    margin-right: 10px
+    text-decoration: none
+
+#category_header
+  background: #E6E6E6
+  position: relative
+  padding: 0 20px
+  margin-bottom: 20px
+  h1 
+    margin: 0
+    font-size: 1.5rem
+    text-transform: uppercase
+    color: rgba(0, 0, 0, 0.5)
+    font-weight: 600
+    line-height: 5rem
+  #filters
+    position: absolute
+    right: 40px
+    top: 20px
+    a 
+      padding: 10px 20px
+      line-height: 40px
+      color: white
+      font-size: 0.75rem 
+      font-weight: 600 
+      text-decoration: none
+

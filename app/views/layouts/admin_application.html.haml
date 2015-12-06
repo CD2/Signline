@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %title Website
+    = stylesheet_link_tag    'admin_application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    %script{:src => "//use.typekit.net/qct6aqn.js"}
+    :javascript
+      try{Typekit.load();}catch(e){}
+    :css 
+      #{render 'sites/site_styles.scss.erb'}
+
+  %body{class: body_classes}
+    #page
+      #page_wrapper
+        %header#header
+          = render 'layouts/admin_header'
+          = render "layouts/site_admin_bar"
+        - flash.each do |k, v|
+          %div{class: "alert alert-#{k}"}
+            = v
+        #content_wrapper
+          #admin_content
+            = yield
+          
+

@@ -8,6 +8,14 @@ class BrandsController < ApplicationController
 
   # GET /brands/1
   def show
+    @products = @brand.products
+    if params[:sort]
+      @products_c = @brand.products.order(params[:sort]).all
+      @products = @products_c.paginate(:page => params[:page], :per_page => 24)
+    else 
+      @products_c = @brand.products
+      @products = @products_c.paginate(:page => params[:page], :per_page => 24)
+    end
   end
 
   # GET /brands/new

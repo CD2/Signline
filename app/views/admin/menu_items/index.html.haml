@@ -1,0 +1,53 @@
+#admin_header
+  .admin_secondary_links
+    %ul
+      %li
+        = link_to new_admin_site_menu_item_path(site_id: @site.id, menu_type: 1) do
+          %i.fa.fa-plus
+          New Main Menu Item
+  %h1= "#{current_site.name} Main Menu Items"
+
+#admin_table
+
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Path
+        %th
+        %th
+
+    %tbody
+      - @main_menu_items.each do |item|
+        %tr{class: cycle("odd", "even")}
+          %td= item.name
+          %td= item.path
+          %td.admin_index_action= link_to 'Edit', [:edit, :admin, @site, item]
+          %td.admin_index_action= link_to 'Destroy', [:admin, @site, item], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+#admin_header
+  .admin_secondary_links
+    %ul
+      %li
+        = link_to new_admin_site_menu_item_path(site_id: @site.id, menu_type: 2) do
+          %i.fa.fa-plus
+          New Side Menu Item
+  %h1= "#{current_site.name} Side Menu Items"
+
+#admin_table
+
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Path
+        %th
+        %th
+
+    %tbody
+      - @side_menu_items.each do |item|
+        %tr{class: cycle("odd", "even")}
+          %td= item.name
+          %td= item.path
+          %td.admin_index_action= link_to 'Edit', [:edit, :admin, @site, item]
+          %td.admin_index_action= link_to 'Destroy', [:admin, @site, item], :method => :delete, :data => { :confirm => 'Are you sure?' }

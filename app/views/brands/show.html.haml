@@ -1,9 +1,28 @@
-%p#notice= notice
+#category_header
+  %h1= @brand.name
 
-%p
-  %b Name:
-  = @brand.name
+  #filters
 
-= link_to 'Edit', edit_brand_path(@brand)
-\|
-= link_to 'Back', brands_path
+    - if params[:sort] && params[:sort][:id] == "desc"
+      = link_to "DATE &#8595;".html_safe, brand_path(@brand, sort: {id: :asc}), class: "filter_link"
+    - elsif params[:sort] && params[:sort][:id] == "asc"
+      = link_to "DATE &#8593;".html_safe, brand_path(@brand, sort: {id: :desc}), class: "filter_link"
+    - else
+      = link_to "DATE", brand_path(@brand, sort: {id: :desc}), class: "filter_link"
+
+    - if params[:sort] && params[:sort][:name] == "desc"
+      = link_to "NAME &#8595;".html_safe, brand_path(@brand, sort: {name: :asc}), class: "filter_link"
+    - elsif params[:sort] && params[:sort][:name] == "asc"
+      = link_to "NAME &#8593;".html_safe, brand_path(@brand, sort: {name: :desc}), class: "filter_link"
+    - else
+      = link_to "NAME", brand_path(@brand, sort: {name: :desc}), class: "filter_link"
+
+    - if params[:sort] && params[:sort][:price] == "desc"
+      = link_to "PRICE &#8595;".html_safe, brand_path(@brand, sort: {price: :asc}), class: "filter_link"
+    - elsif params[:sort] && params[:sort][:price] == "asc"
+      = link_to "PRICE &#8593;".html_safe, brand_path(@brand, sort: {price: :desc}), class: "filter_link"
+    - else
+      = link_to "PRICE", brand_path(@brand, sort: {price: :desc}), class: "filter_link"
+
+
+= render 'layouts/product_list'

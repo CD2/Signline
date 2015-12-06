@@ -8,7 +8,7 @@ class CreatePages < ActiveRecord::Migration
       t.string :url_alias
       t.text :meta_description
       t.integer :site_id
-      t.boolean :published
+      t.boolean :published, defailt: true
       t.boolean :all_sites, default: false
 
       t.timestamps null: false

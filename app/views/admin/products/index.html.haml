@@ -21,14 +21,14 @@
 
     %tbody
       - @products.each do |product|
-        %tr
+        %tr{class: cycle("odd", "even")}
           %td= product.name
           %td= number_to_currency product.price, locale: :en
           %td
             - product.categories.each do |c| 
               = link_to c.name, c
-          %td= link_to 'Show', product
-          %td= link_to 'Edit', [:edit, :admin, product]
-          %td= link_to 'Destroy', [:admin, product], :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td.admin_index_action= link_to 'Show', product
+          %td.admin_index_action= link_to 'Edit', [:edit, :admin, product]
+          %td.admin_index_action= link_to 'Destroy', [:admin, product], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 = will_paginate @products

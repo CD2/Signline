@@ -12,5 +12,5 @@
 
     %tbody
       - @orders.each do |order|
-        %tr
+        %tr{class: cycle("odd", "even")}
           %td= order.id

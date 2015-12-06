@@ -31,9 +31,9 @@
 
     %tbody
       - @pages.each do |page|
-        %tr
+        %tr{class: cycle("odd", "even")}
           %td= page.name
           %td= page.published ? "Yes" : "No"
-          %td= link_to 'Show', page
-          %td= link_to 'Edit', [:edit, :admin, @site, page]
-          %td= link_to 'Destroy', [:admin, @site, page], :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td.admin_index_action= link_to 'Show', page
+          %td.admin_index_action= link_to 'Edit', [:edit, :admin, @site, page]
+          %td.admin_index_action= link_to 'Destroy', [:admin, @site, page], :method => :delete, :data => { :confirm => 'Are you sure?' }

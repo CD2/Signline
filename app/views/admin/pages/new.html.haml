@@ -1,0 +1,10 @@
+#admin_form_header
+  %h1 New Page
+
+#admin_form
+  = form_for [:admin, @site, @page] do |f|
+    - if @page.errors.any?
+      = render 'layouts/errors', object: f.object
+    = render 'fields', f: f
+    .actions
+      = f.submit 'Save'

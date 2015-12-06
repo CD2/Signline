@@ -1,0 +1,6 @@
+#breadcrumbs
+  = link_to "Home", root_path
+  %span= "/"
+  = link_to @product.categories.try(:first).name, @product.categories.try(:first)
+  %span= "/"
+  = link_to @product.name, @product

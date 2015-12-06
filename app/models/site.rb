@@ -10,6 +10,7 @@ class Site < ActiveRecord::Base
   has_many :menu_items
   has_many :site_categories
   has_many :categories, through: :site_categories
+  has_many :brands, through: :products
 
   mount_uploader :banner_image, ImageUploader
   def go_live
@@ -32,4 +33,11 @@ class Site < ActiveRecord::Base
     @url = self.urls.first.url
   end
 
+  def main_menu_items
+    @menu_items = self.menu_items.where(menu_type: 1)
+  end
+
+  def side_menu_items
+    @menu_items = self.menu_items.where(menu_type: 2)
+  end
 end

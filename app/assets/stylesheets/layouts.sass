@@ -1,23 +1,67 @@
 #layout_columns
-  display: flex
+  +flexbox
 
   .sidebar_column
-    flex: 0 0 200px
-    border-top: 1px solid rgba(255,255,255,0.3)
+    +flex(0 0 300px)
+    background: #ddd
+    padding: 20px
+    box-sizing: border-box
 
     &.second_sidebar
       padding: 20px
       margin-top: 40px 
 
-
   &.single_sidebar 
     margin: 0 auto
 
     .sidebar_column
-      flex: 0 0 250px
+      +flex(0 0 300px)
 
   .main_column
-    flex: 1
+    +flex(1)
 
 .not_front .sidebar_column
   padding-top: 100px
+
+#page_wrapper
+  margin: 0 auto
+  box-shadow: 0 0 5px rgba(0,0,0,0.3), 0 0 30px rgba(0,0,0,0.08)
+  background-color: #e7e7e7
+  
+#content_wrapper
+  box-sizing: border-box
+  margin: 0 auto
+  background: white
+
+#admin_bar
+  width: 100%
+  left: 0
+  bottom: 0
+  background: #000!important
+  display: flex 
+  padding: 0 30px
+  color: white 
+  z-index: 100
+  text-transform: uppercase
+  font-weight: 600
+  box-sizing: border-box
+  font-size: 0.75rem
+  ul 
+    padding: 0 
+    margin: 0
+  li 
+    display: inline-block 
+    list-style: none
+    &.admin_bar_site_name
+      margin-right: 20px
+  a 
+    margin: 5px 0 
+    color: white 
+    text-decoration: none
+    font-weight: 100
+    display: block
+    padding: 10px
+    &:hover 
+      color: rgba(255,255,255,0.7) 
+  .split_flex_box 
+    flex: 1

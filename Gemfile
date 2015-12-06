@@ -7,6 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'spring',        group: :development
+gem 'sunspot_solr', group: :development
 gem 'bcrypt'
 gem "wysiwyg-rails"
 gem 'font-awesome-rails'
@@ -17,6 +18,7 @@ gem "mini_magick"
 gem 'rack-rewrite'
 gem 'resque'
 gem 'will_paginate'
+gem 'sunspot_rails'
 group :production do
   gem 'unicorn'
   gem 'pg'

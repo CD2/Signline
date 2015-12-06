@@ -25,9 +25,9 @@ Rails.application.routes.draw do
     resources :sites, only: [:new, :create, :index, :update, :edit, :destroy] do 
       get :toggle_status
       resources :pages, only: [:new, :create, :index, :update, :edit, :destroy]
-      get :side_menu
-      get :main_menu
-      resources :menu_items, only: [:new, :create, :update, :edit, :destroy]
+      resources :categories, only: [:index]
+      resources :products, only: [:index]
+      resources :menu_items, only: [:new, :create, :update, :edit, :destroy, :index]
     end
     resources :users, only: [:new, :create, :index, :update, :edit, :destroy]
     resources :categories, only: [:new, :create, :index, :update, :edit, :destroy]
