@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
 
   def index
     @search = params[:search]
-    @products = Product.where("name like ?", "%#{@search}%")
+    @products = Product.where("UPPER(NAME) like ?", "%#{@search.upcase}%")
   end
 
 end
