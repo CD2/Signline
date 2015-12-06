@@ -7,5 +7,5 @@
 #home_body.body_section
   = current_site.home_body.try(:html_safe)
 
-  - if current_site.include_products
-    = render 'layouts/product_list'
+- if current_site.include_products
+  = render 'layouts/product_list'
