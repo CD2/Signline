@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   end
 
   
-  resources :products, only: :show
+  resources :products, only: [:index, :show]
   resources :product_imports, only: [:new, :create] do 
     get :confirm_import
     post :process_import

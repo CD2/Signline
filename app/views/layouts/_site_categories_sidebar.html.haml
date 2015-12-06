@@ -11,6 +11,6 @@
 - if current_site.brands.any?
   %h2.side_menu_heading Brands
   %ul#side_menu_list
-    - current_site.brands.each do |brand|
+    - current_site.brands.select(:name, :id).group(:name).each do |brand|
       %li= link_to brand.name, brand
    

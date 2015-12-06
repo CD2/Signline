@@ -51,10 +51,11 @@
   background-size: 130%
 #header_menus
   +flex(1)
+  position: relative
 #navigation_menu
   position: absolute
   padding: 10px 50px
-  right: 50px
+  right: 0
   bottom: 46px
   background: rgba(0, 0, 0, 0.2)
   color: white
@@ -74,6 +75,29 @@
   a 
     color: white
 
+div#search_form 
+  font-size: 0
+  position: absolute
+  @media screen and (min-width: 1400px)
+    left: 30px
+  top: 20px
+  input[type="submit"] 
+    display: inline-block
+    border-radius: 0
+    padding: 10px
+    border: none
+    background: rgba(0,0,0,0.5)
+    margin-top: 0
+
+  input[type="text"] 
+    display: inline-block
+    width: 250px
+    border: none
+    padding: 6px
+    height: 35px
+    background: rgba(255,255,255,0.8)
+    font-size: 1rem
+    margin: 0
 
 #main_menu
   position: absolute
@@ -118,3 +142,10 @@
     background-size: 150%
   #site_switcher
     background-color: black
+
+@media screen and (max-width: 1400px)
+  #main_header, #logo
+    height: 140px
+  div#search_form 
+    right: 30px 
+    top: 8px
