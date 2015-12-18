@@ -95,6 +95,9 @@ class OrdersController < ApplicationController
       OrderMailer.notify_signline(@order).deliver_now
       OrderMailer.notify_buyer(@order).deliver_now
       redirect_to order_url(@order)
+      session[:cart_id] = nil
+      session[:order_id] = nil
+
     else
       render :action => "failure"
     end

@@ -13,8 +13,11 @@ class CartItemsController < ApplicationController
 
   def update
     @line_item = CartItem.find(params[:id])
-    @cart = @line_item.cart 
+    @cart = @line_item.cart
     if @line_item.update(cart_item_params)
+      if @line_item.quantity == 0
+        @line_item.destroy
+      end
       flash[:success] = "Cart update"
     else 
       flash[:notice] = "Could not update cart, please try again"
