@@ -94,7 +94,7 @@ class Order < ActiveRecord::Base
   end
 
   def shipping
-    sub_total > 50.0 ? 0.0 : 8.0
+    5.0
   end
 
   def total
