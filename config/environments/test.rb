@@ -1,4 +1,12 @@
 Rails.application.configure do
+
+  ActiveMerchant::Billing::Base.mode = :test
+  paypal_options = {
+      login: "",
+      password: "",
+      signature: ""
+  }
+  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's

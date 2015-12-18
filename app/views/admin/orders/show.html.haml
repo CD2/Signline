@@ -1,7 +1,6 @@
-#order_show_page
+#admin_order_page
   #order_form
-    %h1 Thank you for your order
-    %p We are processing your order now, please view a summary below:
+    %h1= "Order #{@order.id}"
     #order_summary
       .info_block
         %h4 Billing Address

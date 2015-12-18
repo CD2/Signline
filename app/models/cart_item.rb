@@ -7,4 +7,8 @@ class CartItem < ActiveRecord::Base
     product.price * quantity
   end
 
+  def cart_image
+    self.product.preview_image
+  end
+
 end

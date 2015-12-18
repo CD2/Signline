@@ -1,4 +1,13 @@
 Rails.application.configure do
+
+  ActiveMerchant::Billing::Base.mode = :test
+  paypal_options = {
+      login: "shane-facilitator_api1.cd2solutions.com",
+      password: "755N485H977Z8SNQ",
+      signature: "Av80PE0sflBHHNd99V2lUtN-7XLmA81Bq60jFa9G-CkrZr4jvmrC0res"
+  }
+  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

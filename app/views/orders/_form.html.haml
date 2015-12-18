@@ -2,19 +2,14 @@
   - if @order.errors.any? 
     = render 'layouts/errors', object: f.object
 
-  - unless signed_in?
+  .field
+    = f.label :name, "Name"
+    = f.text_field :name, value: order_name(@order)
 
-    .field
-      = f.label :name
-      = f.text_field :new_account_name
+  .field
+    = f.label :email, "Email"
+    = f.text_field :email, value: order_email(@order)
 
-    .field 
-      = f.label :email
-      = f.text_field :new_account_email
-
-  - else
-
-    = f.hidden_field :user_id, value: current_user.id
 
   - if signed_in? && current_user.addresses.any?
 
@@ -52,4 +47,4 @@
         = render 'address_fields', f: ff
 
   .actions
-    = f.submit 'Submit', name: :to_shipping
+    = f.submit 'Submit', name: :to_summary

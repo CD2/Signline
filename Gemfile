@@ -19,6 +19,7 @@ gem 'rack-rewrite'
 gem 'resque'
 gem 'will_paginate'
 gem 'sunspot_rails'
+gem 'activemerchant'
 group :production do
   gem 'unicorn'
   gem 'pg'

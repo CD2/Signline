@@ -1,28 +1,21 @@
-= form_for @order do |f|
-  - if @order.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
-      %ul
-        - @order.errors.full_messages.each do |msg|
-          %li= msg
+#order_page
+  #order_form
+    %h1 Your order: Shipping
+    = form_for @order do |f|
+      - if @order.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
+          %ul
+            - @order.errors.full_messages.each do |msg|
+              %li= msg
 
-  .field
-    = f.label :shipping_type
-    = f.select :shipping_type, Order::SHIPPING_TYPES
+      .field
+        = f.label :shipping_type
+        = f.select :shipping_type, Order::SHIPPING_TYPES
 
-  - unless signed_in?
+      .actions
+        = f.submit 'Proceed', name: :to_summary
+        = f.submit 'Back', name: :to_checkout
 
-    .field
-      = f.label :name
-      = f.text_field :new_account_name
-
-    .field 
-      = f.label :email
-      = f.text_field :new_account_email
-
-  - else
-
-    = f.hidden_field :user_id, value: current_user.id
-  .actions
-    = f.submit 'Save', name: :to_summary
-    = f.submit 'Back', name: :to_checkout
+  #cart_summary
+    = render 'carts/cart_summary'

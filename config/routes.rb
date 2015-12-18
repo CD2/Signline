@@ -9,11 +9,13 @@ Rails.application.routes.draw do
     get :shipping_method, path: "shipping"
     get :summary
     post :go_back
+    get :express_checkout
+    get :purchase
   end
   #user account paths
   scope module: :user_system do
     resources :users, path: "user", only: [:new, :create, :edit, :update, :show]
-    resources :sessions, only: [:new, :create, :destroy] do 
+    resources :sessions, only: [:new, :create, :destroy] do
       collection { get :get_user_id }
     end
     resources :account_activations, only: :edit
@@ -34,7 +36,7 @@ Rails.application.routes.draw do
     resources :products, only: [:new, :create, :index, :update, :edit, :destroy] do 
       collection { get :export }
     end 
-    resources :orders, only: :index
+    resources :orders, only: [:index, :show]
   end
 
   

@@ -1,0 +1,9 @@
+
+- current_cart.cart_items.each do |cart_item|
+  .cart_item
+    .left_cart_item
+      = image_tag cart_item.cart_image
+    .right_cart_item
+      %h3= "#{cart_item.product.name}"
+      %h4= "#{cart_item.quantity} x #{number_to_currency cart_item.product.price, locale: :en}"
+

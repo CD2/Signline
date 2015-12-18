@@ -22,7 +22,7 @@
           %li= link_to "Sign In", login_path
 
         - if cart?
-          %li= link_to "Cart", carts_path
+          %li= link_to "#{pluralize(current_cart.cart_items.count, 'item')} in Cart", carts_path
         - else
           %li 0 items in cart
     #main_menu

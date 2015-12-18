@@ -9,8 +9,14 @@
     %thead
       %tr
         %th ID
+        %th Amount
+        %th Purchased Date
+        %th
 
     %tbody
       - @orders.each do |order|
         %tr{class: cycle("odd", "even")}
           %td= order.id
+          %td= order.amount
+          %td= order.purchased_at.try{strftime("%d %b. %Y")}
+          %td= link_to "Show", admin_order_path(order)

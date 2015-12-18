@@ -1,0 +1,27 @@
+%h1 A new order has been made.
+%p The following items have been ordered:
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Quantity
+      %th Price
+  - @order.cart_items.each do |item|
+    %tr
+      %td= item.product.name
+      %td= item.quantity
+      %td= item.product.price
+  %tr
+    %td Sub Total
+    %td
+    %td= number_to_currency @order.sub_total, locale: :en
+  %tr
+    %td Shipping
+    %td
+    %td= number_to_currency @order.shipping, locale: :en
+  %tr
+    %td Total
+    %td
+    %td= number_to_currency @order.total, locale: :en
+

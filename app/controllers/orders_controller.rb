@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_cart, only: [:new, :create]
+  before_action :set_cart, only: [:new, :create, :update]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
 
@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    render :new
   end
 
   # POST /orders
@@ -31,7 +32,9 @@ class OrdersController < ApplicationController
     if @order.save
       @order.set_step "checkout"
       session[:order_id] = @order.id
+      @order.set_billing_as_shipping if params[:order][:ship_to_billing_address]
       checkout_navigation
+      set_up_user
     else
       @order.build_billing_address unless @order.billing_address
       @order.build_shipping_address unless @order.shipping_address
@@ -48,6 +51,7 @@ class OrdersController < ApplicationController
 
   def summary
     @order = Order.find(params[:order_id])
+    @items = @order.cart_items.map{|x| x.quantity }
     @order.set_step "confirmation"
     rescue ActiveRecord::RecordNotFound
       redirect_to carts_path
@@ -61,11 +65,38 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   def update
     if @order.update(order_params)
-    checkout_navigation
+      @order.add_line_items_from_cart(@cart)
+      @order.set_billing_as_shipping if params[:order][:ship_to_billing_address]
+      checkout_navigation
     else
       @order.build_billing_address unless @order.billing_address
       @order.build_shipping_address unless @order.shipping_address
-      render :edit
+      render :new
+    end
+  end
+
+  def express_checkout
+    @order = Order.find(params[:order_id])
+    response = EXPRESS_GATEWAY.setup_purchase(@order.total_in_pence,
+                                              ip: request.remote_ip,
+                                              return_url: order_purchase_url(@order),
+                                              cancel_return_url: root_url,
+                                              currency: "GBP",
+                                              allow_guest_checkout: true,
+                                              items: [{name: "Order", description: "Order description", quantity: "1", amount: @order.total_in_pence}]
+    )
+    redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+  end
+
+  def purchase
+    @order = Order.find(params[:order_id])
+    @order.update_attributes(:express_token => params[:token])
+    if @order.purchase # this is where we purchase the order. refer to the model method below
+      OrderMailer.notify_signline(@order).deliver_now
+      OrderMailer.notify_buyer(@order).deliver_now
+      redirect_to order_url(@order)
+    else
+      render :action => "failure"
     end
   end
 
@@ -87,6 +118,11 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
     end
 
+    def set_up_user
+      name = params[:new_account_name]
+      email = params[:new_account_email]
+    end
+
     def checkout_navigation
       if params[:to_checkout]
         redirect_to new_order_path
@@ -97,9 +133,11 @@ class OrdersController < ApplicationController
       end
     end
 
+
+
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:user_id, :ship_to_billing_address, :use_saved_billing_address, :use_saved_shipping_address, :shipping_address_id, :payment_type, :shipping_type, :new_account_name, :new_account_email,
+      params.require(:order).permit(:user_id, :ship_to_billing_address, :use_saved_billing_address, :use_saved_shipping_address, :shipping_address_id, :payment_type, :shipping_type, :name, :email,
           billing_address_attributes: [:id, :address_one, :address_two, :city, :county, :postcode, :country], 
           shipping_address_attributes: [:id, :address_one, :address_two, :city, :county, :postcode, :country])
     end

@@ -35,6 +35,12 @@ module SessionsHelper
     end
   end
 
+  def current_user_name
+    if current_user
+      current_user.name
+    end
+  end
+
   def current_user? user 
     user == current_user
   end

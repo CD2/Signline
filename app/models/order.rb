@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessor :ship_to_billing_address, :use_saved_billing_address, :use_saved_shipping_address, :new_account_name, :new_account_email
+  attr_accessor :ship_to_billing_address, :use_saved_billing_address, :use_saved_shipping_address
 
   SHIPPING_TYPES = %w[Standard Free]
   PAYMENT_TYPES = %w[PayPal SagePay]
@@ -11,7 +11,36 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :billing_address, reject_if: :use_preexisting_billing_address
   accepts_nested_attributes_for :shipping_address, reject_if: :use_preexisting_shipping_address
 
-  validates :new_account_name, :new_account_email, presence: true, unless: :user_id_present
+  validates :name, :email, presence: true
+
+  def purchase
+    response = EXPRESS_GATEWAY.purchase(self.total_in_pence, express_purchase_options)
+    puts response.inspect
+    if response.success?
+      self.amount = self.total_in_pence
+      self.purchased_at = Time.now
+      self.save
+    end
+    response.success?
+  end
+
+  def express_token=(token)
+    self[:express_token] = token
+    unless token.blank?
+      # you can dump details var if you need more info from buyer
+      details = EXPRESS_GATEWAY.details_for(token)
+      self.express_payer_id = details.payer_id
+    end
+  end
+
+  def express_purchase_options
+    {
+        :ip => ip,
+        :token => express_token,
+        :payer_id => express_payer_id,
+        :currency => 'GBP'
+    }
+  end
 
   def add_line_items_from_cart(cart)
     cart.cart_items.each do |item|
@@ -38,7 +67,7 @@ class Order < ActiveRecord::Base
   end
 
   def steps
-    %w[checkout shipping confirmation]
+    %w[checkout confirmation]
   end
 
   def current_step
@@ -59,5 +88,29 @@ class Order < ActiveRecord::Base
     self.status = step 
     self.save
   end
+
+  def sub_total
+    cart_items.to_a.sum { |item| item.total_price }
+  end
+
+  def shipping
+    sub_total > 50.0 ? 0.0 : 8.0
+  end
+
+  def total
+    sub_total + shipping
+  end
+
+  def total_in_pence
+    (sub_total + shipping)*100.to_i
+  end
+
+  def set_billing_as_shipping
+    shipping_record = self.billing_address.dup
+    shipping_record.save
+    self.shipping_address_id = shipping_record.id
+    self.save
+  end
+
 
 end

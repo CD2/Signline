@@ -4,9 +4,6 @@ class Admin::ProductsController < AdminController
   before_action :set_features, only: :edit
 
   # GET /products
-  def index
-    @products = Product.paginate(:page => params[:page], :per_page => 50)
-  end
 
   def index
     @site = Site.find(params[:site_id])

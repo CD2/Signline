@@ -18,8 +18,8 @@
         = number_to_currency @product.price, locale: :en
       .product_description_preview
         = truncate @product.body.gsub("h2", "p"), length: 250, escape: false, omission: "... #{link_to('more', '#description')}"
-      
-      = button_to "Coming Soon", "#", remote: true, disabled: true
+
+      = button_to "Add to Cart", add_to_cart_path(product_id: @product)
 
       
 

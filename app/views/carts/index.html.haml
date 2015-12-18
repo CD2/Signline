@@ -1,22 +1,21 @@
-%h1 CART
-%ul
+#cart_page
+  %h1 Your Cart
   - @cart_items.each do |cart_item|
-    %li
-      NAME:
-      %h3= "#{cart_item.product.name}"
-      %br
-      QTY: 
-      = form_for cart_item do |f|
-        = f.text_field :quantity
-        = f.submit "Update"
-      %br
-      PR:
-      = cart_item.product.price
-      %br
-      toatssPRICE: 
-      = cart_item.total_price
-        
-      
+    .cart_item
+      .left_cart_item
+        = image_tag cart_item.cart_image
+      .right_cart_item
+        %h3= "#{cart_item.product.name}"
+        %h4= number_to_currency cart_item.product.price, locale: :en
+        = form_for cart_item do |f|
+          .field
+            = f.label :quantity
+            = f.text_field :quantity
+          .actions
+            = f.submit "Update"
 
-= button_to "Empty Cart", @cart, method: :delete, data: { confirm: "Are you sure?" }
-= button_to "Checkout", new_order_path, method: :get
+
+  .cart_total_price
+    = "Total: #{number_to_currency @cart.total_price, locale: :en}"
+  .cart_progress_buttons
+    = button_to "Checkout", new_order_path, method: :get

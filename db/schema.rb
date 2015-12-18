@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018135544) do
+ActiveRecord::Schema.define(version: 20151217170128) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name"
@@ -97,6 +97,13 @@ ActiveRecord::Schema.define(version: 20151018135544) do
     t.string   "shipping_type"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "name"
+    t.string   "email"
+    t.string   "ip"
+    t.string   "express_token"
+    t.string   "express_payer_id"
+    t.datetime "purchased_at"
+    t.decimal  "amount"
   end
 
   create_table "pages", force: :cascade do |t|
