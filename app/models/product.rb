@@ -14,10 +14,6 @@ class Product < ActiveRecord::Base
 
   belongs_to :brand
 
-  searchable do 
-    text :name
-  end
-
   def categorised? category
     categories.include? category
   end
