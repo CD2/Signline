@@ -18,7 +18,6 @@ gem "mini_magick"
 gem 'rack-rewrite'
 gem 'resque'
 gem 'will_paginate'
-gem 'sunspot_rails'
 gem 'figaro'
 gem 'activemerchant'
 group :production do
