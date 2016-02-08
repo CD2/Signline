@@ -5676,6 +5676,7 @@ beeswift = {
 }
 
 beeswift.each do |k, v|
+begin
     puts v["description"].titleize
     unless @product = Product.find_by(name: v["description"].titleize)
         @product = Product.create!(
@@ -5706,6 +5707,9 @@ beeswift.each do |k, v|
           @product.save
     end
 
-    end 
+    end
+    rescue ActiveRecord::StatementInvalid 
+        puts "what"
+        end 
 end
 
