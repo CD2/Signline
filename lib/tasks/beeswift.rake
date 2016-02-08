@@ -5681,7 +5681,7 @@ beeswift.each do |k, v|
 
         begin
         @product = Product.create!(
-            name: v["description"].titleize.encode('UTF-8'), sku: v["Item_no"].encode('UTF-8'), body: v["sales_text"].encode('UTF-8'), mpn: v["Item_no"].encode('UTF-8'), price: v["Price"].encode('UTF-8')) 
+            name: v["description"].titleize, sku: v["Item_no"], body: v["sales_text"], mpn: v["Item_no"], price: v["Price"]) 
             rescue ActiveRecord::StatementInvalid 
 next
             end 
