@@ -5676,12 +5676,15 @@ beeswift = {
 }
 
 beeswift.each do |k, v|
-begin
     puts v["description"].titleize
     unless @product = Product.find_by(name: v["description"].titleize)
+
+        begin
         @product = Product.create!(
             name: v["description"].titleize.encode('UTF-8'), sku: v["Item_no"].encode('UTF-8'), body: v["sales_text"].encode('UTF-8'), mpn: v["Item_no"].encode('UTF-8'), price: v["Price"].encode('UTF-8')) 
-        
+            rescue ActiveRecord::StatementInvalid 
+next
+            end 
         unless v["image"].blank?
             begin
                 @product.product_images.create(image: File.open(File.join(Rails.root, "seed_images/beeswift/#{v["image"]}")))
@@ -5708,8 +5711,6 @@ begin
     end
 
     end
-    rescue ActiveRecord::StatementInvalid 
-        puts "what"
-        end 
+
 end
 
