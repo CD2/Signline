@@ -70,6 +70,11 @@ Rails.application.routes.draw do
 
   match '/uploads', to: 'images#upload', via: 'post'
 
-  resources :pages, path: "", only: :show
+  resources :pages, path: "", only: :show do
+    collection do
+      get 'terms_and_conditions'
+      get 'privacy_policy'
+    end
+  end
 
 end
