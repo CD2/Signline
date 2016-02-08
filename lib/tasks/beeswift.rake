@@ -5679,7 +5679,7 @@ beeswift.each do |k, v|
     puts v["description"].titleize
     unless @product = Product.find_by(name: v["description"].titleize)
         @product = Product.create!(
-            name: v["description"].titleize, sku: v["Item_no"], body: v["sales_text"], mpn: v["Item_no"], price: v["Price"]) 
+            name: v["description"].titleize, sku: v["Item_no"].encode('UTF-8'), body: v["sales_text"].encode('UTF-8'), mpn: v["Item_no"].encode('UTF-8'), price: v["Price"].encode('UTF-8')) 
         
         unless v["image"].blank?
             begin
