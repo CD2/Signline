@@ -1,13 +1,5 @@
-require 'resque/server'
-
-# Of course, you need to substitute your application name here, a block
-# like this probably already exists.
-Website::Application.routes.draw do
-  mount Resque::Server.new, at: "/resque"
-end
 Rails.application.routes.draw do
 
-  
   resources :enquiries, only: [:index, :create] do 
     collection { get :thanks }
   end
@@ -19,28 +11,29 @@ Rails.application.routes.draw do
     get :express_checkout
     get :purchase
   end
+
   #user account paths
   scope module: :user_system do
-    resources :users, path: "user", only: [:new, :create, :edit, :update, :show]
+    resources :users, path: "user", except: [:index, :destroy]
     resources :sessions, only: [:new, :create, :destroy] do
       collection { get :get_user_id }
     end
     resources :account_activations, only: :edit
-    resources :password_resets, only: [:new, :create, :edit, :update]
+    resources :password_resets, except: [:index, :show, :destroy]
   end
 
   #admin paths
   namespace :admin do 
-    resources :sites, only: [:new, :create, :index, :update, :edit, :destroy] do 
+    resources :sites, except: :show do 
       get :toggle_status
-      resources :pages, only: [:new, :create, :index, :update, :edit, :destroy]
-      resources :categories, only: [:index]
-      resources :products, only: [:index]
-      resources :menu_items, only: [:new, :create, :update, :edit, :destroy, :index]
+      resources :pages, except: :show
+      resources :categories, only: :index
+      resources :products, only: :index
+      resources :menu_items, except: :show
     end
-    resources :users, only: [:new, :create, :index, :update, :edit, :destroy]
-    resources :categories, only: [:new, :create, :index, :update, :edit, :destroy]
-    resources :products, only: [:new, :create, :index, :update, :edit, :destroy] do 
+    resources :users, except: :show
+    resources :categories, except: :show
+    resources :products, except: :show do 
       collection { get :export }
     end 
     resources :orders, only: [:index, :show]
@@ -54,13 +47,16 @@ Rails.application.routes.draw do
   end
   resources :categories, only: [:index, :show]
   resources :carts, only: [:index, :destroy], path: "cart"
-  resources :cart_items, only: :update
+  resources :cart_items, only: :update do
+    collection do
+      put 'add'
+    end
+  end
 
   root                'static_pages#home'
   get    'signup'  => 'user_system/users#new'
   get    'login'   => 'user_system/sessions#new'
   post   'login'   => 'user_system/sessions#create'
-  post   'add_to_cart'  => 'cart_items#create'
   delete 'logout'  => 'user_system/sessions#destroy'
 
   post    'activate_admin' => 'user_system/sessions#admin_visible_toggle'
@@ -68,7 +64,7 @@ Rails.application.routes.draw do
 
   get 'feeds'=> 'static_pages#feeds' 
 
-  match '/uploads', to: 'images#upload', via: 'post'
+  post 'uploads' => 'images#upload'
 
   resources :pages, path: "", only: :show do
     collection do

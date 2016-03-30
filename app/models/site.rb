@@ -12,6 +12,8 @@ class Site < ActiveRecord::Base
   has_many :categories, through: :site_categories
   has_many :brands, through: :products
 
+  scope :active, -> { where("active='t' AND url NOT NULL") }
+
   mount_uploader :banner_image, ImageUploader
   def go_live
     self.active = true
@@ -40,4 +42,9 @@ class Site < ActiveRecord::Base
   def side_menu_items
     @menu_items = self.menu_items.where(menu_type: 2)
   end
+
+  def self.default
+    find_by(default_site: true)
+  end
+
 end

@@ -1,6 +1,6 @@
 #site_switcher
-  - active_sites.each do |site|
-    = link_to site.name, site.urls.first.url
+  - Site.active.each do |site|
+    = link_to site.name, site.url
 #main_header
   #logo 
     = link_to image_tag(current_site.logo), root_path

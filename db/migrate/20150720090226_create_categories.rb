@@ -4,6 +4,8 @@ class CreateCategories < ActiveRecord::Migration
       t.string :name
       t.string :machine_name
 
+      t.integer :parent_id
+
       t.timestamps null: false
     end
   end

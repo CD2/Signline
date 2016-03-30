@@ -12,7 +12,6 @@ class Admin::SitesController < AdminController
     @object = Site.new(site_params)
 
     if @object.save
-      assign_urls
       @main_menu = Menu.create(name: "#{@object.name} Main Menu", machine_name: "#{@object.machine_name}_main_menu")
       @side_menu = Menu.create(name: "#{@object.name} Side Menu", machine_name: "#{@object.machine_name}_side_menu")
       @object.update_attributes(main_menu_id: @main_menu.id, side_menu_id: @side_menu.id)
@@ -26,7 +25,6 @@ class Admin::SitesController < AdminController
   # PATCH/PUT /sites/1
   def update
     if @object.update(site_params)
-      assign_urls
       redirect_to admin_sites_path
       flash[:notice] = 'Site was successfully updated.'
     else
@@ -56,17 +54,6 @@ class Admin::SitesController < AdminController
 
     def set_new
       @object = Site.new
-    end
-
-    def assign_urls
-      unless params[:urls] == @object.urls.map { |site| site.url }.join(",")
-        @object.urls.destroy_all
-        if params[:urls]
-          params[:urls].split(",").each do |url|
-            siteurl = Url.create(url: url, site_id: @object.id)  
-          end
-        end
-      end
     end
 
     # Only allow a trusted parameter "white list" through.

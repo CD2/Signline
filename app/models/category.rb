@@ -7,6 +7,9 @@ class Category < ActiveRecord::Base
   has_many :site_categories
   has_many :sites, through: :site_categories
 
+  belongs_to :parent, class_name: 'Category', foreign_key: 'parent_id'
+  has_many :children, class_name: 'Category', foreign_key: 'parent_id'
+
   before_save :create_machine_name
 
   default_scope -> { order name: :asc }

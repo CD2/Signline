@@ -3,6 +3,7 @@ class CreateSites < ActiveRecord::Migration
     create_table :sites do |t|
       t.string :name
       t.string :email
+      t.string :url
       t.string :machine_name
       t.string :color
       t.string :logo

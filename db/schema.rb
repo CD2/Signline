@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151217170128) do
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "machine_name"
+    t.integer  "parent_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -162,6 +163,7 @@ ActiveRecord::Schema.define(version: 20151217170128) do
   create_table "sites", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "url"
     t.string   "machine_name"
     t.string   "color"
     t.string   "logo"
@@ -176,13 +178,6 @@ ActiveRecord::Schema.define(version: 20151217170128) do
     t.integer  "include_cart"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-  end
-
-  create_table "urls", force: :cascade do |t|
-    t.string   "url"
-    t.integer  "site_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
