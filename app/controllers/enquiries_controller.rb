@@ -1,7 +1,7 @@
 class EnquiriesController < ApplicationController
   before_action :set_enquiry, only: [:show, :edit, :update, :destroy]
 
-  def index
+  def new
     @enquiry = Enquiry.new
   end
 

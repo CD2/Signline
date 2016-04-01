@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :enquiries, only: [:index, :create] do 
+  resources :enquiries, only: [:new, :create] do 
     collection { get :thanks }
   end
   resources :brands
@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root                'static_pages#home'
+  root 'sites#show'
   get    'signup'  => 'user_system/users#new'
   get    'login'   => 'user_system/sessions#new'
   post   'login'   => 'user_system/sessions#create'
