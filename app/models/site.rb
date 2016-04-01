@@ -2,7 +2,6 @@ class Site < ActiveRecord::Base
   attr_accessor :second_sidebar_option
   before_validation :check_second_sidebar
   validates :machine_name, presence: true, uniqueness: true
-  has_many :urls
   has_many :categories
   has_many :pages
   mount_uploader :logo, ImageUploader
