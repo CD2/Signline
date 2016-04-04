@@ -53,7 +53,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'sites#show'
   get    'signup'  => 'user_system/users#new'
   get    'login'   => 'user_system/sessions#new'
   post   'login'   => 'user_system/sessions#create'
@@ -66,11 +65,7 @@ Rails.application.routes.draw do
 
   post 'uploads' => 'images#upload'
 
-  resources :pages, path: "", only: :show do
-    collection do
-      get 'terms_and_conditions'
-      get 'privacy_policy'
-    end
-  end
+  root 'pages#show'
+  resources :pages, path: "", only: :show
 
 end

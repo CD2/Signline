@@ -3,20 +3,15 @@ class CreateSites < ActiveRecord::Migration
     create_table :sites do |t|
       #details
       t.string :name
-      t.string :machine_name
-      t.string :email
       t.string :subdomain
 
       #content
       t.string :logo
       t.string :color
-      t.text   :home_body
-      t.string :banner_image
-      t.text   :banner_text
 
       #control
-      t.boolean :default_site
-      t.boolean :active
+      t.boolean :active, default: true
+      t.boolean :default, default: false
 
       t.timestamps null: false
     end

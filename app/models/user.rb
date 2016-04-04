@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   
   has_many :addresses
   has_many :orders
-
-  include SitesHelper
+  
   before_save { self.email = email.downcase }
   before_create :create_activation_digest
   validates :name, presence: true, length: { maximum: 50 }

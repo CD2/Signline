@@ -1,9 +1,9 @@
 #site_switcher
   - Site.active.each do |site|
-    = link_to site.name, site.url
+    = link_to site.name, root_url(subdomain: site.subdomain)
 #main_header
   #logo 
-    = link_to image_tag(current_site.logo), root_path
+    = link_to image_tag(@site.logo), root_path
   #header_menus
     #search_form
       = form_tag products_path, method: :get do 
@@ -13,7 +13,6 @@
       %ul
         %li Tel: 01379 677 699
         %li Email: sales@signsandprinting.co.uk
-        = render_navigation_menu
 
         - if signed_in?
           %li= link_to "Sign Out", logout_path, method: :delete
@@ -21,14 +20,14 @@
         - else
           %li= link_to "Sign In", login_path
 
-        - if cart?
+        - if false #CART EXISTS
           %li= link_to "#{pluralize(current_cart.cart_items.count, 'item')} in Cart", carts_path
         - else
           %li 0 items in cart
     #main_menu
       %ul
         %li= link_to "Home", root_path
-        - current_site.main_menu_items.each do |menu|
+        - @site.menu_items.each do |menu|
           - if menu.page
             %li= link_to menu.name, menu.page
           - else

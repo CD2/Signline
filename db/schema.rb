@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401132451) do
+ActiveRecord::Schema.define(version: 20160403222837) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,21 +22,15 @@ ActiveRecord::Schema.define(version: 20160401132451) do
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
 
   create_table "brands", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "cart_items", force: :cascade do |t|
-    t.integer  "order_id"
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "cart_items", ["order_id"], name: "index_cart_items_on_order_id"
-  add_index "cart_items", ["product_id"], name: "index_cart_items_on_product_id"
 
   create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url_alias"
+    t.integer  "parent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,11 +47,25 @@ ActiveRecord::Schema.define(version: 20160401132451) do
 
   create_table "menu_items", force: :cascade do |t|
     t.integer  "site_id"
-    t.integer  "menu_item_id"
-    t.string   "menu_item_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "page_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.integer  "quantity",                                default: 1
+    t.decimal  "unit_price",      precision: 8, scale: 2
+    t.decimal  "unit_cost_price", precision: 8, scale: 2
+    t.decimal  "tax_rate",        precision: 8, scale: 4
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+  end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id"
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -68,15 +76,23 @@ ActiveRecord::Schema.define(version: 20160401132451) do
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "pages", force: :cascade do |t|
-    t.integer  "site_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "banner"
+    t.string   "banner_text"
+    t.text     "body"
+    t.string   "layout"
+    t.string   "page_title"
+    t.string   "url_alias"
+    t.text     "meta_description"
+    t.boolean  "published"
+    t.boolean  "global"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
-
-  add_index "pages", ["site_id"], name: "index_pages_on_site_id"
 
   create_table "product_images", force: :cascade do |t|
     t.integer  "product_id"
+    t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,15 +101,57 @@ ActiveRecord::Schema.define(version: 20160401132451) do
 
   create_table "products", force: :cascade do |t|
     t.integer  "brand_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "sku"
+    t.text     "body"
+    t.text     "features"
+    t.string   "mpn"
+    t.decimal  "unit_price",      precision: 8, scale: 2
+    t.decimal  "unit_cost_price", precision: 8, scale: 2
+    t.decimal  "tax_rate",        precision: 8, scale: 4
+    t.integer  "status"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "products", ["brand_id"], name: "index_products_on_brand_id"
 
-  create_table "sites", force: :cascade do |t|
+  create_table "site_brands", force: :cascade do |t|
+    t.integer  "site_id"
+    t.integer  "brand_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  add_index "site_brands", ["brand_id"], name: "index_site_brands_on_brand_id"
+  add_index "site_brands", ["site_id"], name: "index_site_brands_on_site_id"
+
+  create_table "site_categories", force: :cascade do |t|
+    t.integer  "site_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "site_categories", ["category_id"], name: "index_site_categories_on_category_id"
+  add_index "site_categories", ["site_id"], name: "index_site_categories_on_site_id"
+
+  create_table "site_pages", force: :cascade do |t|
+    t.integer  "site_id"
+    t.integer  "page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string   "name"
+    t.string   "subdomain"
+    t.string   "logo"
+    t.string   "color"
+    t.boolean  "active",     default: true
+    t.boolean  "default",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|

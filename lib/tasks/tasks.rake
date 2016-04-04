@@ -7,13 +7,18 @@ namespace :images do
   end
 end
 
-
-desc "Reset and Reinitialise site"
 task reset_all: :environment do 
   Rake::Task["db:drop"].invoke
   Rake::Task["db:create"].invoke
+  Rake::Task["seed_db"].invoke
+end
+
+
+task seed_db: :environment do
   Rake::Task["db:migrate"].invoke
-  Rake::Task["db:seed"].invoke
-  Rake::Task["sites:create"].invoke
-  Rake::Task["pages:make"].invoke
+  Rake::Task["gen_sites"].invoke
+  Rake::Task["gen_pages"].invoke
+  Rake::Task["gen_users"].invoke
+  Rake::Task["gen_categories"].invoke
+  Rake::Task["gen_products"].invoke
 end

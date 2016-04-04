@@ -4,6 +4,8 @@ class CreateProductImages < ActiveRecord::Migration
       
       t.belongs_to :product, index: true, foreign_key: true
 
+      t.string :image
+
       t.timestamps null: false
     end
   end
