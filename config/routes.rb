@@ -4,13 +4,27 @@ Rails.application.routes.draw do
     collection { get :thanks }
   end
   resources :brands
-  resources :orders do 
+
+  #index: all your previous orders
+  #show: order details
+  #manage: show, create, edit, destroy current basket
+  resources :orders, only: [:index, :show] do 
     get :shipping_method, path: "shipping"
     get :summary
     post :go_back
     get :express_checkout
     get :purchase
   end
+  
+  resources :carts, path: 'cart', only: [:index, :destroy] do
+    collection do
+      get :manage, to: :edit
+      post :manage, to: :update
+      put :add
+      get :checkout
+    end
+  end
+  
 
   #user account paths
   scope module: :user_system do
@@ -46,12 +60,7 @@ Rails.application.routes.draw do
     post :process_import
   end
   resources :categories, only: [:index, :show]
-  resources :carts, only: [:index, :destroy], path: "cart"
-  resources :cart_items, only: :update do
-    collection do
-      put 'add'
-    end
-  end
+
 
   get    'signup'  => 'user_system/users#new'
   get    'login'   => 'user_system/sessions#new'
