@@ -1,6 +1,6 @@
 task gen_products: :environment do 
   
-  @shop.categories.first.products.create!(
+  @s.products.create!(
     name: 'Product 1',
     sku: 'sku_prod_1',
     body: 'This is a really god product... at least for the first one',

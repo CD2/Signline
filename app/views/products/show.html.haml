@@ -1,4 +1,5 @@
 = render "breadcrumb"
+= @product.categories.first.breadcrumbs
 #product_content_container
   #product_content
     #left_product_panel
@@ -9,8 +10,6 @@
           .alternate_image
             = image_tag(image.image)
     #right_product_panel
-      - if session[:editmode]
-        = link_to "Edit", edit_product_path(@product), remote: true, class: "edit_link"
       %h1= @product.name
       .product_code
         = @product.mpn
@@ -19,7 +18,7 @@
       .product_description_preview
         = truncate @product.body.gsub("h2", "p"), length: 250, escape: false, omission: "... #{link_to('more', '#description')}"
 
-      = button_to "Add to Cart", '#'#add_to_cart_path(product_id: @product)
+      = button_to "Add to Cart", add_carts_path(product_id: @product)
 
       
 

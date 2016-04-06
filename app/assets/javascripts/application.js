@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-//= require froala_editor.min.js
+
 $(document).ready(function() {
   $('.add_product_feature').on('click', function(){
     $('.additional_features').append('<input id="features_" name="features[]" type="text">')

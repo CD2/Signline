@@ -15,6 +15,7 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal :unit_cost_price, precision: 8, scale: 2
       t.decimal :tax_rate, precision: 8, scale: 4
 
+      #stocked, deleted....
       t.integer :status
 
       t.timestamps null: false

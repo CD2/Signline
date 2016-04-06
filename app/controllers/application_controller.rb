@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
    
   prepend_before_filter :redirect_to_default_subdomain
 
+  include Carts
+  helper_method :current_cart
 
   private
 
@@ -19,4 +21,5 @@ class ApplicationController < ActionController::Base
     def set_current_site
       @site = Site.find_by(subdomain: request.subdomain)
     end
+
 end

@@ -9,19 +9,22 @@ Rails.application.routes.draw do
   #show: order details
   #manage: show, create, edit, destroy current basket
   resources :orders, only: [:index, :show] do 
-    get :shipping_method, path: "shipping"
-    get :summary
-    post :go_back
-    get :express_checkout
-    get :purchase
+    # get :shipping_method, path: "shipping"
+    # get :summary
+    # post :go_back
+    # get :express_checkout
+    # get :purchase
   end
   
-  resources :carts, path: 'cart', only: [:index, :destroy] do
+  resources :carts, path: 'cart', only: [:index] do
+    member do
+      post :remove
+      patch :update
+    end
     collection do
-      get :manage, to: :edit
-      post :manage, to: :update
-      put :add
+      post :add
       get :checkout
+      post :update_checkout
     end
   end
   

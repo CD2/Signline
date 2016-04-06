@@ -15,8 +15,15 @@ ActiveRecord::Schema.define(version: 20160403222837) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "address_one"
+    t.string   "address_two"
+    t.string   "city"
+    t.string   "county"
+    t.string   "postcode"
+    t.string   "country",     default: "UK"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
@@ -30,10 +37,12 @@ ActiveRecord::Schema.define(version: 20160403222837) do
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "url_alias"
-    t.integer  "parent"
+    t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id"
 
   create_table "categorisations", force: :cascade do |t|
     t.integer  "product_id"
@@ -57,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160403222837) do
     t.integer  "order_id"
     t.integer  "product_id"
     t.integer  "quantity",                                default: 1
+    t.string   "name"
     t.decimal  "unit_price",      precision: 8, scale: 2
     t.decimal  "unit_cost_price", precision: 8, scale: 2
     t.decimal  "tax_rate",        precision: 8, scale: 4
@@ -69,10 +79,28 @@ ActiveRecord::Schema.define(version: 20160403222837) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "shipping_address_id"
+    t.integer  "billing_address_id"
+    t.integer  "checkout_status",                               default: 0
+    t.integer  "order_status"
+    t.integer  "payment_type"
+    t.integer  "shipping_type"
+    t.boolean  "same_shipping_address"
+    t.string   "name"
+    t.string   "email"
+    t.string   "ip"
+    t.string   "phone"
+    t.string   "express_token"
+    t.string   "express_payer_id"
+    t.decimal  "amount",                precision: 8, scale: 2
+    t.datetime "purchased_at"
+    t.datetime "shipped_at"
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
+  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id"
+  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "pages", force: :cascade do |t|
@@ -157,6 +185,7 @@ ActiveRecord::Schema.define(version: 20160403222837) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "phone"
     t.string   "password_digest"
     t.boolean  "admin",             default: false
     t.string   "remember_digest"
