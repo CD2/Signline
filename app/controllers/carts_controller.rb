@@ -2,12 +2,15 @@ class CartsController < ApplicationController
   before_action :set_cart
 
   def index
-    @cart = current_cart
-    @cart_items = @cart.cart_items
-    if @cart_items.empty?
-      render :empty_cart
-      return
-    end
+    @cart = Order.current_cart
+  end
+
+  def edit
+
+  end
+
+  def update
+
   end
 
   def destroy
@@ -17,6 +20,13 @@ class CartsController < ApplicationController
     destroy_order
     redirect_to root_url
     flash[:notice] = 'Your cart is now empty.'
+  end
+
+  def add
+
+  end
+
+  def checkout
   end
 
   private

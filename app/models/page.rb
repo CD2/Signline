@@ -1,32 +1,32 @@
 class Page < ActiveRecord::Base
-  before_save :assign_url
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :banner, ImageUploader
 
-  attr_accessor :homepage_id
-  attr_accessor :side_menu
-  attr_accessor :main_menu
+  has_one :menu_item
+  has_many :site_pages
+  has_many :sites, through: :site_pages
 
-  belongs_to :site
-  has_many :menu_items
-  
+  after_save :check_menu_item
+
+  attr_accessor :has_menu_item
+
   extend FriendlyId
   friendly_id :url_alias
 
-  def assigned_to_site? site
-    pages.include? site
+  scope :global, -> { where(global: true) }
+
+  def has_menu_item
+    @has_menu_item ||= sites.map { |site| site.menu_items.find_by(page_id: id) }.any?
   end
 
-  def assign_to_site site
-    site_pages.create(site_id: site.id)
-  end
+  private
 
-  def unassign_from_site site
-    site_pages.find_by(site_id: site.id).destroy
-  end
-
-  def assign_url
-    self.url_alias = self.name.parameterize
+  def check_menu_item
+    if has_menu_item
+      sites.each { |site| site.menu_items.create!(page_id: id) }
+    else
+      sites.each { |site| site.menu_items.where(page_id: id).destroy_all }
+    end
   end
 
 end

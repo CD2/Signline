@@ -1,16 +1,30 @@
 Rails.application.routes.draw do
 
-  resources :enquiries, only: [:index, :create] do 
+  resources :enquiries, only: [:new, :create] do 
     collection { get :thanks }
   end
   resources :brands
-  resources :orders do 
+
+  #index: all your previous orders
+  #show: order details
+  #manage: show, create, edit, destroy current basket
+  resources :orders, only: [:index, :show] do 
     get :shipping_method, path: "shipping"
     get :summary
     post :go_back
     get :express_checkout
     get :purchase
   end
+  
+  resources :carts, path: 'cart', only: [:index, :destroy] do
+    collection do
+      get :manage, to: :edit
+      post :manage, to: :update
+      put :add
+      get :checkout
+    end
+  end
+  
 
   #user account paths
   scope module: :user_system do
@@ -46,14 +60,8 @@ Rails.application.routes.draw do
     post :process_import
   end
   resources :categories, only: [:index, :show]
-  resources :carts, only: [:index, :destroy], path: "cart"
-  resources :cart_items, only: :update do
-    collection do
-      put 'add'
-    end
-  end
 
-  root                'static_pages#home'
+
   get    'signup'  => 'user_system/users#new'
   get    'login'   => 'user_system/sessions#new'
   post   'login'   => 'user_system/sessions#create'
@@ -66,11 +74,7 @@ Rails.application.routes.draw do
 
   post 'uploads' => 'images#upload'
 
-  resources :pages, path: "", only: :show do
-    collection do
-      get 'terms_and_conditions'
-      get 'privacy_policy'
-    end
-  end
+  root 'pages#show'
+  resources :pages, path: "", only: :show
 
 end

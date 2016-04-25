@@ -1,15 +1,8 @@
 class PagesController < ApplicationController
-  
+
   def show
-    @page = Page.friendly.find(params[:id])
-  end
-
-  def terms_and_conditions
-
-  end
-
-  def privacy_policy
-
+    @page = @site.pages.friendly.find(params[:id] || '')
+    render @page.layout if @page && !@page.layout.blank?
   end
 
 end

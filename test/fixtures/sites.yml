@@ -1,14 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: Signline
-  machine_name: signline
-  email: "web@signline.com"
-  url: http://localhost:3000
-  default_site: true
-
-two:
-  name: CD2
-  machine_name: cd2
-  email: "web@cd2.com"
-  url: http://cd2solutions.co.uk
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value

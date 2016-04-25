@@ -1,37 +1,36 @@
 !!!
 %html
   %head
-    %title Website
+    %title= page_title(yield :title)
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %script{:src => "//use.typekit.net/qct6aqn.js"}
     :javascript
       try{Typekit.load();}catch(e){}
-    :css 
-      #{render 'sites/site_styles.scss.erb'}
+    :scss 
+      #{render 'common/site_styles.scss.erb'}
+    %meta{:name => "description", :content => yield(:meta_description)}
 
   %body{class: body_classes}
     #page
       #page_wrapper
         %header#header
-          = render 'layouts/header'
-        - flash.each do |k, v|
-          %div{class: "alert alert-#{k}"}
-            = v
-        - if content_for? :highlight
-          #highlight
-            = yield :highlight
+          = render 'common/header'
+          - if content_for? :highlights
+            #highlight
+              = yield :highlights
         #content_wrapper
-          #layout_columns{class: "#{'single_sidebar' unless second_sidebar}"}
-            - unless admin_section?
-              .sidebar_column
-                = render 'layouts/site_categories_sidebar'
+          #layout_columns
+            .sidebar_column
+              = render 'common/category_list'
             .main_column
+              - if flash.any?
+                .alert_container
+                  - flash.each do |k, v|
+                    .alert{class: "alert-#{k}"}
+                      = v
               = yield
-            - if second_sidebar
-              - unless admin_section?
-                .sidebar_column.second_sidebar
-                  = current_site.second_sidebar.html_safe
         %footer#footer
-          = render 'layouts/footer'
+          = render 'common/footer'
+

@@ -1,0 +1,34 @@
+.background_footer
+#footer-inner
+  .footer-logo.footer-div
+    = link_to image_tag(@site.logo), root_path
+  .footer-services.list-footer-panel.footer-div
+    %h4 Signline
+    %ul
+      %li= link_to "Terms and Conditions", page_path('terms_and_conditions')
+      %li= link_to "Privacy Policy", page_path('privacy_policy')
+  .footer-address.footer-div.list-footer-panel
+    %h4 Get in Touch
+    .add_sect
+      Signs and Print House
+      %br
+      Thistledown Farm
+      %br
+      Station Road
+      %br
+      Tivetshall Saint Margaret
+      %br
+      Norfolk
+      %br
+      NR15 2DL
+    .add_sect
+      Tel: 01379 677 699
+      %br
+      sales@signsandprinting.co.uk
+      %ul.contacts
+        %li
+          = link_to "https://www.facebook.com/SignLine-190716004303292/?fref=ts", target: "_blank" do
+            %i.fa.fa-facebook
+
+#copyright
+  ©2015 Signline Ltd. All Rights Reserved

@@ -1,9 +1,0 @@
-
-#product_grid_container
-  #product_grid
-    - @products.each do |product|
-      .product_grid_item_container
-        .product_grid_item
-          = link_to(image_tag(product.preview_image), product)
-          %h3= link_to product.name, product
-          .price= number_to_currency product.price, locale: :en

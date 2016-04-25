@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  body: MyText
-  price: 9.99
+  cart_item_id: 
+  product_images: 
+  brand_id: 
+  categorisations: 
+  menu_item_id: 
 
 two:
-  name: MyString2
-  body: MyText2
-  price: 9.99
+  cart_item_id: 
+  product_images: 
+  brand_id: 
+  categorisations: 
+  menu_item_id: 

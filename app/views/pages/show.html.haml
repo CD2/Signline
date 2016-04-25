@@ -1,6 +1,6 @@
-#page_body.body_section
-  - if @page.image
-    .page_banner
-      = image_tag @page.image
-  %h1= @page.name
-  = @page.body.try(:html_safe)
+= provide :page_title, @page.page_title
+= provide :meta_description, @page.meta_description
+- if @page.banner.path.present?
+  - content_for :highlights do
+    #banner{style: "background-image: url(#{@page.banner});"}
+= raw @page.body

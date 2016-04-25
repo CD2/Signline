@@ -1,14 +1,16 @@
-class Usera < ActiveRecord::Base
+class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
-  # include SitesHelper
-  # before_save { self.email = email.downcase }
-  # before_create :create_activation_digest
-  # validates :name, presence: true, length: { maximum: 50 }
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  # validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  # validates :password, length: { minimum: 6 }, allow_nil: true
+  
   has_many :addresses
-  # has_secure_password
+  has_many :orders
+  
+  before_save { self.email = email.downcase }
+  before_create :create_activation_digest
+  validates :name, presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :password, length: { minimum: 6 }, allow_nil: true
+  has_secure_password
   
   def User.new_token
     SecureRandom.urlsafe_base64
