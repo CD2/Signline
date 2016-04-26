@@ -69,10 +69,25 @@ ActiveRecord::Schema.define(version: 20160403222837) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
+    t.string   "status"
+    t.string   "payment_type"
+    t.string   "shipping_type"
+    t.string   "name"
+    t.string   "email"
+    t.string   "ip"
+    t.string   "express_token"
+    t.string   "express_payer_id"
+    t.decimal  "amount",              precision: 8, scale: 2
+    t.datetime "purchased_at"
+    t.datetime "shipped_at"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
+  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id"
+  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "pages", force: :cascade do |t|
