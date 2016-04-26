@@ -2,30 +2,30 @@ class Page < ActiveRecord::Base
 
   mount_uploader :banner, ImageUploader
 
-  has_one :menu_item
-  has_many :site_pages
-  has_many :sites, through: :site_pages
+  belongs_to :site
 
-  after_save :check_menu_item
+  before_save :check_menu_item
 
-  attr_accessor :has_menu_item
 
   extend FriendlyId
   friendly_id :url_alias
 
   scope :global, -> { where(global: true) }
 
-  def has_menu_item
-    @has_menu_item ||= sites.map { |site| site.menu_items.find_by(page_id: id) }.any?
+
+  def menu_item=(val)
+    @menu_item = val
+  end
+
+  def menu_item?
+    @menu_item || false
   end
 
   private
 
   def check_menu_item
-    if has_menu_item
-      sites.each { |site| site.menu_items.create!(page_id: id) }
-    else
-      sites.each { |site| site.menu_items.where(page_id: id).destroy_all }
+    unless menu_item?
+      menu_item_name = nil
     end
   end
 

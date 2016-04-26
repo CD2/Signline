@@ -19,13 +19,3 @@
     .field.inline_check_box
       = f.check_box :published
       = f.label :published
-    .field.inline_check_box
-      = f.check_box :side_menu, checked: @page.menu_items.where(menu_type: 2).any?
-      = f.label :side_menu, "Include in side menu"
-    .field.inline_check_box
-      = f.check_box :main_menu, checked: @page.menu_items.where(menu_type: 1).any?
-      = f.label :main_menu, "Include in main menu"
-
-
-- if params[:site_id]
-  = f.hidden_field :site_id, value: current_site.id

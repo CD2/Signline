@@ -5676,15 +5676,14 @@ beeswift = {
 }
 
 beeswift.each do |k, v|
-    puts v["description"].titleize
     unless @product = Product.find_by(name: v["description"].titleize)
 
         begin
         @product = Product.create!(
-            name: v["description"].titleize, sku: v["Item_no"], body: v["sales_text"], mpn: v["Item_no"], price: v["Price"]) 
-            rescue ActiveRecord::StatementInvalid 
-next
-            end 
+            name: v["description"].titleize, sku: v["Item_no"], body: v["sales_text"], mpn: v["Item_no"], unit_price: v["Price"]) 
+        rescue ActiveRecord::StatementInvalid 
+            next
+        end 
         unless v["image"].blank?
             begin
                 @product.product_images.create(image: File.open(File.join(Rails.root, "seed_images/beeswift/#{v["image"]}")))
@@ -5703,9 +5702,9 @@ next
         category_name = v["Product Group"]
 
           if @category = Category.find_by(name: category_name)
-            @product.categorise @category
+            @category.products << @product
           else
-            @product.categories.create(name: category_name, machine_name: category_name.parameterize)
+            @product.categories.create(name: category_name)
           end
           @product.save
     end

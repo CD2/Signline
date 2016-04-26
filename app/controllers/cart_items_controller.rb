@@ -1,34 +1,33 @@
 class CartItemsController < ApplicationController
-  before_action :set_cart, only: :create
+
+  before_action :set_cart
 
   def create
     product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product.id)
-    if @line_item.save
-      redirect_to product
-    else
-      render 'new'
-    end
+    @cart << product
+    @cart.update_item product, params[:order_item][:quantity].to_i
+    redirect_to product
   end
 
   def update
-    @line_item = CartItem.find(params[:id])
-    @cart = @line_item.cart
-    if @line_item.update(cart_item_params)
-      if @line_item.quantity == 0
-        @line_item.destroy
-      end
-      flash[:success] = "Cart update"
-    else 
-      flash[:notice] = "Could not update cart, please try again"
-    end
+    quantity = params[:commit] == "Remove" ? 0 : params[:order_item][:quantity].to_i
+    @cart.update_item params[:id], quantity
+    redirect_to carts_path
+  end
+
+  def destroy
+    @cart.remove params[:id]
     redirect_to carts_path
   end
 
   private
 
-    def cart_item_params
-      params.require(:cart_item).permit(:product_id, :quantity)
-    end
+  def set_cart
+    @cart = current_cart
+  end
+
+  def cart_item_params
+    params.require(:order_item).permit(:quantity)
+  end
 
 end

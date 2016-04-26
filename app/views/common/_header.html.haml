@@ -1,3 +1,5 @@
+MY SESSION ID:
+= session[:cart]
 #site_switcher
   - Site.active.each do |site|
     = link_to site.name, root_url(subdomain: site.subdomain)
@@ -20,18 +22,16 @@
         - else
           %li= link_to "Sign In", login_path
 
-        - if false #CART EXISTS
-          %li= link_to "#{pluralize(current_cart.cart_items.count, 'item')} in Cart", carts_path
+        - unless current_cart.empty?
+          %li= link_to "#{pluralize(current_cart.amount_of_items, 'item')} in Cart", carts_path
         - else
           %li 0 items in cart
     #main_menu
       %ul
         %li= link_to "Home", root_path
-        - @site.menu_items.each do |menu|
-          - if menu.page
-            %li= link_to menu.name, menu.page
-          - else
-            %li= link_to menu.name, menu.path
+        - @site.pages.each do |page|
+          - if page.menu_item_name
+            %li= link_to page.menu_item_name, page
         %li= link_to "Contact Us", enquiries_path
         - if signed_in_as_admin?
           %li= link_to "Admin", admin_sites_path

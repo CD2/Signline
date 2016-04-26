@@ -1,0 +1,262 @@
+#product_grid_container
+  text-align: center
+#product_grid
+
+.product_grid_item_container
+  display: inline-block
+  vertical-align: top 
+  width: 400px
+  padding-bottom: 40px
+
+.product_grid_item
+  width: 300px
+  margin: 0 auto
+  h3 
+    font-size: 1rem
+    font-weight: 400
+    margin-bottom: 10px
+  .price
+    font-size: 1.125rem
+  a 
+    color: rgba(0,0,0,0.6)
+    text-decoration: none
+
+#category_header
+  background: #E6E6E6
+  position: relative
+  padding: 0 20px
+  margin-bottom: 20px
+  h1 
+    margin: 0
+    font-size: 1.5rem
+    text-transform: uppercase
+    color: rgba(0, 0, 0, 0.5)
+    font-weight: 600
+    line-height: 5rem
+  #filters
+    position: absolute
+    right: 40px
+    top: 20px
+    a 
+      padding: 10px 20px
+      line-height: 40px
+      color: white
+      font-size: 0.75rem 
+      font-weight: 600 
+      text-decoration: none
+
+#cart_page
+  padding: 20px
+  max-width: 700px
+  box-shadow: 0 0 15px rgba(0,0,0,0.25)
+  margin: 20px auto
+  h1
+    font-size: 1.5rem
+    text-transform: uppercase
+    text-align: center
+  .cart_item
+    +flexbox
+    border-bottom: 1px solid #ddd
+    margin: 40px 0 20px
+    padding-bottom: 20px
+    h3, h4
+      color: #8A8A8A
+      font-weight: 400
+      font-size: 1rem
+    h4
+      color: #333
+  .left_cart_item
+    +flex(1)
+  .right_cart_item
+    +flex(3)
+    .field, .actions
+      display: inline-block
+      input
+        padding: 10px
+        font-size: 0.75rem
+        height: 36px
+        border: 1px solid #bbb
+
+  .cart_progress_buttons
+    text-align: right
+    input
+      display: inline-block
+
+.cart_total_price
+  font-size: 1.5rem
+  float: left
+  line-height: 80px
+
+#order_page
+  +flexbox
+  max-width: 1000px
+  box-shadow: 0 0 15px rgba(0,0,0,0.25)
+  margin: 20px auto
+  padding: 20px
+  font-size: 0.875rem
+  #order_form
+    +flex(0 0 600px)
+  #cart_summary
+    +flex(1)
+    text-align: center
+    padding: 60px 20px 0
+    box-sizing: border-box
+    color: #8A8A8A
+    h2
+      font-weight: 200px
+      text-align: center
+    h3
+      color: #1b1b1b
+      font-weight: 100
+      font-size: 0.875rem
+
+
+div#order_summary table
+  width: 100%
+  font-size: 0.875rem
+  color: rgba(0,0,0,0.6)
+  border: 1px solid #ddd
+  margin-bottom: 20px
+  tr
+    border-bottom: 1px solid #ddd
+
+  td
+    padding: 10px 40px 10px 10px
+
+  .product_product_row td
+    color: #000
+
+  .product_total_row td
+    color: black
+    font-weight: 600
+
+#order_show_page
+  padding: 20px
+  font-size: 0.875rem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PRODUCT SHOW PAGE
+
+#product_content_container 
+  max-width: 1000px
+  padding: 0 20px
+  margin: 0 auto
+
+#product_content
+  +flexbox 
+  padding-top: 40px
+
+#product_image_panel
+  +flex-grow(1)
+  margin-right: 50px
+
+  #main_image
+    border: 1px solid #ddd
+    text-align: center
+
+  #alternate_images
+    padding: 20px 
+    box-sizing: border-box
+    overflow: auto
+    white-space: nowrap
+
+    .alternate_image
+      display: inline-block
+      max-width: 75px
+      padding: 10px
+
+
+
+#product_info_panel
+  +flex-grow(0)
+  +flex-shrink(0)
+  width: 400px
+  padding-top: 20px
+  position: relative
+  h1
+    margin: 0
+    font-size: 1.625rem
+    color: rgba(0,0,0,0.75)
+    font-weight: 100
+  .product_code
+    font-weight: 600
+    color: rgba(0,0,0,0.6)
+
+  .product_price 
+    font-weight: 600
+    font-size: 1.75rem
+    padding: 15px 0 0
+
+  .product_description_preview
+    line-height: 2.1rem
+    font-size: 0.875rem
+
+  .product_actions
+    background: grey
+
+
+#product_tab_area
+  position: relative
+
+  .product_tab 
+    float: left
+    width: 100%
+
+  label 
+    padding: 0 10px
+    cursor: pointer
+    text-transform: uppercase
+    opacity: 0.4
+    position: absolute
+    top: 15px
+    color: white
+    z-index: 100
+    left: 20px 
+    font-size: 1rem
+    &.label_2
+      left: 137px 
+    &.label_3
+      left: 240px
+
+  .tab_content 
+    position: absolute
+    left: 0
+    right: 0
+    padding: 10px 30px
+    line-height: 1.7rem
+    width: 100%
+    box-sizing: border-box
+    background: #e7e7e7
+    font-size: 0.875rem
+    table 
+      width: 100%
+      font-size: 0.875rem
+      td 
+        padding-right: 30px
+
+  [type=radio]:checked ~ label 
+    z-index: 2
+    opacity: 1
+
+  [type=radio]:checked ~ label ~ .tab_content 
+    z-index: 1
+    position: relative
+    display: block

@@ -9,14 +9,32 @@
     :javascript
       try{Typekit.load();}catch(e){}
     :css 
-      #{render 'sites/site_styles.scss.erb'}
+      #{render 'common/site_styles.scss.erb'}
 
   %body{class: body_classes}
     #page
       #page_wrapper
         %header#header
-          = render 'layouts/admin_header'
-          = render "layouts/site_admin_bar"
+          #site_switcher
+            - Site.active.each do |site|
+              = link_to site.name, root_url(subdomain: site.subdomain)
+          #admin_bar{ style: "background-color: #{@site ? @site.color : current_site.color}" }
+            %ul.site_admin_items
+              - if admin_section?
+                %li= link_to @site.name, root_url(subdomain: @site.subdomain)
+              %li= link_to "Settings", edit_admin_site_path(@site)
+              %li= link_to "Pages", admin_site_pages_path(@site) 
+              %li= link_to "Categories", admin_site_categories_path(@site)
+              %li= link_to "Products", admin_site_products_path(@site)
+              
+            .split_flex_box
+
+            %ul.general_admin_items
+              %li= link_to "All Products", admin_products_path
+              %li= link_to "All Categories", admin_categories_path
+              %li= link_to "Users", admin_users_path
+              %li= link_to "Orders", admin_orders_path
+              %li= link_to "All Sites", admin_sites_path
         - flash.each do |k, v|
           %div{class: "alert alert-#{k}"}
             = v

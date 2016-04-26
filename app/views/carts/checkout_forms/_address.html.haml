@@ -1,0 +1,23 @@
+= form_for @cart, url: update_checkout_carts_path, method: :post do |f|
+  
+  - unless signed_in?
+    = field_set_tag do
+      = f.fields_for :user do
+        = f.label :name
+        = f.text_field :name
+        = f.label :email
+        = f.email_field :email
+
+  = field_set_tag 'Billing Address' do
+    = f.fields_for :billing_address do |billing_form|
+      = render 'carts/checkout_forms/address_fields', f: billing_form
+
+  = field_set_tag 'Shipping Address' do
+    .field
+      = f.label :same_shipping_address
+      = f.check_box :same_shipping_address
+
+    = f.fields_for :shipping_address do |shipping_form|
+      = render 'carts/checkout_forms/address_fields', f: shipping_form
+
+  = f.submit "Next Stage"

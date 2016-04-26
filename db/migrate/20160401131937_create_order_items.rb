@@ -5,6 +5,9 @@ class CreateOrderItems < ActiveRecord::Migration
       t.belongs_to :product, index: true, foreign_key: true
 
       t.integer :quantity, default: 1
+
+      #product info to copy on purchase
+      t.string  :name
       t.decimal :unit_price, precision: 8, scale: 2
       t.decimal :unit_cost_price, precision: 8, scale: 2
       t.decimal :tax_rate, precision: 8, scale: 4

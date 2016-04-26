@@ -2,11 +2,7 @@ class Site < ActiveRecord::Base
 
   mount_uploader :logo, ImageUploader
 
-  has_many :menu_items
-  has_many :menu_pages, source: :page, through: :site_pages 
-
-  has_many :site_pages
-  has_many :pages, through: :site_pages
+  has_many :pages, dependent: :destroy
 
   has_many :site_categories
   has_many :categories, through: :site_categories
@@ -17,21 +13,28 @@ class Site < ActiveRecord::Base
 
 
   scope :active, -> { where(active: true)}
+  scope :default, -> { find_by(default: true) }
+
 
   validates :subdomain, presence: true, if: :active?
 
-  def menu_pages
-    pages = super
-    pages << Page.global
-  end
-
   def pages
-    pages = super
-    pages << Page.global
+    Page.where(id: super.ids + Page.global.ids)
   end
 
-  def self.default
-    find_by(default: true)
+  def _pages
+    method(:pages).super_method.call
+  end
+
+  def find_page url
+    _pages.find_by(url_alias: url) || Page.global.find_by(url_alias: url)
+  end
+
+  def build_page *args, &block
+    _pages.build *args, &block
+  end
+  def add_page *args, &block
+    _pages.create *args, &block
   end
 
   def activate!

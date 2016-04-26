@@ -9,15 +9,15 @@ task gen_sites: :environment do
   )
     
   @shop = Site.create!(
-    name: 'Retail',
+    name: 'Shop',
     subdomain: "shop", 
     color: "#1B1B1B",
   )
 
-  Site.create!(
+  @shield_and_protect = Site.create!(
     name: 'Shield and Protect',
-    sudomain: 'shieldandprotect',
+    subdomain: 'shieldandprotect',
     color: '#EEC106'
-  )
+    )
 
 end

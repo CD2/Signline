@@ -1,10 +1,5 @@
-%h2.side_menu_heading Categories
+%h2.side_menu_heading= link_to 'Categories', categories_path
 %ul#side_menu_list
-  - @site.menu_items.each do |menu|
-    - if menu.page
-      %li= link_to menu.name, menu.page
-    - else
-      %li= link_to menu.name, "/#{menu.path}"
   - @site.categories.each do |category|
     %li= link_to category.name, category
 

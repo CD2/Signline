@@ -4,7 +4,7 @@ class CreateCategories < ActiveRecord::Migration
 
       t.string :name
       t.string :url_alias
-      t.integer :parent
+      t.integer :parent_id, index: true
       
       t.timestamps null: false
     end

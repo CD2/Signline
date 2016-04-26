@@ -34,6 +34,11 @@
         %tr{class: cycle("odd", "even")}
           %td= page.name
           %td= page.published ? "Yes" : "No"
-          %td.admin_index_action= link_to 'Show', page
+
+          - if page.url_alias == ""
+            %td.admin_index_action= link_to 'Show', root_url(subdomain: @site.subdomain)
+          - else
+            %td.admin_index_action= link_to 'Show', page_url(page, subdomain: @site.subdomain)
+
           %td.admin_index_action= link_to 'Edit', [:edit, :admin, @site, page]
           %td.admin_index_action= link_to 'Destroy', [:admin, @site, page], :method => :delete, :data => { :confirm => 'Are you sure?' }
