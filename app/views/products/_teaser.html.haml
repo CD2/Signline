@@ -1,6 +1,7 @@
 .product_teaser
-  - byebug if product.product_images.size > 1
   - if product.primary_image.present?
     = link_to image_tag(product.primary_image.thumbnail), product
+  - else
+    = link_to image_tag('placeholder.jpg'), product
   %h3= link_to product.name, product
   .price= number_to_currency product.unit_price

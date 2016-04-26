@@ -23,7 +23,6 @@ task seed_db: :environment do
   Rake::Task["gen_products"].invoke
 
 
-
   Rake::Task["beeswift"].invoke
 
   Category.where('id>13').update_all(parent_id: 9)

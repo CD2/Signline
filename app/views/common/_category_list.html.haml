@@ -1,7 +1,8 @@
-%h2.side_menu_heading= link_to 'Categories', categories_path
-%ul#side_menu_list
-  - @site.categories.each do |category|
-    %li= link_to category.name, category
+- if @site.categories.any?
+  %h2.side_menu_heading= link_to 'Categories', categories_path
+  %ul#side_menu_list
+    - @site.categories.each do |category|
+      %li= link_to category.name, category
 
 - if @site.brands.any?
   %h2.side_menu_heading Brands
