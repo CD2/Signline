@@ -4,6 +4,8 @@ task gen_pages: :environment do
   @shop = Site.find_by(subdomain: 'shop')
   @shield_and_protect = Site.find_by(subdomain: 'shieldandprotect')
 
+  Page.destroy_all
+
   @signline.add_page(
     name: 'Home Page',
     banner: File.open(Rails.root + 'seeds/images/signline/home_banner.jpg'),
@@ -88,5 +90,90 @@ task gen_pages: :environment do
         <p>Our PPF utilizing Nano-Fusion technology is warranted to be free of defects in manufacturing and workmanship for life.</p>
         <p>To arrive at this point, we conducted extensive testing which has proven to us that this PPF is the best on the market, resisting yellowing and cracking better than any other film available. The warranty protects the dealer’s customer, the dealer and you.</p>'
 )
+
+
+
+    @signline.add_page(
+        name: 'About Us',
+        url_alias: 'about-us',
+        menu_item_name: 'About Us',
+        body: '<h1>About Us</h1>
+<h2>Founding</h2>
+<p>SignLine began in 1993, initially Jason the proprietor worked mainly providing design and installation services to a local sign makers, once a decent retail client base was achieved Jason moved away from being mainly a trade supplier to supplying retail clients, SignLine still enjoys good relationships with trade clients and enjoys being able to supply retail clients too. </p>
+<p>We are very careful to keep the two area\'s separate and client confidentiality comes before increasing revenues using knowledge of our trade clients contacts, we are highly ethical, moral and believe we are one of the best sign making firms in the country providing high quality products using European Union origin materials only at very competitive prices. </p>
+<h2>Materials</h2>
+<p>We pay up to six times as much for our materials than those using cheap, polluting, sub-standard Chinese and far eastern materials, yet we supply products at around the same cost to you. </p>
+<p>Savings made using sub-standard materials are often not reflected in the cost to the end user, it just makes for higher profits, but at what cost in reality. <br>
+</p>
+<p>Our conscience and that of our clients is clear knowing the origin of all our products is from within the European Union, to exacting standards, with full backup and support and meeting all regulations we in Europe have to meet to protect our surroundings, wildlife, habitats and environments. </p>
+<h2>Premises</h2>
+<p>After manufacturing from our premises in which had minimal space for our works we moved into new premises in 2002.</p>
+<p>The new premises are called Signs &amp; Print House as this relates to exactly what we do.</p>
+<p>There are two floors, 1st floor is our studio area &amp; reception where we would be pleased to greet any of our customers who visit us.</p>
+<p>We are also able to display on screen your requirements, make adjustments &amp; supply any samples that are required.</p>
+<h2>Fitting Unit</h2>
+<p>This is the ideal place for the application of graphics to vehicles ranging from motorbikes, cars, small vans to fuel tankers, box lorries and articulated lorries. </p>
+<p>Unlike fitting on site we have the facility to get vehicles under cover &amp; in  a temperature controlled environment, ensuring application at any time of the year is carried out to the film manufacturers specification for the warranty to be in place &amp; to be sure of a top notch job. </p>
+<p> This gives us and our clients a big advantage in that at any time of the year graphics can be fitted to your vehicle at the manufacturers specifications, any supplier without this facility would generally simply apply the graphics anyway, which if they do, at worst are only likely to fail, or at least have a much shorter life. </p>
+<p>We are fortunate to have an ample parking area and along with being situated in a rural setting here in South Norfolk, only a short distance from the A140 between Long Stratton and Diss making us very easy to find and visit, visiting us is a relaxed experience. </p>'
+        )
+
+    @signline.add_page(
+        name: 'Case Histories',
+        url_alias: 'case-histories',
+        menu_item_name: 'Case Histories',
+        body: '<h1>Case Histories</h1>
+<p>Case Histories</p>
+<p>AYTON PRODUCTS</p>
+<p>Brief. To manufacture &amp; fit various aluminium composite signage at Head  Office &amp; various sites around East Anglia carrying the new corporate name change from Ayton Asphalte  to Ayton Products &amp; then a further change to all signs on the logo for  Ayton Products.</p>
+<p>TOUCAN TOOL HIRE</p>
+<p>Brief. To produce &amp; fit new corporate style signage to all branches &amp; vehicle graphics to all vehicles.</p>'
+        )
+
+    @signline.add_page(
+        name:  'Company Policy',
+        url_alias: 'company-policy',
+        menu_item_name:  'Company Policy',
+        body: '<h1>Company Policy</h1>
+<h2>Terms and Conditions </h2>
+<p>STANDARD CONDITIONS</p>
+<p>DEFINITIONS - In these conditions the expression \'the product\' refers to any manufactured/supplied</p>
+<p>item, drawings/designs produced by SignLine for the Customer.</p>
+<p>COPYRIGHT - On full payment of the final invoice Copyright of the product belongs fully to the Customer.</p>
+<p>SignLine reserves the right to Copyright all drawings &amp; layouts until such time as this passes to customer</p>
+<p>on full &amp; final payment of relative invoices.</p>
+<p>If you do not order SignLine reserve the right to Copyright indefinately.</p>
+<p>If these terms are broken SignLine will issue you an invoice for the drawings.</p>
+<p>CONFIDENTIALITY - Both parties undertake to keep confidential all information which is either
+designated as confidential by the disclosing party, or which is by its nature to be regarded as confidential whether written or oral, that its respective employees, agents or sub-contractors shall have obtained or received in the course of negotiations or completing the contract.</p>
+<p>Disclosing prices or our designs &amp; layouts to our competitors is deemed in breach of the above.</p>
+<p>FORCE MAJEURE - Neither party will be liable to the other party for any delay, or failure to perform its obligations, as a result of any cause beyond its reasonable control including, but not limited to, any industrial dispute.</p>
+<p>NOTICES - Any notice, request, instruction or other document to be given hereunder shall be deliveredby hand, or sent by first class post, or emailed to the addressee\'s registered office.</p>
+<p>COMPLIANCE WITH RULES AND REGULATIONS - SignLine shall ensure that when any of its obligations are performed on the Customer\'s premises, all reasonable rules and regulations in force, and made known by the Customer to SignLine, are complied with by SignLine.</p>
+<p>PRICES &amp; PAYMENT - Account Holders: On confirmation, from the customer to proceed with at the agreed costings SignLine will issue an invoice shortly after delivery or fitting of the finished product for the outstanding balance. </p>
+<p>Non Account holders: Where the price is a known we will issue an invoice which needs to be paid in full before commencing of works, any additional costs will be invoiced separately after completion.</p>
+<p>Estimates, these are provided when we do not know what the final cost will be, an estimate is just that, a best guess, an approximation, the final cost can vary significantly, up to and including over 100%. If you wish to limit this you can with prior notification to us so we can let you know when we have reached the estimated cost and if you wish us to continue we can or we can stop at that point. All final costs are based exactly on materials and time taken to complete the job, you pay only for all the works carried out, we get paid for all the works we have carried out. This is fairer than a quote as if we quote and we take longer to complete we lose out, if we don\'t take as long to complete the client loses out, some types of work we cannot quote as we just don\'t know what the final cost will be.</p>
+<p>Quotes and estimates are vaild for 30 days from the date they are given, we reserve the right to increase or decrease prices if you order after this period. The price difference a short period after this time would be minimal if any, or it could increase over months and years, i.e. some clients order 2 years after a quote or estimate was given so the price may of gone up significantly after a period of this length.</p> 
+<p>Any issues with any invoices or payments must be brought to our attention within 7 working days of receipt, we will investigate any claims and reply within 7 working days, any further complaints or replies to the outcome of the investigation must be made within 7 working days, after this period we will assume the claim or query has been satisfied.</p>
+<p>CANCELLATION - The Customer can cancel the contract or order at any time in writing without giving any reason or any notice period. At such a time as a written notice to cancel the contract is received by SignLine an invoice will be issued to the Customer for any work completed to date based on a reasonable hourly rate &amp; materials processed &amp; work already undertaken. Upon cancellation of the contract or order for any reason, the Customer must destroy all relating information supplied by SignLine on the product whether in written or electronic form.</p>
+<p>NON-PAYMENT - In the event of non-payment by the Customer, SignLine, at its discretion, may elect to treat the contract or order as cancelled or continue the contract or leave products in place as long as it sees fit and seek continuingor final payment from the Customer until the contract or order is cancelled by the customer in accordance with these Conditions.</p>
+<p>ALL GOODS REMAIN THE PROPERTY OF SignLine UNTIL PAID FOR IN FULL. WE RESERVE THE RIGHT TO REMOVE ANY PRODUCTS THAT ARE NOT PAID FOR IN FULL, STORAGE OF THOSE PRODUCTS &amp; IF REQUIRED THE RE-FITTING ONCE THE PRODUCTS HAVE BEEN PAID FOR, WHETHER VOLUNTARILY OR BY COURT ORDER.</p>
+<p>NO AMENDMENTS OR ALTERATIONS TO THESE CONDITIONS SHALL BE EFFECTIVE UNLESS AGREED IN WRITING.</p>
+<p>THESE CONDITIONS APPLY IN SUBSTITUTION FOR ANY PREVIOUS CONDITIONS.</p>
+<p>2nd Edition, July 2002.</p><p>© 2015, SignLine, Norfolk, ENGLAND.</p>
+Our designs are protected by the Copyright, Designs and Patents Act 1988, unauthorised use of this is deemed as copyright  theft under this law, we invoice a minimum of £250 and any legal fees for unauthorised use of our designs and intellectual property.'
+        )
+
+    @signline.add_page(
+        name: 'Our Materials',
+        url_alias: 'our-materials',
+        menu_item_name: 'Our Materials',
+        body: 
+'<h1>Our Materials</h1>
+<p>Cut graphics, vinyl lettering, are all cut from pre-coloured rolls of film, coloured throughout the film, has warranty, lovely depth of colour, individual letters cut from a roll of film, the excess or anything other than what is required is removed, this is called weeding, then covered with application paper so we can lift the graphics off the backing sheet and apply lines of text, logo\'s etc in one piece, remove the application paper at the end, done job.</p>
+<p>If someone quotes or specifies to you a 5 to 7 year film, there is no such thing, if it was an honest description based on the majority of the range is 5 year, being all the colours, we would call it a 5 year film. A film range termed as 5 to 7 years actually means the colours have a 5 year warranty or estimated life, black and white have a 7 year warranty or estimated life. The higher grade although may be a longer term film than you require also means it will not shrink or lift as lower grades tend to, it will have a higher gloss finish and have no imperfections.</p>
+<p>Digital printing, this is in essence a giant desktop printer but much bigger so it is operated on a stand, for vehicle graphics we print to the surface of white or transparent film, as it is a layer of ink on top of film we laminate for extra abrasion and ultra violet durability, without any laminate prints can fade quite quickly.</p>
+<p>The laminate makes years of life difference to the print, we tend to recommend cut graphics for longevity but as time has gone on we have found despite what suppliers say, our laminated prints look good 7 years later, cut graphics from our film look good a decade and beyond later.</p>'
+        )
 
 end
