@@ -3,4 +3,6 @@
 - if @page.banner.path.present?
   - content_for :highlights do
     #banner{style: "background-image: url(#{@page.banner});"}
-= raw @page.body
+
+.body_section
+  = raw @page.body
