@@ -14,8 +14,16 @@ class OrderItem < ActiveRecord::Base
     in_cart? ? product.unit_price : super
   end
 
+  def name
+    in_cart? ? product.name : super
+  end
+
   def total_price
     quantity * unit_price
+  end
+
+  def total_price_in_pence
+    (total_price * 100).to_i
   end
 
   def finalize!
@@ -24,6 +32,11 @@ class OrderItem < ActiveRecord::Base
     self.unit_cost_price = product.unit_cost_price
     self.tax_rate = product.tax_rate
     save!
+  end
+
+  def paypal_item
+    {name: name, description: "An Item", quantity: "1", amount: total_price_in_pence}
+
   end
 
 end

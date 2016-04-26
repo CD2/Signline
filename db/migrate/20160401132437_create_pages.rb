@@ -8,6 +8,9 @@ class CreatePages < ActiveRecord::Migration
       t.text     :body
       t.string   :layout
 
+      t.string  :menu_item_name
+      t.belongs_to :site
+
       #meta
       t.string   :page_title
       t.string   :url_alias

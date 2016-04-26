@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403222837) do
+ActiveRecord::Schema.define(version: 20160403201439) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -54,14 +54,6 @@ ActiveRecord::Schema.define(version: 20160403222837) do
   add_index "categorisations", ["category_id"], name: "index_categorisations_on_category_id"
   add_index "categorisations", ["product_id"], name: "index_categorisations_on_product_id"
 
-  create_table "menu_items", force: :cascade do |t|
-    t.integer  "site_id"
-    t.integer  "page_id"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
@@ -88,11 +80,12 @@ ActiveRecord::Schema.define(version: 20160403222837) do
     t.boolean  "same_shipping_address"
     t.string   "name"
     t.string   "email"
-    t.string   "ip"
     t.string   "phone"
+    t.string   "ip"
     t.string   "express_token"
     t.string   "express_payer_id"
     t.decimal  "amount",                precision: 8, scale: 2
+    t.string   "order_tracking_id"
     t.datetime "purchased_at"
     t.datetime "shipped_at"
     t.datetime "created_at",                                                null: false
@@ -109,6 +102,8 @@ ActiveRecord::Schema.define(version: 20160403222837) do
     t.string   "banner_text"
     t.text     "body"
     t.string   "layout"
+    t.string   "menu_item_name"
+    t.integer  "site_id"
     t.string   "page_title"
     t.string   "url_alias"
     t.text     "meta_description"
@@ -130,6 +125,7 @@ ActiveRecord::Schema.define(version: 20160403222837) do
   create_table "products", force: :cascade do |t|
     t.integer  "brand_id"
     t.string   "name"
+    t.string   "machine_name"
     t.string   "sku"
     t.text     "body"
     t.text     "features"
@@ -163,13 +159,6 @@ ActiveRecord::Schema.define(version: 20160403222837) do
 
   add_index "site_categories", ["category_id"], name: "index_site_categories_on_category_id"
   add_index "site_categories", ["site_id"], name: "index_site_categories_on_site_id"
-
-  create_table "site_pages", force: :cascade do |t|
-    t.integer  "site_id"
-    t.integer  "page_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "sites", force: :cascade do |t|
     t.string   "name"

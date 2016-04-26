@@ -2,36 +2,20 @@ class CartsController < ApplicationController
 
   before_action :set_cart
 
-  def index
+  def show
     render 'empty_cart' if @cart.empty?
   end
 
-  def add
-    product = Product.find(params[:product_id])
-    @cart << product
-    redirect_to product
-  end
-
-  def remove
-    @cart.remove params[:id]
-    redirect_to carts_path
-  end
-
-  def update
-    @cart.update_item params[:id], params[:order_item][:quantity].to_i
-    redirect_to carts_path
-  end
-
-
   def checkout
-    unless @cart.next_stage!
+    redirect_to root_url if @cart.empty?
+    @cart.next_stage!
+    if @cart.complete?
       if @cart.checkout
+        redirect_to order_summary_path(@cart)
         session[:cart_id] = nil
-        redirect_to root_path
       else
         flash[:error] = 'Sorry, there was a problem processing your order.'
       end
-      redirect_to root_url 
     end
   end
 
@@ -53,10 +37,42 @@ class CartsController < ApplicationController
     flash[:notice] = 'Your cart is now empty.'
   end
 
+
+  ##########
+  #PAYMENTS#
+  ##########
+
+  def express_checkout
+    response = EXPRESS_GATEWAY.setup_purchase(@cart.total_price_in_pence,
+      ip: request.remote_ip,
+      return_url: paypal_complete_carts_url,
+      cancel_return_url: cancel_payment_carts_url,
+      currency: "GBP",
+      allow_guest_checkout: true,
+      items: @cart.paypal_items
+    )
+    redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+  end
+
+  def paypal_complete
+    @cart.update(express_token: params[:token])
+    @cart.ip = request.remote_ip
+    if @cart.save!
+      if @cart.purchase
+        redirect_to order_url(@cart)
+      else
+        render :action => "failure"
+      end
+    end
+  end
+
+
+
+
   private
 
     def cart_params
-      params.require(:cart).permit :name, :email, :phone, :quantity,
+      params.require(:cart).permit :name, :email, :phone,
         :same_shipping_address,
         billing_address_attributes: [:name, :address_one, :address_two, :city, :county, :postcode, :country],
         shipping_address_attributes: [:name, :address_one, :address_two, :city, :county, :postcode, :country]

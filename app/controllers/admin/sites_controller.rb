@@ -1,6 +1,5 @@
 class Admin::SitesController < AdminController
   before_action :set_site, only: [:edit, :update, :destroy]
-  before_action :set_new, only: :new
 
   # GET /sites
   def index
@@ -8,13 +7,13 @@ class Admin::SitesController < AdminController
   end
 
   # POST /sites
-  def create
-    @object = Site.new(site_params)
+  def new
+    @site = Site.build
+  end
 
-    if @object.save
-      @main_menu = Menu.create(name: "#{@object.name} Main Menu", machine_name: "#{@object.machine_name}_main_menu")
-      @side_menu = Menu.create(name: "#{@object.name} Side Menu", machine_name: "#{@object.machine_name}_side_menu")
-      @object.update_attributes(main_menu_id: @main_menu.id, side_menu_id: @side_menu.id)
+  def create
+    @site = Site.new(site_params)
+    if @site.save
       redirect_to admin_sites_path
       flash[:notice] = 'Site was successfully created.'
     else
@@ -24,7 +23,7 @@ class Admin::SitesController < AdminController
 
   # PATCH/PUT /sites/1
   def update
-    if @object.update(site_params)
+    if @site.update(site_params)
       redirect_to admin_sites_path
       flash[:notice] = 'Site was successfully updated.'
     else
@@ -39,25 +38,12 @@ class Admin::SitesController < AdminController
     flash[:notice] = 'Site was successfully destroyed.'
   end
 
-  def toggle_status
-    @site = Site.find(params[:site_id])
-    @site.active ? @site.suspend : @site.go_live
-    redirect_to admin_sites_path
-  end
+
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_site
-      @site = Site.find(params[:id])
-      @object = @site
-    end
-
-    def set_new
-      @object = Site.new
-    end
 
     # Only allow a trusted parameter "white list" through.
     def site_params
-      params.require(:site).permit(:name, :machine_name, :url, :color, :logo, :second_sidebar, :second_sidebar_option, :home_body, :banner_image, :include_products)
+      params.require(:site).permit(:name, :subdomain, :color, :logo)
     end
 end

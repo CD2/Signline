@@ -1,6 +1,7 @@
 #category_header
   %h1= @category.name
 
+
   #filters
 
     - if params[:sort] && params[:sort] == "date_desc"
@@ -25,4 +26,5 @@
       = link_to "PRICE", category_path(@category, sort: 'price_desc'), class: "filter_link"
 
 
+= render_breadcrumbs @category
 = render 'common/product_list'

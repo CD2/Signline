@@ -1,0 +1,23 @@
+- name: Stuffed Animal
+  sku: stuffed_1
+  body: This is a really fun toy
+  category: Office
+  features: "soft\nfun\nnice\npossessed"
+  images: 
+    - image.jpg
+    - image2.jpg
+    - image3.jpg
+  mpn: t0y1
+  unit_price: 15
+  unit_cost_price: 10 
+  tax_rate: 0.2
+
+- name: Sweet Pen
+  sku: pen_2
+  body: '"Hey check out this sweet pen, dude", "Wow, what a pen"'
+  category: Child
+  features: "soft\nfun\nnice\npossessed"
+  mpn: t0y1
+  unit_price: 15
+  unit_cost_price: 10 
+  tax_rate: 0.2

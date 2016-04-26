@@ -14,7 +14,9 @@ task gen_categories: :environment do
   @shop.categories.create!(name: 'Child')
   @shop.categories.create!(name: 'Household')
 
-  s = Category.first.children.create!(name: 'Stationary')
-  @s = s.children.create!(name: 'pens')
+  # s = Category.first.children.create!(name: 'Stationary')
+  # @s = s.children.create!(name: 'pens')
+
+
 
 end

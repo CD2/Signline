@@ -15,25 +15,6 @@ class Cart < Order
     same_shipping_address?
   end
 
-  with_options if: :address? do |cart|
-    # cart.validates :billing_address, presence: true
-    # cart.validates_associated :billing_address
-    # cart.validates :shipping_address, presence: true
-    # cart.validates_associated :shipping_address, unless: :same_shipping_address?, message: 'TEST'
-  end
-
-  with_options if: :shipping? do |cart|
-
-  end
-
-  with_options if: :payment? do |cart|
-    
-  end
-
-  #check all previous for possible changes
-  with_options if: :complete? do |cart|
-
-  end
 
   def empty?
     order_items.empty?
@@ -41,10 +22,6 @@ class Cart < Order
 
   def self.get id
     cart = find_by(id: id)
-  end
-
-  def total_price
-    cart_items.inject(0){|t,i| t + i.total_price }
   end
 
   def amount_of_items
@@ -55,27 +32,39 @@ class Cart < Order
     products.include? product
   end
 
+  def find_item item
+    return case item
+    when OrderItem#CartItem
+      item
+    when Product
+      cart_items.find_by(product_id: item.id)
+    else
+      cart_items.find(item)
+    end
+  end
+
 
   ###EDIT CART######
 
   def << product
     if include? product
-      cart_item = cart_items.find_by(product_id: product.id)
-      cart_item.update_attributes(quantity: cart_item.quantity+1)
+      cart_item = find_item(product)
+      update_item cart_item, cart_item.quantity+1
     else
       products << product
     end
   end
 
-  def remove cart_item_id
-    cart_items.find(cart_item_id).destroy
+  def remove cart_item
+    find_item(cart_item).destroy
   end
 
-  def update_item cart_item_id, quantity
+  def update_item cart_item, quantity
+    cart_item = find_item(cart_item)
     if quantity<=0
-      remove cart_item_id
+      remove cart_item
     else
-      cart_items.find(cart_item_id).update_attributes(quantity: quantity)
+      cart_item.update_attributes(quantity: quantity)
     end
   end
 
@@ -88,7 +77,6 @@ class Cart < Order
   end
 
   def next_stage
-    return false if complete?
     Cart.checkout_statuses[self.checkout_status] + 1
   end
 
@@ -96,6 +84,7 @@ class Cart < Order
     return false if self.complete?
     self.checkout_status = next_stage
     self.send :try, "#{checkout_status}_prepare"
+    return true
   end
 
   def checkout
@@ -106,6 +95,35 @@ class Cart < Order
     return true
   rescue
     return false
+  end
+
+  def paypal_items
+    cart_items.map &:paypal_item
+  end
+
+  def purchase
+    response = EXPRESS_GATEWAY.purchase(total_price_in_pence, express_purchase_options)
+    cart.update_attribute(:purchased_at, Time.now) if response.success?
+    response.success?
+  end
+
+  def express_token=(token)
+    self[:express_token] = token
+    if new_record? && !token.blank?
+      # you can dump details var if you need more info from buyer
+      details = EXPRESS_GATEWAY.details_for(token)
+      self.express_payer_id = details.payer_id
+    end
+  end
+
+  private
+
+  def express_purchase_options
+    {
+      :ip => ip,
+      :token => express_token,
+      :payer_id => express_payer_id
+    }
   end
 
 end

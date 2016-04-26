@@ -16,4 +16,5 @@ module ApplicationHelper
     controller.class.name.split("::").include? "Admin"
   end
 
+
 end

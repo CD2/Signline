@@ -12,5 +12,13 @@ class Order < ActiveRecord::Base
   enum shipping_type: [:paypal, :sagepay]
 
 
+  def total_price
+    order_items.inject(0){|t,i| t + i.total_price }
+  end
+
+
+  def total_price_in_pence
+    (total_price*100).to_int
+  end
 
 end

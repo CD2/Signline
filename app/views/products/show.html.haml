@@ -1,27 +1,48 @@
-= render "breadcrumb"
-= @product.categories.first.breadcrumbs
+= render_breadcrumbs @product.category, link_to(@product.name, @product)
+
 #product_content_container
   #product_content
-    #left_product_panel
+    #product_image_panel
       #main_image
-        = image_tag(@product.primary_image)
+        = image_tag(@product.primary_image.standard) if @product.primary_image
       #alternate_images
-        - @images.each do |image|
+        - @product.images.each do |image|
           .alternate_image
-            = image_tag(image.image)
-    #right_product_panel
+            = image_tag image.thumbnail, data: {large: image.standard.url}
+    #product_info_panel
       %h1= @product.name
       .product_code
         = @product.mpn
       .product_price 
-        = number_to_currency @product.unit_price, locale: :en
+        = number_to_currency @product.unit_price
       .product_description_preview
-        = truncate @product.body.gsub("h2", "p"), length: 250, escape: false, omission: "... #{link_to('more', '#description')}"
+        = @product.body
 
-      = button_to "Add to Cart", add_carts_path(product_id: @product)
+      .product_actions
+        - unless current_cart.include? @product
+          = form_for OrderItem.new, url: carts_items_path(product_id: @product.id) do |f|
+            .field
+              = f.label :quantity
+              = f.number_field :quantity
+            .actions
+              = f.submit "Add to Cart"
+        - else
+          - cart_item = current_cart.find_item(@product)
+          = form_for cart_item, url: carts_item_path(cart_item) do |f|
+            .field
+              = f.label :quantity
+              = f.number_field :quantity
+            .actions
+              = f.submit "Update"
+          = button_to "Delete", carts_item_path(cart_item), method: :delete
+           
 
       
 
   #product_tab_area
     .tab_content
       = @product.body.try(:html_safe)
+
+
+- ProductImage.all.each do |image|
+  = image_tag image.image

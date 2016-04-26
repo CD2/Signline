@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
    
   prepend_before_filter :redirect_to_default_subdomain
 
+  include SessionsHelper
+
   include Carts
   helper_method :current_cart
 

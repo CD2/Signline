@@ -2,8 +2,4 @@
   #product_grid
     - @products.each do |product|
       .product_grid_item_container
-        .product_grid_item
-          - if product.primary_image.present?
-            = link_to image_tag(product.primary_image.thumbnail), product
-          %h3= link_to product.name, product
-          .price= number_to_currency product.unit_price
+        = render 'products/teaser', product: product

@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   resources :brands
 
   #index: all your previous orders
-  #show: order details
-  #manage: show, create, edit, destroy current basket
   resources :orders, only: [:index, :show] do 
     # get :shipping_method, path: "shipping"
     # get :summary
@@ -16,15 +14,13 @@ Rails.application.routes.draw do
     # get :purchase
   end
   
-  resources :carts, path: 'cart', only: [:index] do
-    member do
-      post :remove
-      patch :update
-    end
+  resource :carts, path: 'cart', only: [:show] do
+    resources :items, controller: :cart_items, only: [:create, :update, :destroy]
     collection do
-      post :add
       get :checkout
       post :update_checkout
+      get :express_checkout
+      post :paypal_finish
     end
   end
   
@@ -46,7 +42,6 @@ Rails.application.routes.draw do
       resources :pages, except: :show
       resources :categories, only: :index
       resources :products, only: :index
-      resources :menu_items, except: :show
     end
     resources :users, except: :show
     resources :categories, except: :show
@@ -58,10 +53,6 @@ Rails.application.routes.draw do
 
   
   resources :products, only: [:index, :show]
-  resources :product_imports, only: [:new, :create] do 
-    get :confirm_import
-    post :process_import
-  end
   resources :categories, only: [:index, :show]
 
 

@@ -1,0 +1,23 @@
+#cart_page
+  %h1 Your Cart
+  - @cart.cart_items.each do |cart_item|
+    .cart_item
+      .left_cart_item
+        = image_tag cart_item.primary_image
+      .right_cart_item
+        %h3= cart_item.name
+        %h4= number_to_currency cart_item.unit_price, locale: :en
+        = form_for cart_item, url: carts_item_path(cart_item) do |f|
+          .field
+            = f.label :quantity
+            = f.number_field :quantity
+          .actions
+            = f.submit "Update"
+        = button_to "Delete", carts_item_path(cart_item), method: :delete
+
+
+  .cart_total_price
+    = "Total: #{number_to_currency @cart.total_price, locale: :en}"
+  .cart_progress_buttons
+    = @cart.checkout_status
+    = link_to "Checkout", checkout_carts_path

@@ -1,0 +1,9 @@
+.breadcrumb_container
+  .breadcrumb= link_to 'Home', root_url
+  - category.breadcrumbs.each do |cat|
+    >
+    .breadcrumb= link_to cat.name, cat
+
+  - if tail
+    >
+    .breadcrumb= tail
