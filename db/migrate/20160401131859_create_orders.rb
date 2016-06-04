@@ -2,9 +2,9 @@ class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
       
-      t.belongs_to  :user, index: true, foreign_key: true
-      t.belongs_to  :shipping_address, index: true, foreign_key: true
-      t.belongs_to  :billing_address, index: true, foreign_key: true
+      t.integer  :user
+      t.integer  :shipping_address
+      t.integer  :billing_address
 
       t.integer  :checkout_status, default: 0
       t.integer  :order_status
