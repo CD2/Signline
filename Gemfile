@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.2'
-gem 'sqlite3'
+
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'bcrypt'
@@ -28,7 +28,7 @@ group :production do
 end
 
 group :development do
-
+  gem 'sqlite3'
   gem 'spring'
   gem 'byebug'
   gem 'better_errors'

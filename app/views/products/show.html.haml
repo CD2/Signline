@@ -43,6 +43,3 @@
     .tab_content
       = @product.body.try(:html_safe)
 
-
-- ProductImage.all.each do |image|
-  = image_tag image.image
