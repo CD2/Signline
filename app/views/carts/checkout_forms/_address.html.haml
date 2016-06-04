@@ -1,12 +1,14 @@
+
 = form_for @cart, url: update_checkout_carts_path, method: :post do |f|
-  
-  - unless signed_in?
-    = field_set_tag do
-      = f.fields_for :user do
-        = f.label :name
-        = f.text_field :name
-        = f.label :email
-        = f.email_field :email
+
+  = field_set_tag do
+    = f.fields_for :user do
+      = f.label :name
+      = f.text_field :name
+      = f.label :email
+      = f.email_field :email
+      = f.label :phone
+      = f.text_field :phone
 
   = field_set_tag 'Billing Address' do
     = f.fields_for :billing_address do |billing_form|

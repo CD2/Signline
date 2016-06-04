@@ -1,22 +1,18 @@
-#admin_header
-  %h1 Listing Orders
+- provide :title, "Orders"
+= render 'section_bar'
 
-#admin_table
+%table
+  %thead
+    %tr
+      %th ID
+      %th Amount
+      %th Purchased Date
+      %th
 
-
-
-  %table
-    %thead
-      %tr
-        %th ID
-        %th Amount
-        %th Purchased Date
-        %th
-
-    %tbody
-      - @orders.each do |order|
-        %tr{class: cycle("odd", "even")}
-          %td= order.id
-          %td= order.amount
-          %td= order.purchased_at.try{strftime("%d %b. %Y")}
-          %td= link_to "Show", admin_order_path(order)
+  %tbody
+    - @orders.each do |order|
+      %tr{class: cycle("odd", "even")}
+        %td= order.id
+        %td= order.amount
+        %td= order.purchased_at.try{strftime("%d %b. %Y")}
+        %td= link_to "Show", manage_admin_orders_path(order_id: order)

@@ -28,3 +28,12 @@
 
 = render_breadcrumbs @category
 = render 'common/product_list'
+
+#product_grid_container
+  #product_grid
+    - @category.children.each do |child|
+      - if child.products.any?
+        .product_grid_item_container
+          .product_teaser
+            = link_to image_tag(child.products.first.try(:primary_image).try(:thumbnail)), child
+            %h3= link_to child.name, child

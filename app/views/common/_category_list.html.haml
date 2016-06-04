@@ -1,12 +1,10 @@
-- if @site.categories.any?
+- if shop_site?
   %h2.side_menu_heading= link_to 'Categories', categories_path
-  %ul#side_menu_list
+  %ul.side_menu_list
     - @site.categories.each do |category|
       %li= link_to category.name, category
+- else
 
-- if @site.brands.any?
-  %h2.side_menu_heading Brands
-  %ul#side_menu_list
-    - @site.brands.select("categories.id", "brands.id", "brands.name").group("categories.id", "brands.id", "brands.name", :name).each do |brand|
-      %li= link_to brand.name, brand
-   
+  %ul.side_menu_list
+    - @site.pages.side_pages.each do |page|
+      %li= link_to page.name, page

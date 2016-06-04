@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403201439) do
+ActiveRecord::Schema.define(version: 20160604153344) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -54,6 +54,35 @@ ActiveRecord::Schema.define(version: 20160403201439) do
   add_index "categorisations", ["category_id"], name: "index_categorisations_on_category_id"
   add_index "categorisations", ["product_id"], name: "index_categorisations_on_product_id"
 
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
+
+  create_table "delivery_services", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.decimal  "price",        precision: 8, scale: 2
+    t.decimal  "cost_price",   precision: 8, scale: 2
+    t.boolean  "default"
+    t.boolean  "active"
+    t.string   "courier"
+    t.string   "tracking_url"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
@@ -78,6 +107,11 @@ ActiveRecord::Schema.define(version: 20160403201439) do
     t.integer  "payment_type"
     t.integer  "shipping_type"
     t.boolean  "same_shipping_address"
+    t.integer  "delivery_service_id"
+    t.decimal  "delivery_price",        precision: 8, scale: 2
+    t.decimal  "delivery_cost_price",   precision: 8, scale: 2
+    t.decimal  "delivery_tax_rate",     precision: 8, scale: 2
+    t.decimal  "delivery_tax_amount",   precision: 8, scale: 2
     t.string   "name"
     t.string   "email"
     t.string   "phone"
@@ -85,7 +119,9 @@ ActiveRecord::Schema.define(version: 20160403201439) do
     t.string   "express_token"
     t.string   "express_payer_id"
     t.decimal  "amount",                precision: 8, scale: 2
+    t.string   "payment_method"
     t.string   "order_tracking_id"
+    t.integer  "flag"
     t.datetime "purchased_at"
     t.datetime "shipped_at"
     t.datetime "created_at",                                                null: false
@@ -103,6 +139,7 @@ ActiveRecord::Schema.define(version: 20160403201439) do
     t.text     "body"
     t.string   "layout"
     t.string   "menu_item_name"
+    t.boolean  "side"
     t.integer  "site_id"
     t.string   "page_title"
     t.string   "url_alias"

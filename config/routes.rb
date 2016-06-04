@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   resources :enquiries, only: [:new, :create] do 
     collection { get :thanks }
   end
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   resource :carts, path: 'cart', only: [:show] do
     resources :items, controller: :cart_items, only: [:create, :update, :destroy]
     collection do
+      get :previous
       get :checkout
       post :update_checkout
       get :express_checkout
@@ -36,19 +38,27 @@ Rails.application.routes.draw do
   end
 
   #admin paths
-  namespace :admin do 
-    resources :sites, except: :show do 
-      get :toggle_status
-      resources :pages, except: :show
-      resources :categories, only: :index
-      resources :products, only: :index
-    end
+  namespace :admin do
+    resources :sites
+    resources :pages, except: :show
+    resources :categories, only: :index
+    resources :products, only: :index
     resources :users, except: :show
     resources :categories, except: :show
-    resources :products, except: :show do 
-      collection { get :export }
-    end 
-    resources :orders, only: [:index, :show]
+    resources :products, except: :show
+    resources :orders do
+      collection { get :manage }
+      member do
+        get :print
+        get :complete_order
+        get :flag
+        get :resolve_flag
+        get :duplicate
+        get :resend_emails
+      end
+      resources :notes
+    end
+
   end
 
   

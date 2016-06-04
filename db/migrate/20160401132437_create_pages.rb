@@ -9,6 +9,7 @@ class CreatePages < ActiveRecord::Migration
       t.string   :layout
 
       t.string  :menu_item_name
+      t.boolean :side
       t.belongs_to :site
 
       #meta

@@ -1,0 +1,13 @@
+
+= form_for([:admin, @category]) do |f|
+  = errors @category, f
+  = field_set_tag 'Category' do
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :parent
+      = f.collection_select :parent_id, Category.all, :id, :name, include_blank: '-- Select --'
+
+  .actions
+    = f.submit

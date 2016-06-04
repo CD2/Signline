@@ -1,9 +1,7 @@
-#form_container
-  %h1 Checkout
-  %h2= @cart.checkout_status.humanize
+#form_container.checkout_form
+  %h1= "Checkout - #{@cart.checkout_status.humanize}"
   - if @cart.errors.any?
     #error_container
       - @cart.errors.messages.each do |error|
         .error= error
   = render "carts/checkout_forms/#{@cart.checkout_status}"
-

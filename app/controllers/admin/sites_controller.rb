@@ -8,7 +8,7 @@ class Admin::SitesController < AdminController
 
   # POST /sites
   def new
-    @site = Site.build
+    @site = Site.new
   end
 
   def create

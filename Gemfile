@@ -8,17 +8,15 @@ gem 'bcrypt'
 
 gem 'haml-rails'
 gem 'jquery-rails'
-
-gem 'ckeditor-rails'
-
 gem 'friendly_id', '~> 5.1.0'
 
 gem 'carrierwave'
 gem 'mini_magick'
-
+gem 'font-awesome-rails'
 gem 'will_paginate'
 gem 'figaro'
 gem 'activemerchant'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 group :production do
 

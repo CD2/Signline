@@ -43,10 +43,11 @@ class CartsController < ApplicationController
   ##########
 
   def express_checkout
+    @cart.update_order_items_cost
     response = EXPRESS_GATEWAY.setup_purchase(@cart.total_price_in_pence,
       ip: request.remote_ip,
-      return_url: paypal_complete_carts_url,
-      cancel_return_url: cancel_payment_carts_url,
+      return_url: root_path,
+      cancel_return_url: root_path,
       currency: "GBP",
       allow_guest_checkout: true,
       items: @cart.paypal_items
@@ -59,6 +60,8 @@ class CartsController < ApplicationController
     @cart.ip = request.remote_ip
     if @cart.save!
       if @cart.purchase
+        OrderMailer.notify_signline(@cart).deliver_now
+        OrderMailer.notify_buyer(@cart).deliver_now
         redirect_to order_url(@cart)
       else
         render :action => "failure"
@@ -66,7 +69,10 @@ class CartsController < ApplicationController
     end
   end
 
-
+  def previous
+    @cart.send("#{params[:status]}!")
+    redirect_to [:checkout, :carts]
+  end
 
 
   private

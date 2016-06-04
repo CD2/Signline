@@ -1,0 +1,29 @@
+
+= form_for([:admin, @page]) do |f|
+  = errors @page, f
+
+  #two_panel_form
+    #main_panel
+      .field
+        = f.label :name
+        = f.text_field :name
+
+      .field
+        = f.label :body
+        = f.cktext_area :body, class: 'editable'
+    #side_panel
+      .field.check_box_field
+        = f.label :published do
+          = f.check_box :published
+          %span Published
+
+      .field
+        = f.label :page_title
+        = f.text_field :page_title
+
+      .field
+        = f.label :meta_description
+        = f.text_area :meta_description, rows: 6
+
+  .actions
+    = f.submit

@@ -5686,7 +5686,7 @@ beeswift.each do |k, v|
         end 
         unless v["image"].blank?
             begin
-                @product.product_images.create(image: File.open(File.join(Rails.root, "seed_images/beeswift/#{v["image"]}")))
+                @product.product_images.create(remote_image_url: "http://cd2dev11.co.uk/signline_seed_images/beeswift/#{v["image"]}")
             rescue Errno::ENOENT
                 puts "seed_images/beeswift/#{v["image"]}" 
             end

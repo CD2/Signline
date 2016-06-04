@@ -2,9 +2,11 @@
 %html
   %head
     %title Website
-    = stylesheet_link_tag    'admin_application', media: 'all'
+    = stylesheet_link_tag    'admin_application', media: 'screen'
+    = stylesheet_link_tag    'print', media: 'print'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+    = javascript_include_tag Ckeditor.cdn_url
     %script{:src => "//use.typekit.net/qct6aqn.js"}
     :javascript
       try{Typekit.load();}catch(e){}
@@ -12,34 +14,23 @@
       #{render 'common/site_styles.scss.erb'}
 
   %body{class: body_classes}
-    #page
-      #page_wrapper
-        %header#header
-          #site_switcher
-            - Site.active.each do |site|
-              = link_to site.name, root_url(subdomain: site.subdomain)
-          #admin_bar{ style: "background-color: #{@site ? @site.color : current_site.color}" }
-            %ul.site_admin_items
-              - if admin_section?
-                %li= link_to @site.name, root_url(subdomain: @site.subdomain)
-              %li= link_to "Settings", edit_admin_site_path(@site)
-              %li= link_to "Pages", admin_site_pages_path(@site) 
-              %li= link_to "Categories", admin_site_categories_path(@site)
-              %li= link_to "Products", admin_site_products_path(@site)
-              
-            .split_flex_box
+    #admin_page_wrapper
+      #admin_sidebar
+        = link_to image_tag('logo.png'), root_path, class: 'admin_logo_link'
+        = render 'admin/admin_menu'
+      #admin_page
+        #admin_title_bar
+          = yield :search
+          %h1= yield :title
+        #admin_nav_bar
+          = yield :buttons
+          .right_buttons
+            = yield :right_buttons
+        #admin_page_inner
 
-            %ul.general_admin_items
-              %li= link_to "All Products", admin_products_path
-              %li= link_to "All Categories", admin_categories_path
-              %li= link_to "Users", admin_users_path
-              %li= link_to "Orders", admin_orders_path
-              %li= link_to "All Sites", admin_sites_path
-        - flash.each do |k, v|
-          %div{class: "alert alert-#{k}"}
-            = v
-        #content_wrapper
-          #admin_content
-            = yield
-          
+          - flash.each do |k, v|
+            %div{class: "alert alert-#{k}"}
+              = v
+          = yield
+
 

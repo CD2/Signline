@@ -29,46 +29,12 @@ $(document).ready(function() {
   $("#home_banner").css("background-image", "url("+image+")")
 
 
-  $('.editable').editable({
-    inlineMode: false,
-    plainPaste: true,
-    // Set the image upload parameter.
-    imageUploadParams: {
-      authenticity_token: 'form_authenticity_token',
-    },
-    // Set the image upload URL.
-    imageUploadURL: '/uploads',
 
-    // CORS. Only if needed.
-    crossDomain: false,
-
-    // Set the image error callback.
-    imageErrorCallback: function (data) {
-        // Bad link.
-        if (data.errorCode == 1) {
-          console.log ('bad link')
-        }
-
-        // No link in upload response.
-        else if (data.errorCode == 2) {
-          console.log ('bad response')
-        }
-
-        // Error during file upload.
-        else if (data.errorCode == 3) {
-          console.log ('upload error')
-        }
-    },
-    blockStyles: {
-      'p': {
-        'class1': 'Class 1',
-        'class2': 'Class 2'
-      },
-      'h3': {
-        'class3': 'Class 3',
-        'class4': 'Class 4'
-      }
-    }
-  })
 
 });
+
+function add_fields(link, association, content) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    $("#more_order_items").append(content.replace(regexp, new_id));
+}

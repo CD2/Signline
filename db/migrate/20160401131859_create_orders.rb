@@ -12,6 +12,12 @@ class CreateOrders < ActiveRecord::Migration
       t.integer  :shipping_type
       t.boolean  :same_shipping_address
 
+      t.integer  :delivery_service_id
+      t.decimal  :delivery_price,            precision: 8, scale: 2
+      t.decimal  :delivery_cost_price,       precision: 8, scale: 2
+      t.decimal  :delivery_tax_rate,         precision: 8, scale: 2
+      t.decimal  :delivery_tax_amount,       precision: 8, scale: 2
+
       t.string   :name
       t.string   :email
       t.string   :phone
@@ -20,8 +26,11 @@ class CreateOrders < ActiveRecord::Migration
       t.string   :express_token
       t.string   :express_payer_id
       t.decimal  :amount, precision: 8, scale: 2
+      t.string   :payment_method
 
       t.string :order_tracking_id
+
+      t.integer :flag
 
       t.datetime :purchased_at
       t.datetime :shipped_at

@@ -1,0 +1,113 @@
+- provide :title, "All Orders"
+= render 'section_bar'
+
+#admin_content
+  #order_actions
+    - unless @order.new_record?
+
+      - if @order.flagged? && !@order.resolved?
+        = link_to(fa_icon("flag", text: "Resolve Flag"), resolve_flag_admin_order_path(@order))
+      - else
+        = link_to(fa_icon("flag-o", text: "Flag Order"), flag_admin_order_path(@order))
+
+      //= link_to "Complete Order", complete_order_admin_order_path(@order) unless @order.complete?
+      = link_to "Print", "javascript:frames['frame'].print()", class: 'minor_button'
+      = link_to "Resend Emails", resend_emails_admin_order_path(@order)
+      //= link_to 'Duplicate', duplicate_admin_order_path(@order)
+      %iframe.hidden{src: print_admin_order_path(@order), name: "frame"}
+  = form_for [:admin, @order] do |f|
+    = errors @order, f
+    #admin_form_wrapper
+      #left_form_wrapper
+        = field_set_tag 'Line Items' do
+          %table#more_order_items
+            %tr
+              %th Product
+              %th
+              %th
+              %th Item ID
+              %th Price
+            =  f.fields_for :order_items do |ff|
+              %tr
+                %td.thumbnail_cell= image_tag(ff.object.channel_thumnail, class: 'manage_order_image')
+                %td.no_wrap= "#{ff.object.quantity} x"
+                %td
+                  %b= "#{ff.object.try(:product).try(:sku)}:"
+                  %br/
+                  = ff.object.channel_name
+                %td= ff.object.channel_item_id
+                %td= number_to_currency ff.object.unit_price
+
+          = link_to_add_fields "+ Add Item", f, :order_items, "button add_fields", "BLAH" unless @order.locked?
+          %table.order_totals_table
+            %tr
+              %td Subtotal
+              %td= number_to_currency @order.total_before_tax
+            %tr
+              %td Shipping
+              %td= number_to_currency @order.shipping_cost
+            %tr
+              %td VAT
+              %td= number_to_currency @order.tax
+            %tr.order_total_row
+              %td Total
+              %td= number_to_currency @order.total_price
+
+        = field_set_tag 'Shipping' do
+
+          .field
+            = f.label :delivery_service_id
+            = f.collection_select :delivery_service_id, DeliveryService.all, :id, :select_display
+
+        = field_set_tag 'Payment' do
+          .field
+            = f.label :payment_method
+            = f.select :payment_method, ["Paypal", "Card", "Cash", "Cheque", "Bank Transfer"], include_blank: "-- Please Select --"
+
+        = field_set_tag 'Admin' do
+
+          - if !@order.new_record? && @order.shipped_at
+            .field
+              = f.label :shipped_at
+              %p= @order.shipped_at
+          .field
+            = f.label :order_status
+            = f.select :order_status, Order.order_statuses.map{|k, v| [k.humanize , k]}
+
+
+
+
+
+      #right_form_wrapper
+        = field_set_tag 'Customer' do
+          = f.collection_select :user_id, User.all, :id, :name, prompt: '-- Please Select --'
+          .field
+            = f.label :name
+            = f.text_field :name
+          .field
+            = f.label :email
+            = f.text_field :email
+
+
+
+        = field_set_tag 'Billing Address', id: 'billing_address' do
+          //= f.hidden_field :billing_address_id
+          //= link_to "Edit", new_admin_address_path(order_id: @order.id, address_type: 'billing'), remote: true
+          #billing_address
+            = render 'address', address: @order.billing_address
+
+
+
+
+        = field_set_tag 'Shipping Address', id: 'delivery_address' do
+          = f.label :same_shipping_address, "Deliver to an alternate address"
+          = f.check_box :same_shipping_address
+
+          #delivery_address_optional_container
+            //= f.hidden_field :shipping_address_id
+            //= link_to "Edit", new_admin_address_path(order_id: @order.id, address_type: 'shipping'), remote: true
+            #shipping_address
+              = render 'address', address: @order.shipping_address
+
+    .actions
+      = f.submit 'Save'

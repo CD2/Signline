@@ -3,155 +3,301 @@
 @import chosen.css
 @import variables 
 @import forms
-
 @import general
-@import header
-@import footer
+@import font-awesome
 
-@import front/products
-@import pages
+#admin_page_wrapper
+  +flexbox
+  min-height: 100vh
+  min-width: 1024px
 
-h1_admin, .admin_section h1
-  text-transform: uppercase
-  font-size: 1.5rem
-  color: #666
-  font-weight: 500
+#admin_sidebar
+  +flex(0 0 240px)
+  background-color: rgba(0,0,0,0.7)
+  a
+    display: block
+    width: 100%
+    color: white
+    font-weight: 600
+    text-align: center
+    line-height: 60px
+    text-decoration: none
+    text-transform: uppercase
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25)
+    transition: background-color 0.1s
+    &:first-child
+      border-top: 1px solid rgba(255, 255, 255, 0.26)
+    &:hover
+      background-color: red
+    &.admin_logo_link
+      padding: 18px 30px 0
+      box-sizing: border-box
+      height: 120px
+      &:hover
+        background-color: rgba(0,0,0,0.7)
 
-#admin_box
-  position: fixed
-  bottom: 50px
-  width: 200px
-  right: 30px
-  padding: 15px
-  box-sizing: border-box
-  transform: translateY(100%)
-  transition: 0.8s cubic-bezier(0.15, 0.57, 0.58, 1)
-  background: rgba(0,0,0,0.9)
-  color: white 
-  font-size: 0.875rem
-  ul 
-    padding: 0
-  li 
-    list-style: none
-  a 
-    color: white 
-    text-decoration: none 
+#admin_page
+  +flex(1)
+  padding-bottom: 50px
+  #admin_page_inner
+    min-height: calc(100vh - 120px)
+    background-color: #e5e5e5
+    padding: 20px
+    box-sizing: border-box
 
-.admin_box_active
-  #admin_box
-    transform: translateY(0)
-    bottom: 30px
-
-#admin_table
-  margin: 0 auto
-  padding: 40px
-  box-sizing: border-box
-
-.admin_secondary_links
-  float: right
-  li 
-    display: inline-block
-    a 
-      display: block
-      color: #666
-      text-decoration: none 
-      text-transform: uppercase
-      font-weight: bold
-      font-size: 0.875rem
-      letter-spacing: 1px 
-      border-bottom: 2px solid
-      padding-bottom: 3px 
-      position: relative
-      bottom: 10px
-
-.admin_section
   table
     width: 100%
-    th
-      font-weight: 600
-      text-transform: uppercase
-      text-align: left
-      color: rgba(0, 0, 0, 0.65)
-      white-space: nowrap
-      border-bottom: 1px solid #666
+    margin-bottom: 20px
+    background-color: white
+    &.order_items
+      margin-bottom: 0
+    thead tr
+      background-color: #999
+      color: white
+    tr:nth-child(even)
+      background-color: #e6e6e6
+    tbody tr:hover
+      background-color: #ddd
     th, td
-      padding: 0.5rem 1rem 0.5rem 0
-      font-size: 0.875rem
-    .sub-service-title
-      width: 50%
-    tr.light
-      background: #f1f1f1
-    tr.dark
-      background: #ddd
+      padding: 10px
+      text-align: left
 
-  #content_wrapper
-    padding: 30px 40px 80px
+    td.action_links
+      width: 1px
+      white-space: nowrap
+    &.order_totals_table
+      max-width: 300px
+      margin-left: auto
+      tr
+        background-color: white
+      td:first-child
+        text-align: right
+      td:last-child
+        padding-left: 30px
+      .order_total_row
+        font-size: 1.125rem
+    .action_columns
+      width: 1%
+      white-space: nowrap
+      a
+        display: inline-block
+        margin: 0 10px 0 0
+        &.table_primary_action
+          background-color: rgba(0,0,0,0.7)
+          color: white
+          padding: 8px
+          border-radius: 3px
 
-  #page_wrapper
-    background: #fff
+  fieldset
+    padding: 20px
+    margin-bottom: 20px
+    border: 1px solid rgba(0,0,0,0.15)
+    box-shadow: $card_box_shadow
+    background-color: white
+    border-radius: 3px
 
-input#site_second_sidebar_option ~ .field 
+  legend
+    color: rgba(0,0,0,0.6)
+    font-size: 1.125rem
+    padding: 0 10px
+    background-color: white
+    border: 1px solid rgba(0,0,0,0.15)
+    box-shadow: $card_box_shadow
+    border-radius: 3px
+
+  input[type="submit"]
+    width: 300px
+    height: 60px
+    margin-top: 10px
+
+#admin_title_bar
+  height: 80px
+  background: #312E29
+  padding: 0 30px
+  box-sizing: border-box
+  color: white
+  line-height: 80px
+  box-shadow: $card_box_shadow
+  h1
+    font-weight: 100
+    text-transform: uppercase
+    margin: 0
+
+#admin_nav_bar
+  background-color: #fff
+  height: 40px
+  line-height: 40px
+  padding: 0 30px
+  a
+    text-decoration: none
+    margin: 0 5px
+  .right_buttons
+    float: right
+
+.alert
+  padding: 20px
+  background: #ddd
+  margin-bottom: 10px
+  &.alert-error
+    color: white
+    background-color: rgba(0,0,0,0.7)
+
+#error_explanation ul
+  padding: 20px 40px
+  background: #ddd
+  margin-top: -10px
+
+#index_sticky_message
+  padding: 20px
+  color: white
+  margin-bottom: 20px
+  background: #4d8aaf
+
+
+div#admin_section_search
+  width: 300px
+  float: right
+  color: white
+  input
+    display: inline-block
+    vertical-align: middle
+    margin: 0 10px
+    color: white
+    &[type='text']
+      width: 230px
+      background: none
+      border: none
+      border-bottom: 3px solid white
+    &[type='image']
+      width: 25px
+
+#two_panel_form
+  +flexbox
+#main_panel
+  +flex(3)
+#side_panel
+  +flex(1)
+  margin: 20px
+  padding: 20px
+  background: #EAEAEA
+
+.admin_page_panel
+  margin-bottom: 20px
+
+.sortable_table
+  border: 1px solid #ddd
+  tr
+    height: 70px
+  td
+    padding: 3px 10px!important
+  img
+    max-height: 60px
+  .handle_c
+    width: 20px
+  .handle
+    width: 30px
+    height: 60px
+    line-height: 60px
+    background-color: white
+    text-align: center
+    cursor: all-scroll
+
+.action_button
+  display: inline-block
+  padding: 15px 20px
+  background-color: rgba(0,0,0,0.7)
+  color: white
+
+#delivery_address_optional_container
   display: none
-
-input#site_second_sidebar_option:checked ~ .field 
+  padding-top: 20px
+input:checked + #delivery_address_optional_container
   display: block
 
-#admin_bar
-  width: 100%
-  left: 0
-  bottom: 0
-  background: #1b1b1b
-  display: flex 
-  padding: 0 30px
-  color: white 
-  z-index: 100
-  text-transform: uppercase
-  font-weight: 600
-  box-sizing: border-box
-  font-size: 0.75rem
-  ul 
-    padding: 0 
-    margin: 0
-  li 
-    display: inline-block 
-    list-style: none
-    &.admin_bar_site_name
-      margin-right: 20px
-  a 
-    margin: 5px 0 
-    color: white 
-    text-decoration: none
-    font-weight: 100
-    display: block
-    padding: 10px
-    &:hover 
-      color: rgba(255,255,255,0.7) 
+fieldset.order_notes .order_note:nth-child(even)
+  background: #ddd
 
-  .split_flex_box 
-    flex: 1
+fieldset.order_notes .order_note
+  padding: 20px
+  p
+    margin-bottom: 0
+.channel_details
+  line-height: 1.7rem
+.order_note_details
+  font-size: 0.75rem
+  color: #999
 
 #admin_content
-  table
-    border: 1px solid #333
-  thead 
-    tr 
-      background: #333 
-    th 
-      color: white
-  tr.even
-    background-color: #ddd
-  tr 
-    height: 60px
-  td, th
+  margin: 0 auto
+#admin_form_wrapper
+  +flexbox
+  #right_form_wrapper
+    +flex(1)
+    margin: 0 0 0 10px
+  #left_form_wrapper
+    +flex(2)
+    margin: 0 10px 0 0
+
+#modal_form_wrapper
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  min-height: 100%
+  background: rgba(0, 0, 0, 0.60)
+  #modal_form
+    background-color: white
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5)
+    border-radius: 3px
+    max-width: 600px
+    padding: 30px
+    margin: 0 auto
+
+#order_actions
+  padding: 0 0 10px 0
+  text-align: right
+  a, form#print_multiple_form input[type="submit"]
+    border: 1px solid rgba(0,0,0,0.7)
+    border-radius: 3px
+    display: inline-block
     padding: 10px 20px
-    
-.admin_index_action 
-  width: 1px
 
-.field.image_field 
-  background: #ddd
-  padding: 11px
-  margin: 10px 0
 
-.info_block
-  margin-bottom: 20px
+form#print_multiple_form input[type="submit"]
+  background-color: white
+  color: red
+  width: auto
+  height: auto
+  line-height: 1rem
+
+#admin_page .postage_form
+  select
+    width: inherit
+    display: inline-block
+    vertical-align: top
+    margin-bottom: 0
+  label
+    display: block
+  input[type=text]
+    max-width: 300px
+  .actions
+    display: inline-block
+    margin-bottom: 0
+    input[type=submit]
+      width: inherit
+      height: inherit
+      padding: 0 25px
+      line-height: 2rem
+      margin-top: 0
+
+.thumbnail_cell
+  img
+    width: 100px
+    display: block
+    &.manage_order_image
+      width: 125px
+
+.buyer_checkout_message
+  max-width: 450px
+  float: left
+  font-size: 18px

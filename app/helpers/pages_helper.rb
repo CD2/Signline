@@ -1,8 +1,11 @@
 module PagesHelper
 
   def page_title title
-    title = "#{title} | " if title.present?
-    "#{title}#{@site.name}"
+    if title.blank?
+      @site.name
+    else
+      "#{title} | #{@site.name}"
+    end
   end
 
 end

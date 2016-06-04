@@ -1,8 +1,0 @@
-.field
-  = f.label :name
-  = f.text_field :name
-  
-  - Site.all.each do |site|
-    %label
-      = check_box_tag "category[site_ids][]", site.id, @object.assigned_to_site?(Site.find(site.id))
-      = site.name

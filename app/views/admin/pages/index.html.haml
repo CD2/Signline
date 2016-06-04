@@ -1,44 +1,21 @@
-#admin_header
-  - if params[:site_id]
-    .admin_secondary_links
-      %ul
-        %li
-          = link_to new_admin_site_page_path @site do
-            %i.fa.fa-plus
-            New Page
-    %h1= "Listing Pages for #{@site.name}"
-  - else
-    .admin_secondary_links
-      %ul
-        %li
-          = link_to new_admin_page_path do
-            %i.fa.fa-plus
-            New Page
-    %h1 Listing Pages
+- provide :title, "Content"
+= render 'section_bar'
 
 
-#admin_table
+%table
+  %thead
+    %tr
+      %th Name
+      %th Published
+      %th
+      %th
+      %th
 
-
-  %table
-    %thead
-      %tr
-        %th Name
-        %th Published
-        %th
-        %th
-        %th
-
-    %tbody
-      - @pages.each do |page|
-        %tr{class: cycle("odd", "even")}
-          %td= page.name
-          %td= page.published ? "Yes" : "No"
-
-          - if page.url_alias == ""
-            %td.admin_index_action= link_to 'Show', root_url(subdomain: @site.subdomain)
-          - else
-            %td.admin_index_action= link_to 'Show', page_url(page, subdomain: @site.subdomain)
-
-          %td.admin_index_action= link_to 'Edit', [:edit, :admin, @site, page]
-          %td.admin_index_action= link_to 'Destroy', [:admin, @site, page], :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %tbody
+    - @pages.each do |page|
+      %tr{class: cycle("odd", "even")}
+        %td= page.name
+        %td= page.published ? "Yes" : "No"
+        %td= page.site.try(:name)
+        %td.admin_index_action= link_to 'Edit', [:edit, :admin, page]
+        %td.admin_index_action= link_to 'Destroy', [:admin, page], :method => :delete, :data => { :confirm => 'Are you sure?' }

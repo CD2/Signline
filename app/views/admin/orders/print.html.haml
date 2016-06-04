@@ -1,0 +1,92 @@
+#print_page
+  .header
+    = image_tag 'logo.png'
+    .order
+      = @order.id
+
+
+  = field_set_tag 'Order' do
+    .left_group
+      .order_summary
+        %p
+          %b Order Placed:
+          = @order.created_at
+          %br
+          %b Order Total:
+          = number_to_currency @order.total_price
+
+    %table
+      %tr
+        %th Product
+        %th
+        %th
+        %th Item ID
+        %th Price
+      - @order.order_items.each do |item|
+        %tr
+          %td= image_tag item.channel_thumnail
+          %td.no_wrap= "#{item.quantity} x"
+          %td
+            %span
+              %b= "#{item.product.sku}:"
+            %br/
+            = item.channel_name
+          %td= item.channel_item_id
+          %td= number_to_currency item.unit_price
+  = field_set_tag 'Shipping Details', class: 'shipping_details' do
+    .left_group
+      %p
+        .address
+          - unless @order.same_shipping_address?
+            = raw @order.shipping_address.try(:full_address)
+          - else
+            = raw @order.billing_address.try(:full_address)
+
+    .right_group
+      %p
+        %b Shipping Service:
+        %br
+        = @order.delivery_service.try(:name)
+      %table.order_totals_table
+        %tr
+          %td Subtotal
+          %td= number_to_currency @order.total_before_tax
+        %tr
+          %td Shipping
+          %td= number_to_currency @order.shipping_cost
+        //%tr
+        //  %td VAT
+        //  %td= number_to_currency @order.tax
+        %tr.order_total_row
+          %td Total
+          %td= number_to_currency @order.total_price
+
+
+  #split_fieldset_holder
+    = field_set_tag 'Payment Details', class: 'split_fieldsets' do
+      .left_group
+        %p
+          %b Payment Method:
+          %br
+          = @order.payment_method
+        %p
+          %b Billing Address
+          %br
+            = raw @order.billing_address.try(:full_address)
+
+    = field_set_tag 'Customer Details', class: 'split_fieldsets' do
+      %p
+        %b Name
+        %br/
+        = @order.name
+      %p
+        %b Email
+        %br/
+        = "#{@order.email}"
+      %p
+        %b Phone
+        %br/
+        = "#{@order.phone}"
+
+
+

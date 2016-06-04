@@ -1,4 +1,4 @@
-= render_breadcrumbs @product.category, link_to(@product.name, @product)
+= render_breadcrumbs @product.category, link_to(@product.name, @product) if @product.categories.any?
 
 #product_content_container
   #product_content
@@ -16,7 +16,7 @@
       .product_price 
         = number_to_currency @product.unit_price
       .product_description_preview
-        = @product.body
+        = raw @product.body
 
       .product_actions
         - unless current_cart.include? @product

@@ -1,33 +1,24 @@
-#admin_header
-  .admin_secondary_links
-    %ul
-      %li
-        = link_to new_admin_category_path do
-          %i.fa.fa-plus
-          New Category
-  - if @site
-    %h1= "Categories for #{@site.name}"
-  - else
-    %h1 All Categories
-#admin_table
-  %table
-    %thead
-      %tr
-        %th Name
-        %th Sites
-        %th Products
-        %th
-        %th
-        %th
+- provide :title, "Categories"
+= render 'section_bar'
 
-    %tbody
-      - @categories.each do |category|
-        %tr{class: cycle("odd", "even")}
-          %td= category.name
-          %td
-            - category.sites.each do |site|
-              = Site.find(site.id).name
-          %td= category.products.count
-          %td.admin_index_action= link_to 'Show', category
-          %td.admin_index_action= link_to 'Edit', edit_admin_category_path(category)
-          %td.admin_index_action= link_to 'Destroy', [:admin, category], :method => :delete, :data => { :confirm => 'Are you sure?' }
+%table
+  %thead
+    %tr
+      %th Name
+      %th Sites
+      %th Products
+      %th
+      %th
+      %th
+
+  %tbody
+    - @categories.each do |category|
+      %tr{class: cycle("odd", "even")}
+        %td= category.name
+        %td
+          - category.sites.each do |site|
+            = Site.find(site.id).name
+        %td= category.products.count
+        %td.admin_index_action= link_to 'Show', category
+        %td.admin_index_action= link_to 'Edit', edit_admin_category_path(category)
+        %td.admin_index_action= link_to 'Destroy', [:admin, category], :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -175,5 +175,144 @@ Our designs are protected by the Copyright, Designs and Patents Act 1988, unauth
 <p>Digital printing, this is in essence a giant desktop printer but much bigger so it is operated on a stand, for vehicle graphics we print to the surface of white or transparent film, as it is a layer of ink on top of film we laminate for extra abrasion and ultra violet durability, without any laminate prints can fade quite quickly.</p>
 <p>The laminate makes years of life difference to the print, we tend to recommend cut graphics for longevity but as time has gone on we have found despite what suppliers say, our laminated prints look good 7 years later, cut graphics from our film look good a decade and beyond later.</p>'
         )
+  signline_pages = {"Vehicle Graphics" => {
+      body: "signline/vehicle_graphics.html",
+      image: "vehicle_graphics.jpg"
+  },
+      "Vehicle Wrapping" => {
+      body: "signline/vehicle_wrapping.html",
+      image: "vehicle_wrapping.jpg"
+  },
+      "Digital Printing" => {
+      body: "signline/digital_printing.html",
+      image: "digital_printing.jpg"
+  },
+      "Road & Safety Signs" => {
+      body: "signline/road_safety_signs.html",
+      image: "road_safety_signs.jpg"
+  },
+      "Stationary Printing" => {
+      body: "signline/stationary_printing.html",
+      image: "stationary_printing.jpg"
+  },
+      "Engraving CNC Router" => {
+      body: "signline/cnc_router.html",
+      image: "cnc_router.jpg"
+  },
+      "Banners & Flags" => {
+      body: "signline/banners_and_flags.html",
+      image: "banners_and_flags.jpg"
+  },
+      "Window Tint & Frost" => {
+      body: "signline/window_tints.html",
+      image: "window_tints.jpg"
+  },
+      "Resprays & Race Reps" => {
+      body: "signline/resprays_and_race_reps.html",
+      image: "resprays_and_race_reps.jpg"
+  },
+      "Shop & Unit Signs" => {
+      body: "signline/shop_unit_signs.html",
+      image: "shop_unit_signs.jpg"
+  },
+      "Panel Signs" => {
+      body: "signline/panel_signs.html",
+      image: "panel_signs.jpg"
+  },
+      "Screen Printing" => {
+      body: "signline/screen_printing.html",
+      image: "screen_printing.jpg"
+  },
+      "Corporate Workwear" => {
+      body: "signline/corporate_workwear.html",
+      image: "corporate_workwear.jpg"
+  },
+      "Vehicle Registration Plates" => {
+      body: "signline/number_plates.html",
+      image: "number_plates.jpg"
+  },
+      "Promotional Products" => {
+      body: "signline/promotional_products.html",
+      image: "promotional_products.jpg"
+  },
+      "Tradeshop" => {
+      body: "signline/tradeshop.html",
+      image: "tradeshop.jpg"
+  }}
+  signline_pages.each do |k, v|
+    @signline.add_page(
+                 name: k,
+                 url_alias: k.parameterize,
+                 menu_item_name: k,
+                 body: File.open(File.join(Rails.root, "seed_html/#{v[:body]}")).read,
+                 side: true,
+                 published: true,
+                 #remote_banner_url: "http://cd2dev11.co.uk/signline_seed_images/page_images#{v[:image]}"
+    )
+  end
 
+  shield_and_protect_pages = {"Bike Protection" => {
+      body: "shield/bikeprotection.html",
+      image: "motorbike_protection_banner.jpg"
+  },
+      "Car Protection" => {
+      body: "shield/carprotection.html",
+      image: "car_protection_banner.jpg"
+  }}
+
+  shield_and_protect_pages.each do |k, v|
+    @shield_and_protect.add_page(
+        name: k,
+        url_alias: k.parameterize,
+        menu_item_name: k,
+        body: File.open(File.join(Rails.root, "seed_html/#{v[:body]}")).read,
+        side: true,
+        published: true,
+    #remote_banner_url: "http://cd2dev11.co.uk/signline_seed_images/page_images#{v[:image]}"
+    )
+    end
+
+    printing_pages = {
+        "Business Cards" => {
+        body: "printing/business_cards.html",
+        image: "business_cards_banner.jpg"
+    },
+        "Leaflets" => {
+        body: "printing/leaflets.html",
+        site_id: 2,
+        menu: 1,
+        image: "leaflets_banner.jpg"
+    },
+        "Booklets" => {
+        body: "printing/booklets.html",
+        site_id: 2,
+        menu: 1,
+        image: "booklets_banner.jpg"
+    },
+        "Folders" => {
+        body: "printing/folders.html",
+        image: "folders_banner.jpg"
+    },
+        "Letterheads" => {
+        body: "printing/letterheads.html",
+        image: "letterheads_banner.jpg"
+    },
+        "Postcards" => {
+        body: "printing/postcards.html",
+        image: "postcards_banner.jpg"
+    }
+
+    }
+
+  printing_pages.each do |k, v|
+    @printing.add_page(
+        name: k,
+        url_alias: k.parameterize,
+        menu_item_name: k,
+        body: File.open(File.join(Rails.root, "seed_html/#{v[:body]}")).read,
+        side: true,
+        published: true,
+    #remote_banner_url: "http://cd2dev11.co.uk/signline_seed_images/page_images#{v[:image]}"
+    )
+  end
 end

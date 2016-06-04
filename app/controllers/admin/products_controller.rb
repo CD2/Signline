@@ -1,16 +1,15 @@
 class Admin::ProductsController < AdminController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_new, only: :new
   before_action :set_features, only: :edit
 
   # GET /products
 
   def index
-    @site = Site.find(params[:site_id])
-    @prod = @site.products
-    @products = @prod.paginate(:page => params[:page], :per_page => 50)
-  rescue ActiveRecord::RecordNotFound
     @products = Product.paginate(:page => params[:page], :per_page => 50)
+  end
+
+  def new
+    @product = Product.new
   end
 
   # GET /products/1
@@ -19,11 +18,9 @@ class Admin::ProductsController < AdminController
 
   # POST /products
   def create
-    @object = Product.new(product_params)
+    @product = Product.new(product_params)
 
-    if @object.save
-      categorise_products
-      process_features
+    if @product.save
       process_images
       redirect_to admin_products_path
       flash[:notice] = 'Product was successfully created.'
@@ -35,8 +32,6 @@ class Admin::ProductsController < AdminController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      categorise_products
-      process_features
       process_images
       redirect_to admin_products_path
       flash[:notice] = 'Product was successfully updated.'

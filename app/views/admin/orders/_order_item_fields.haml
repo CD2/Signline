@@ -1,0 +1,5 @@
+%tr
+  %td= f.collection_select :product_id, Product.all, :id, :sku
+  %td= f.text_field :quantity, placeholder: 'Quantity'
+  %td= f.text_field :unit_price, placeholder: 'Price'
+  %td= f.text_field :tax_rate, placeholder: 'Tax'

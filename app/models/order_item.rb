@@ -7,7 +7,7 @@ class OrderItem < ActiveRecord::Base
   end
 
   def in_cart?
-    order.cart?
+    order.cart? if order
   end
 
   def unit_price
@@ -18,8 +18,16 @@ class OrderItem < ActiveRecord::Base
     in_cart? ? product.name : super
   end
 
-  def total_price
+  def sub_total
     quantity * unit_price
+  end
+
+  def tax_amount
+    tax_rate || 0
+  end
+
+  def total_price
+    tax_amount + sub_total
   end
 
   def total_price_in_pence

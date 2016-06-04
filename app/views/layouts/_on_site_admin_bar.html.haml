@@ -1,0 +1,3 @@
+#on_site_admin_bar
+  = render 'admin/admin_menu'
+  = link_to "Edit", yield(:edit), class: 'admin_bar_edit_link' if content_for?(:edit)

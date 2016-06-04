@@ -3,7 +3,7 @@ class Admin::PagesController < AdminController
 
   # GET /pages
   def index
-    @pages = @site.pages
+    @pages = Page.all
   end
 
   # GET /pages/1
@@ -19,11 +19,9 @@ class Admin::PagesController < AdminController
 
   # POST /pages
   def create
-    @site = Site.find(params[:site_id])
-    @page = @site.pages.new(page_params)
+    @page = Page.new(page_params)
     if @page.save
-      process_menu_items
-      redirect_to @page
+      redirect_to admin_pages_url
       flash[:notice] = 'Page was successfully created.'
     else
       render :new
@@ -33,7 +31,7 @@ class Admin::PagesController < AdminController
   # PATCH/PUT /pages/1
   def update
     if @page.update(page_params)
-      redirect_to @page, subdomain: @site.subdomain
+      redirect_to admin_pages_url
       flash[:notice] = 'Page was successfully updated.'
     else
       render :edit

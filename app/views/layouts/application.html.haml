@@ -13,6 +13,8 @@
     %meta{:name => "description", :content => yield(:meta_description)}
 
   %body{class: body_classes}
+    - if signed_in_as_admin?
+      = render 'layouts/on_site_admin_bar'
     #page
       #page_wrapper
         %header#header

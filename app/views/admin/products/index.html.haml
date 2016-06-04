@@ -1,34 +1,25 @@
-#admin_header
-  .admin_secondary_links
-    %ul
-      %li
-        = link_to new_admin_product_path do
-          %i.fa.fa-plus
-          New Product
-  %h1 Listing Products
+- provide :title, "Products"
+= render 'section_bar'
+%table
+  %thead
+    %tr
+      %th Name
+      %th Price
+      %th Categories
+      %th
+      %th
+      %th
 
-#admin_table
-
-  %table
-    %thead
-      %tr
-        %th Name
-        %th Price
-        %th Categories
-        %th
-        %th
-        %th
-
-    %tbody
-      - @products.each do |product|
-        %tr{class: cycle("odd", "even")}
-          %td= product.name
-          %td= number_to_currency product.price, locale: :en
-          %td
-            - product.categories.each do |c| 
-              = link_to c.name, c
-          %td.admin_index_action= link_to 'Show', product
-          %td.admin_index_action= link_to 'Edit', [:edit, :admin, product]
-          %td.admin_index_action= link_to 'Destroy', [:admin, product], :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %tbody
+    - @products.each do |product|
+      %tr{class: cycle("odd", "even")}
+        %td= product.name
+        %td= number_to_currency product.unit_price, locale: :en
+        %td
+          - product.categories.each do |c|
+            = link_to c.name, c
+        %td.admin_index_action= link_to 'Show', product
+        %td.admin_index_action= link_to 'Edit', [:edit, :admin, product]
+        %td.admin_index_action= link_to 'Destroy', [:admin, product], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 = will_paginate @products

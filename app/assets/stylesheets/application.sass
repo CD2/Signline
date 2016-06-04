@@ -14,3 +14,50 @@
 
 @import front/products
 @import front/breadcrumbs
+
+#on_site_admin_bar
+  background-color: $primary
+  a
+    display: inline-block
+    padding: 0 20px
+    color: white
+    font-weight: 600
+    font-size: 0.75rem
+    text-align: center
+    line-height: 40px
+    text-decoration: none
+    text-transform: uppercase
+    border-right: 1px solid rgba(255, 255, 255, 0.25)
+    transition: background-color 0.1s
+    &:first-child
+      border-left: 1px solid rgba(255, 255, 255, 0.26)
+    &:hover
+      background-color: red
+    &.admin_bar_edit_link
+      float: right
+      border-left: 1px solid rgba(255, 255, 255, 0.25)
+
+.checkout_form
+  padding: 40px
+  fieldset
+    padding: 20px
+    margin-bottom: 20px
+    border: 1px solid rgba(0,0,0,0.15)
+    box-shadow: $card_box_shadow
+    background-color: white
+    border-radius: 3px
+
+  legend
+    color: rgba(0,0,0,0.6)
+    font-size: 1.125rem
+    padding: 0 10px
+    background-color: white
+    border: 1px solid rgba(0,0,0,0.15)
+    box-shadow: $card_box_shadow
+    border-radius: 3px
+
+  input[type="submit"]
+    width: 300px
+    height: 60px
+    margin-top: 10px
+

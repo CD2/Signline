@@ -4,7 +4,7 @@ class Cart < Order
 
   alias_method :cart_items, :order_items
 
-  enum checkout_status: [:constructing, :address, :shipping, :payment, :complete]
+  enum checkout_status: [:constructing, :address, :payment, :complete]
 
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address, reject_if: :same_shipping_address
@@ -113,6 +113,13 @@ class Cart < Order
       # you can dump details var if you need more info from buyer
       details = EXPRESS_GATEWAY.details_for(token)
       self.express_payer_id = details.payer_id
+    end
+  end
+
+  def update_order_items_cost
+    order_items.each do |order_item|
+      order_item.unit_price = order_item.product.unit_price
+      order_item.save
     end
   end
 

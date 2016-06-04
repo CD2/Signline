@@ -1,0 +1,27 @@
+= form_for [:admin, @product] do |f|
+  = errors @product, f
+  #two_panel_form
+    #main_panel
+      = field_set_tag '' do
+        .field
+          = f.label :name
+          = f.text_field :name
+        .field
+          = f.label :body
+          = f.cktext_area :body, class: "editable"
+        .field
+          = f.label :unit_price
+          = f.text_field :unit_price
+    #side_panel
+      .field
+        = f.label :sku, "SKU"
+        = f.text_field :sku
+      .field
+        = label_tag :brand_id
+        = select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name), class: "chosen-select"
+      .field
+        = label_tag :categories
+        = select_tag :categories, options_from_collection_for_select(Category.all, :id, :name, @product.categories.collect {|c| c.id}), {multiple: true, name: 'categories[category][]', class: "chosen-select"}
+
+  .actions
+    = f.submit
