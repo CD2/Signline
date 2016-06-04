@@ -17,6 +17,7 @@ gem 'will_paginate'
 gem 'figaro'
 gem 'activemerchant'
 gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'fog'
 
 group :production do
 
