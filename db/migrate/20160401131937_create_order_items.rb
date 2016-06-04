@@ -1,8 +1,8 @@
 class CreateOrderItems < ActiveRecord::Migration
   def change
     create_table :order_items do |t|
-      t.belongs_to :order, index: true, foreign_key: true
-      t.belongs_to :product, index: true, foreign_key: true
+      t.integer :order_id
+      t.integer :product_id
 
       t.integer :quantity, default: 1
 

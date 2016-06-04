@@ -2,7 +2,7 @@ class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
 
-      t.belongs_to :brand, index: true, foreign_key: true
+      t.integer :brand_id
 
       t.string   :name
       t.string   :machine_name

@@ -2,9 +2,9 @@ class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
       
-      t.integer  :user
-      t.integer  :shipping_address
-      t.integer  :billing_address
+      t.integer  :user_id
+      t.integer  :shipping_address_id
+      t.integer  :billing_address_id
 
       t.integer  :checkout_status, default: 0
       t.integer  :order_status
