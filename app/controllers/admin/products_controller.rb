@@ -74,7 +74,7 @@ class Admin::ProductsController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
       @object = @product
     end
 
