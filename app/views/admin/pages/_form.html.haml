@@ -1,5 +1,5 @@
 
-= form_for admin_page_path(@page.id) do |f|
+= form_for([:admin, @page]) do |f|
   = errors @page, f
 
   #two_panel_form

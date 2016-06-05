@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3973779-7b1d-4737-9a47-3b161daa64d2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/305c56106b53033999f78005beb12322beec2064/(__TEMPLATE__)c" afterPath="$PROJECT_DIR$/.sass-cache/305c56106b53033999f78005beb12322beec2064/(__TEMPLATE__)c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/pages/_form.html.haml" afterPath="$PROJECT_DIR$/app/views/admin/pages/_form.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/pages/index.html.haml" afterPath="$PROJECT_DIR$/app/views/admin/pages/index.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pages/show.html.haml" afterPath="$PROJECT_DIR$/app/views/pages/show.html.haml" />
     </list>
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -116,7 +113,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/admin/pages/_form.html.haml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="18">
-              <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
+              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -759,12 +756,12 @@
       <workItem from="1464161976308" duration="3000" />
       <workItem from="1465041335076" duration="11774000" />
       <workItem from="1465057645363" duration="5006000" />
-      <workItem from="1465083544348" duration="7830000" />
+      <workItem from="1465083544348" duration="7917000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27750000" />
+    <option name="totallyTimeSpent" value="27837000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1222,7 +1219,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/admin/pages/_form.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
-          <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="27" />
           <folding />
         </state>
       </provider>
