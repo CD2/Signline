@@ -30,6 +30,7 @@ class Admin::PagesController < AdminController
 
   # PATCH/PUT /pages/1
   def update
+    @page = Page.find(params[:page][:id])
     if @page.update(page_params)
       redirect_to admin_pages_url
       flash[:notice] = 'Page was successfully updated.'
