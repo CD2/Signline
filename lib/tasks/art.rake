@@ -27904,7 +27904,7 @@ products.each do |product|
     @product.save
   end
 
-  category_name = product[:category]
+  category_name = product[:catagory]
 
   if @category = Category.find_by(name: category_name)
     @product.categorisations.create(category_id: @category.id)

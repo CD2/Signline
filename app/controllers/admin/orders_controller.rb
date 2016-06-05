@@ -2,7 +2,7 @@ class Admin::OrdersController < AdminController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :print, :dispatch_order, :update_tracking, :flag, :resolve_flag, :duplicate, :resend_emails]
 
   def index
-    @orders = Order.all
+    @orders = Order.where.not(purchased_at: nil)
   end
 
   def manage
