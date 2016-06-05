@@ -5,7 +5,7 @@
   %thead
     %tr
       %th Name
-      %th Sites
+      %th Children
       %th Products
       %th
       %th
@@ -16,8 +16,8 @@
       %tr{class: cycle("odd", "even")}
         %td= category.name
         %td
-          - category.sites.each do |site|
-            = Site.find(site.id).name
+          - category.children.each do |child|
+            = child.name
         %td= category.products.count
         %td.admin_index_action= link_to 'Show', category
         %td.admin_index_action= link_to 'Edit', edit_admin_category_path(category)

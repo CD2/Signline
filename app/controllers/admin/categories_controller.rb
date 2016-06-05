@@ -3,7 +3,7 @@ class Admin::CategoriesController < AdminController
 
   # GET /categories
   def index
-    @categories = Category.all
+    @categories = Category.where(parent_id: nil)
   end
 
   def new
