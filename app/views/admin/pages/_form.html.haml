@@ -22,8 +22,16 @@
         = f.text_field :page_title
 
       .field
+        = f.label :image
+        = f.text_field :image
+
+      .field
         = f.label :meta_description
         = f.text_area :meta_description, rows: 6
+
+      .field
+        = f.label :site_id
+        = f.collection_select :site_id, Site.all, :id, :name
 
   .actions
     = f.submit
