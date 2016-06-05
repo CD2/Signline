@@ -31,3 +31,10 @@ task populate: :environment do
   Rake::Task["import_celtrade"].invoke
   Category.where("id>#{last}").update_all(parent_id: 8)
 end
+
+task new: :environment do 
+    Rake::Task["animal"].invoke
+      Rake::Task["ret"].invoke
+        Rake::Task["art"].invoke
+          Rake::Task["car"].invoke
+        end 
