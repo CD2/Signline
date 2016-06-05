@@ -33,7 +33,7 @@ task populate: :environment do
 end
 
 task new: :environment do 
-    Rake::Task["animal"].invoke
+
       Rake::Task["ret"].invoke
         Rake::Task["art"].invoke
           Rake::Task["car"].invoke

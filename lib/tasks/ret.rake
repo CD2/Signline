@@ -67100,7 +67100,7 @@ products.each do |product|
       end
     end
 
-    if @category = Category.find_by(11)
+    if @category = Category.find_by(id: 11)
       @category.products << @product
     end
     @product.save
