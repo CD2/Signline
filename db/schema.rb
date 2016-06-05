@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604153344) do
+ActiveRecord::Schema.define(version: 20160605133245) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -81,6 +81,14 @@ ActiveRecord::Schema.define(version: 20160604153344) do
     t.string   "tracking_url"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "enquiries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_items", force: :cascade do |t|
