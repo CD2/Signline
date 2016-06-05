@@ -2,9 +2,9 @@ Rails.application.configure do
 
   ActiveMerchant::Billing::Base.mode = :production
   paypal_options = {
-      login: "<%= ENV['PAYPAL_LOGIN'] %>",
-      password: "<%= ENV['PAYPAL_PASSWORD'] %>",
-      signature: "<%= ENV['PAYPAL_SIGNITURE'] %>"
+      login: ENV['PAYPAL_LOGIN'],
+      password: ENV['PAYPAL_PASSWORD'],
+      signature: ENV['PAYPAL_SIGNITURE']
   }
   ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   # Settings specified here will take precedence over those in config/application.rb.
