@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f3973779-7b1d-4737-9a47-3b161daa64d2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/art.rake" afterPath="$PROJECT_DIR$/lib/tasks/art.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/car.rake" afterPath="$PROJECT_DIR$/lib/tasks/car.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/ret.rake" afterPath="$PROJECT_DIR$/lib/tasks/ret.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/tasks.rake" afterPath="$PROJECT_DIR$/lib/tasks/tasks.rake" />
     </list>
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -781,12 +785,12 @@
       <workItem from="1464161976308" duration="3000" />
       <workItem from="1465041335076" duration="11774000" />
       <workItem from="1465057645363" duration="5006000" />
-      <workItem from="1465083544348" duration="5255000" />
+      <workItem from="1465083544348" duration="6007000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25175000" />
+    <option name="totallyTimeSpent" value="25927000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

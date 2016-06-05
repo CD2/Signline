@@ -67082,7 +67082,7 @@ I have had mine for 4 years now, in that time I have learnt the filter and pump 
 
 products.each do |product|
   
-  unless product[:title].blank? || @product = Product.find_by(name: product[:title].titleize)
+  unless product[:title].blank? || @product = Product.find_by(name: product[:title].titleize) || @product = Product.find_by(sku: product[:title].parameterize)
 
     begin
       @product = Product.create!(name: product[:title].titleize, sku: product[:title].parameterize, body: product[:product_body], unit_price: product[:price].gsub('£', '').to_f) 
