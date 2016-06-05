@@ -27878,42 +27878,17 @@ Add these 10 Softcut discs to the Baren Kit and have your own stamp making colle
         }
       }
     ]
-products.each do |product|
-  
-  unless product[:title].blank? || @product = Product.find_by(name: product[:title].titleize)
+  products.each do |product|
+    
+    @product = Product.find_by(name: product[:title].titleize)
+    category_name = product[:catagory]
 
-    begin
-      @product = Product.create!(name: product[:title].titleize, sku: product[:title].parameterize, body: product[:product_body], unit_price: product[:price]) 
-    rescue ActiveRecord::StatementInvalid 
-      next
-    end 
-    if product[:images]
-      
-      product[:images].each do |image|
-        
-      begin 
-        @product.product_images.create(remote_image_url: image.last)
-      rescue 
-        nil
-      end
-    end
-
-    if @category = Category.find_by(id: 11)
-      @category.products << @product
+    if @category = Category.find_by(name: category_name)
+      @product.categorisations.create(category_id: @category.id)
+    else
+      @product.categories.create(name: category_name, parent_id: 4)
     end
     @product.save
+
   end
-
-  category_name = product[:catagory]
-
-  if @category = Category.find_by(name: category_name)
-    @product.categorisations.create(category_id: @category.id)
-  else
-    @product.categories.create(name: category_name, parent_id: 4)
-  end
-  @product.save
-
-end
-
-end
 end 
