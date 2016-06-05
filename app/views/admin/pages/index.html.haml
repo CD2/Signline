@@ -17,5 +17,5 @@
         %td= page.name
         %td= page.published ? "Yes" : "No"
         %td= page.site.try(:name)
-        %td.admin_index_action= link_to 'Edit', [:edit, :admin, page.id]
+        %td.admin_index_action= link_to 'Edit', edit_admin_page_path(page.id)
         %td.admin_index_action= link_to 'Destroy', [:admin, page], :method => :delete, :data => { :confirm => 'Are you sure?' }
