@@ -20,7 +20,6 @@
         %th Product
         %th
         %th
-        %th Item ID
         %th Price
       - @order.order_items.each do |item|
         %tr
@@ -28,10 +27,7 @@
           %td.no_wrap= "#{item.quantity} x"
           %td
             %span
-              %b= "#{item.product.sku}:"
-            %br/
-            = item.channel_name
-          %td= item.channel_item_id
+              = item.name
           %td= number_to_currency item.unit_price
   = field_set_tag 'Shipping Details', class: 'shipping_details' do
     .left_group
