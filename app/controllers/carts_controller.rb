@@ -46,12 +46,13 @@ class CartsController < ApplicationController
     @cart.update_order_items_cost
     response = EXPRESS_GATEWAY.setup_purchase(@cart.total_price_in_pence,
       ip: request.remote_ip,
-      return_url: root_path,
-      cancel_return_url: root_path,
+      return_url: root_url,
+      cancel_return_url: root_url,
       currency: "GBP",
       allow_guest_checkout: true,
       items: @cart.paypal_items
     )
+
     redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
   end
 
