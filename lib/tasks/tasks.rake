@@ -20,7 +20,7 @@ task seed_db: :environment do
   Rake::Task["gen_pages"].invoke
   Rake::Task["gen_users"].invoke
   Rake::Task["gen_categories"].invoke
-  Rake::Task["populate"].invoke
+  #Rake::Task["populate"].invoke
 end
 
 task populate: :environment do

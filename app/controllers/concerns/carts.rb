@@ -7,7 +7,7 @@ module Carts
   end
 
   def current_cart
-    #cart = Cart.find_by(id: session[:cart]) || create_cart
+    cart = Cart.find_by(id: session[:cart]) || create_cart
   end
 
 end
