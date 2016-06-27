@@ -1,10 +1,12 @@
 = provide :page_title, @page.page_title
 = provide :meta_description, @page.meta_description
-- if @page.banner.path.present?
+- if @page.banner.path.present? && @page.name == 'Home Page'
   - content_for :highlights do
     #banner{style: "background-image: url(#{@page.banner});"}
 
 .body_section
+  - if @page.banner.path.present? && @page.name != 'Home Page'
+    = image_tag(@page.banner)
   = raw @page.body
 
 - if shop_site? && @page.name == 'Home Page'

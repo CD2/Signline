@@ -481,10 +481,6 @@ Kit code 700010600000",
         }
       },
       {
-        "title": "Terms and Conditions",
-        "url": "http://www.shopandgoaccessories.com/en-US/Terms-and-Conditions.aspx"
-      },
-      {
         "title": "Roof Box Menabo : DIAMOND 500 BLACK",
         "url": "http://www.shopandgoaccessories.com/en-US/Baule-da-tetto-Menabo-DIAMOND-500-BLACK-1.aspx",
         "product_body": "Roof box functional for any need, characterized by a quick and safe Quick Fixing System. It can be installed on any roof bar.It is safe and provided with an external anti-theft lock.",
@@ -526,10 +522,6 @@ Kit code 700010600000",
         "images": { "image": "http://www.shopandgoaccessories.com/getmetafile/f6d6f99b-d8ac-402f-890c-5e11a71a1a53/DOZER-icon-copia.aspx?maxsidesize=960" },
         "category": "Car Accessories",
         "price": "85.00"
-      },
-      {
-        "url": "http://www.shopandgoaccessories.com/en-US/Products/Accessori-bicicletta/Carellini.aspx",
-        "category": "Bike Accessories"
       },
       {
         "title": "B-TAXI COVER",
@@ -575,18 +567,6 @@ Kit code 700010600000",
         },
         "category": "Car Accessories",
         "price": "339.00"
-      },
-      {
-        "url": "http://www.shopandgoaccessories.com/en-US/child-car-seat.aspx",
-        "category": "Car Accessories"
-      },
-      {
-        "title": "Shipping and policies",
-        "url": "http://www.shopandgoaccessories.com/en-US/Shipping-and-policies.aspx"
-      },
-      {
-        "url": "http://www.shopandgoaccessories.com/Products/Accessori-auto/Seggiolini-auto.aspx",
-        "category": "Accessori auto"
       },
       {
         "title": "MISTRAL",
@@ -1469,10 +1449,11 @@ products.each_with_index do |product, i|
   if i < 10000
   
     unless product[:"title"].blank? || @product = Product.find_by(name: product[:"title"].titleize)
-      price = product[:"price"] * 1.1
+      
       begin
+        price = product[:"price"] * 1.1
         @product = Product.create!(name: product[:"title"].titleize, sku: product[:"title"].parameterize, body: product[:"product_body"], unit_price: price, delivery: 12.5) 
-      rescue ActiveRecord::StatementInvalid 
+      rescue  
         next
       end 
       if product[:"images"]
