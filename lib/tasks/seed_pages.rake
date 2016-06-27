@@ -36,6 +36,23 @@ task gen_pages: :environment do
     url_alias: '',
     )
 
+
+    @shield_and_protect.add_page(
+        name: 'Home Page'
+        )
+    
+    @car_and_bike.add_page(
+        name: 'Home Page'
+        )
+    
+    @electronics.add_page(
+        name: 'Home Page'
+        )
+    
+    @printing.add_page(
+        name: 'Home Page'
+        )
+
   @shield_and_protect.add_page(
     name: 'Shield and Protect&#8482; paint protection film for all vehicles, boats and aircraft.',
     url_alias: '',

@@ -20,21 +20,13 @@ task seed_db: :environment do
   Rake::Task["gen_pages"].invoke
   Rake::Task["gen_users"].invoke
   Rake::Task["gen_categories"].invoke
-  #Rake::Task["populate"].invoke
 end
 
-task populate: :environment do
-  Rake::Task["gen_products"].invoke
-  Rake::Task["beeswift"].invoke
-  Category.where('id>13').update_all(parent_id: 9)
-  last = Category.ids.max
-  Rake::Task["import_celtrade"].invoke
-  Category.where("id>#{last}").update_all(parent_id: 8)
+task seed_products: :environment do 
+
+  Rake::Task["threeem"].invoke
+  Rake::Task["animal"].invoke
+  Rake::Task["car"].invoke
+  Rake::Task["celtrade"].invoke  
+
 end
-
-task new: :environment do 
-
-      Rake::Task["ret"].invoke
-        Rake::Task["art"].invoke
-          Rake::Task["car"].invoke
-        end 

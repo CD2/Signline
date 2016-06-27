@@ -1465,41 +1465,35 @@ This kit included  4 attachments for the roof bars",
 
 
 
-products.each do |product|
+products.each_with_index do |product, i|
+  if i < 5
   
-  unless product[:title].blank? || @product = Product.find_by(name: product[:title].titleize)
-
-    begin
-      @product = Product.create!(name: product[:title].titleize, sku: product[:title].parameterize, body: product[:product_body], unit_price: product[:price]) 
-    rescue ActiveRecord::StatementInvalid 
-      next
-    end 
-    if product[:images]
-      
-      product[:images].each do |image|
+    unless product[:"title"].blank? || @product = Product.find_by(name: product[:"title"].titleize)
+      price = product[:"price"] * 1.1
+      begin
+        @product = Product.create!(name: product[:"title"].titleize, sku: product[:"title"].parameterize, body: product[:"product_body"], unit_price: price, delivery: 12.5) 
+      rescue ActiveRecord::StatementInvalid 
+        next
+      end 
+      if product[:"images"]
         
-      begin 
-        @product.product_images.create(remote_image_url: image.last)
-      rescue 
-        nil
+        product[:"images"].each do |image|
+          
+        begin 
+          @product.product_images.create(remote_image_url: image.last)
+        rescue 
+          nil
+        end
       end
-    end
 
-    if @category = Category.find_by(id: 11)
-      @category.products << @product
-    end
-    @product.save
-  end
+      @category = Category.find_or_create_by(name: product[:"category"].titleize)
+      @product.categorisations.create(category_id: @category.id)
+      @product.categorisations.create(category_id: Category.find_by(name: 'Automotive and Marine').id)
 
-  category_name = product[:category]
+      @category.update_attributes(parent_id: Category.find_by(name: 'Automotive and Marine').id)
 
-  if @category = Category.find_by(name: category_name)
-    @product.categorisations.create(category_id: @category.id)
-  else
-    @product.categories.create(name: category_name, parent_id: 7)
-  end
-  @product.save
-
+    end 
+  end 
 end
 
 end

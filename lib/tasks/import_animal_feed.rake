@@ -477,26 +477,29 @@ products =  [
         "catagory": "Animal Feed"
       }
     ]
-products.each do |product|
-  
-  unless @product = Product.find_by(name: product[:title].titleize)
+products.each_with_index do |product, i|
+  if i < 5
+    unless @product = Product.find_by(name: product[:title].titleize)
 
-    begin
-      @product = Product.create!(name: product[:title].titleize, sku: product[:title].parameterize, body: product[:product_body], unit_price: product[:price]) 
-    rescue ActiveRecord::StatementInvalid 
-      next
-    end 
-    unless product[:image].blank?
       begin
-          @product.product_images.create(remote_image_url: product[:image])
-      rescue Errno::ENOENT
-          puts "seed_images/beeswift/#{product[:image]}" 
+        @product = Product.create!(name: product[:title].titleize, sku: product[:title].parameterize, body: product[:product_body], unit_price: product[:price], delivery: 15.0) 
+      rescue ActiveRecord::StatementInvalid 
+        next
+      end 
+      
+      unless product[:image].blank?
+        begin
+            @product.product_images.create(remote_image_url: product[:image])
+        rescue Errno::ENOENT
+            puts "seed_images/beeswift/#{product[:image]}" 
+        end
       end
+
+      @product.categorisations.create(category_id: Category.find_by(name: 'Animal Feeds and Supplies').id)
+
     end
+  end 
 
-    @product.categorisations.create(category_id: 11)
-
-  end
 
 end
 

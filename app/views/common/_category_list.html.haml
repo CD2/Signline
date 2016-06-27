@@ -1,7 +1,7 @@
 - if shop_site?
   %h2.side_menu_heading= link_to 'Categories', categories_path
   %ul.side_menu_list
-    - @site.categories.each do |category|
+    - @site.categories.populated.each do |category|
       %li= link_to category.name, category
 - else
 

@@ -11,6 +11,8 @@ class Category < ActiveRecord::Base
 
   before_save :set_url_alias
 
+  scope :populated, -> { joins(:products).group("categories.id").having("count(products.id)>0") }
+
   validates :name, presence: true
 
   extend FriendlyId
@@ -19,6 +21,10 @@ class Category < ActiveRecord::Base
   def set_url_alias
     self.url_alias = name.parameterize
   end
+
+  def has_products
+    products.count > 0 || children.count > 0
+  end 
 
   def breadcrumbs a=nil
     breadcrumbs = []

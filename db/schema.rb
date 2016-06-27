@@ -26,8 +26,6 @@ ActiveRecord::Schema.define(version: 20160605133245) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
-
   create_table "brands", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -50,9 +48,6 @@ ActiveRecord::Schema.define(version: 20160605133245) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "categorisations", ["category_id"], name: "index_categorisations_on_category_id"
-  add_index "categorisations", ["product_id"], name: "index_categorisations_on_product_id"
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -103,9 +98,6 @@ ActiveRecord::Schema.define(version: 20160605133245) do
     t.datetime "updated_at",                                          null: false
   end
 
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
-  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id"
-
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "shipping_address_id"
@@ -136,10 +128,6 @@ ActiveRecord::Schema.define(version: 20160605133245) do
     t.datetime "updated_at",                                                null: false
   end
 
-  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id"
-  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
-
   create_table "pages", force: :cascade do |t|
     t.string   "name"
     t.string   "banner"
@@ -165,8 +153,6 @@ ActiveRecord::Schema.define(version: 20160605133245) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "product_images", ["product_id"], name: "index_product_images_on_product_id"
-
   create_table "products", force: :cascade do |t|
     t.integer  "brand_id"
     t.string   "name"
@@ -178,12 +164,11 @@ ActiveRecord::Schema.define(version: 20160605133245) do
     t.decimal  "unit_price",      precision: 8, scale: 2
     t.decimal  "unit_cost_price", precision: 8, scale: 2
     t.decimal  "tax_rate",        precision: 8, scale: 4
+    t.decimal  "delivery",        precision: 8, scale: 2
     t.integer  "status"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end
-
-  add_index "products", ["brand_id"], name: "index_products_on_brand_id"
 
   create_table "site_brands", force: :cascade do |t|
     t.integer  "site_id"
@@ -192,18 +177,12 @@ ActiveRecord::Schema.define(version: 20160605133245) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "site_brands", ["brand_id"], name: "index_site_brands_on_brand_id"
-  add_index "site_brands", ["site_id"], name: "index_site_brands_on_site_id"
-
   create_table "site_categories", force: :cascade do |t|
     t.integer  "site_id"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "site_categories", ["category_id"], name: "index_site_categories_on_category_id"
-  add_index "site_categories", ["site_id"], name: "index_site_categories_on_site_id"
 
   create_table "sites", force: :cascade do |t|
     t.string   "name"
