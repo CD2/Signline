@@ -41293,7 +41293,7 @@ products = [
   products.each_with_index do |product, i|
     if i < 10000
 
-      unless product[:"Description"].blank? || @product = Product.find_by(name: product[:'Description'].titleize)
+      unless product[:"Description"].blank? || @product = Product.find_by(name: product[:'Description'].titleize) || Product.find_by(sku: product[:'Description'].parameterize)
         
         begin
           price = product[:'Price'] * 1.2 * 1.3
