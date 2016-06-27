@@ -8,6 +8,8 @@ class Site < ActiveRecord::Base
   has_many :categories, through: :site_categories
   has_many :products, through: :categories
 
+    belongs_to :category
+
   has_many :site_brands
   has_many :brands, through: :site_brands
 

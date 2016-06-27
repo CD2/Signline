@@ -1,18 +1,23 @@
-.split_form
-  .split_form_left
-    .field
-      = f.label :name
-      = f.text_field :name
-    .field
-      = f.label :subdomain
-      = f.text_field :subdomain
+= form_for [:admin, @site] do |f|
+  .split_form
+    .split_form_left
+      .field
+        = f.label :name
+        = f.text_field :name
+      .field
+        = f.label :subdomain
+        = f.text_field :subdomain
+      .field 
+        = f.label :category_id, 'Site Category'
+        = f.collection_select :category_id, Category.all, :id, :name, include_blank: 'select'
+    .split_form_right
+      .field
+        = f.label :color
+        .colorpicker
+        = f.hidden_field :color, class: "color_picker_reciever"
+      .field.image_field
+        = image_tag(@site.logo) if @site.logo
+        = f.label :logo
+        = f.file_field :logo
 
-  .split_form_right
-    .field
-      = f.label :color
-      .colorpicker
-      = f.hidden_field :color, class: "color_picker_reciever"
-    .field.image_field
-      = image_tag(@site.logo) if @site.logo
-      = f.label :logo
-      = f.file_field :logo
+  = f.submit

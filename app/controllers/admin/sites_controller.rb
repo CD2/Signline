@@ -48,6 +48,6 @@ class Admin::SitesController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def site_params
-      params.require(:site).permit(:name, :subdomain, :color, :logo)
+      params.require(:site).permit(:name, :subdomain, :color, :logo, :category_id)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605133245) do
+ActiveRecord::Schema.define(version: 20160627145815) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -189,10 +189,11 @@ ActiveRecord::Schema.define(version: 20160605133245) do
     t.string   "subdomain"
     t.string   "logo"
     t.string   "color"
-    t.boolean  "active",     default: true
-    t.boolean  "default",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "active",      default: true
+    t.boolean  "default",     default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "category_id"
   end
 
   create_table "users", force: :cascade do |t|
