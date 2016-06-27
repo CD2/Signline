@@ -6,3 +6,10 @@
 
 .body_section
   = raw @page.body
+
+- if shop_site? && @page.name == 'Home Page'
+  #product_grid_container
+    #product_grid
+      - Product.limit(12).order("RANDOM()").each do |product|
+        .product_grid_item_container
+          = render 'products/teaser', product: product
