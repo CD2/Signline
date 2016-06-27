@@ -2,4 +2,4 @@
   = render 'admin/admin_menu'
   = link_to "Edit", yield(:edit), class: 'admin_bar_edit_link' if content_for?(:edit)
   - if defined? @page 
-    = link_to 'Edit', [:edit, :admin, @page]
+    = link_to 'Edit', edit_admin_page_path(@page.id)
