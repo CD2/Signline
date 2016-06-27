@@ -1466,7 +1466,7 @@ This kit included  4 attachments for the roof bars",
 
 
 products.each_with_index do |product, i|
-  if i < 5
+  if i < 10000
   
     unless product[:"title"].blank? || @product = Product.find_by(name: product[:"title"].titleize)
       price = product[:"price"] * 1.1

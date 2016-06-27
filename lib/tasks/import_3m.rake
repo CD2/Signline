@@ -16770,7 +16770,7 @@ products = [
 ]
 
   products.each_with_index do |product, index|
-    if index < 5
+    if index < 10000
       
       unless product[:"Title"].blank? || @product = Product.find_by(name: product[:'Title'].titleize)
         price = product[:'price'] * 1.2 * 1.1

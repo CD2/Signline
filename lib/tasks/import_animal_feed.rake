@@ -478,7 +478,7 @@ products =  [
       }
     ]
 products.each_with_index do |product, i|
-  if i < 5
+  if i < 10000
     unless @product = Product.find_by(name: product[:title].titleize)
 
       begin
