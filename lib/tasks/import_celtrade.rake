@@ -41294,9 +41294,10 @@ products = [
     if i < 10000
 
       unless product[:"Description"].blank? || @product = Product.find_by(name: product[:'Description'].titleize)
-        price = product[:'Price'] * 1.2 * 1.3
+        
         begin
-          @product = Product.create!(name: product[:'Description'].titleize, sku: product[:'Barcode'].to_s.parameterize, body: product[:'Extended Description'], unit_price: price, delivery: 9.5) 
+          price = product[:'Price'] * 1.2 * 1.3
+          @product = Product.create!(name: product[:'Description'].titleize, sku: product[:'Description'].parameterize, body: product[:'Extended Description'], unit_price: price, delivery: 9.5) 
         rescue ActiveRecord::StatementInvalid 
           next
         end 
