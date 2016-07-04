@@ -19,6 +19,9 @@ gem 'activemerchant'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'fog'
 
+
+gem 'peddler'
+
 group :production do
 
   gem 'rails_12factor'

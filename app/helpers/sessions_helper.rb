@@ -50,19 +50,8 @@ module SessionsHelper
   end
 
   def signed_in_as_admin?
-    if signed_in? && current_user.admin?
-      return true
-    else
-      return false
-    end
+    signed_in? && current_user.admin?
   end
-
-  #def grab_session_ids
-  #  @user = @user ? current_user : check_domains_for_user
-  #  @cart = current_cart 
-  #  rescue ActiveRecord::RecordNotFound
-  #    return false
-  #end
 
 
 
