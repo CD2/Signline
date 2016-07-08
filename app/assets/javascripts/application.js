@@ -28,8 +28,8 @@ $(document).ready(function() {
   image = $('.home_banner_image').find('img').attr('src');
   $("#home_banner").css("background-image", "url("+image+")")
 
-
-
+    $(".chosen-select").chosen()
+    $("#product_ebay_category").chosen()
 
 });
 

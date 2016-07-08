@@ -1,5 +1,5 @@
 class Admin::ProductsController < AdminController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :ebay]
   before_action :set_features, only: :edit
 
   # GET /products
@@ -71,6 +71,29 @@ class Admin::ProductsController < AdminController
     render nothing: true
   end
 
+  def ebay
+    if @product.item_on_ebay?
+      flash[:error] = "Item already on Ebay"
+    else
+      begin
+        result = @product.add_item_to_ebay
+        if result.success?
+          flash[:success] = "Product listed on Ebay"
+        else
+          flash[:error] = result.response_hash[:errors].map { |e| e[:long_message] }.join(", ")
+        end
+        url_req = @product.get_item_info_from_sku
+        if url_req.success?
+          @product.update_attributes(ebay_item_id: url_req.response_hash["item"]["item_id"], ebay_url: url_req.response_hash["item"]["listing_details"]["view_item_url"])
+          flash[:success] = "Product listed on Ebay, item_id: #{result.response_hash['item_id']}"
+        end
+      rescue EbayTrader::EbayTraderTimeoutError
+        flash[:error] = "Ebay failed to respond within 30 seconds"
+      end
+    end
+    redirect_to admin_products_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -116,8 +139,10 @@ class Admin::ProductsController < AdminController
 
 
 
+
+
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:name, :body, :sku, :price, :brand_id, :images, :categories => [])
+      params.require(:product).permit(:name, :body, :sku, :price, :brand_id, :images, :ebay_category, :categories => [])
     end
 end

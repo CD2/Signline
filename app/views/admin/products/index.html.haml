@@ -9,6 +9,7 @@
       %th
       %th
       %th
+      %th Send Ebay
 
   %tbody
     - @products.each do |product|
@@ -21,5 +22,6 @@
         %td.admin_index_action= link_to 'Show', product
         %td.admin_index_action= link_to 'Edit', [:edit, :admin, product]
         %td.admin_index_action= link_to 'Destroy', [:admin, product], :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td.admin_index_action= link_to 'Send to Ebay', ebay_admin_product_path(product)
 
 = will_paginate @products

@@ -39,10 +39,15 @@ Rails.application.routes.draw do
 
   #admin paths
   namespace :admin do
+    resources :settings
     resources :sites
     resources :pages, except: :show
     resources :categories, only: :index
-    resources :products, only: :index
+    resources :products, only: :index do
+      member do
+        get :ebay
+      end
+    end
     resources :users, except: :show
     resources :categories, except: :show
     resources :products, except: :show

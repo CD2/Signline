@@ -1,0 +1,43 @@
+- provide :title, "Settings"
+
+
+= form_for [:admin, @setting] do |f|
+
+  = field_set_tag 'Store Settings' do
+    .field
+      = f.label :paypal_email_address
+      = f.text_field :paypal_email_address
+
+    .field
+      = f.label :postcode
+      = f.text_field :postcode
+
+  = field_set_tag 'Ebay' do
+    .field
+      = f.label :auth_token
+      = f.text_field :auth_token
+    .field
+      = f.label :dev_id
+      = f.text_field :dev_id
+    .field
+      = f.label :app_id
+      = f.text_field :app_id
+    .field
+      = f.label :cert_id
+      = f.text_field :cert_id
+    .field
+      = f.label :ru_name
+      = f.text_field :ru_name
+  = field_set_tag 'Amazon' do
+    .field
+      = f.label :merchant_id
+      = f.text_field :merchant_id
+    .field
+      = f.label :access_key
+      = f.text_field :access_key
+    .field
+      = f.label :secret_key
+      = f.text_field :secret_key
+    .actions
+      = f.submit
+

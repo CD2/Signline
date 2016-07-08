@@ -18,6 +18,7 @@ gem 'figaro'
 gem 'activemerchant'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'fog'
+gem 'ebay-trader'
 
 group :production do
 

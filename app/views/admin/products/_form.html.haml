@@ -22,6 +22,8 @@
       .field
         = label_tag :categories
         = select_tag :categories, options_from_collection_for_select(Category.all, :id, :name, @product.categories.collect {|c| c.id}), {multiple: true, name: 'categories[category][]', class: "chosen-select"}
-
+      .field
+        = f.label :ebay_category
+        = f.select :ebay_category, Product.ebay_categories, prompt: '-- SELECT --', class: "chosen-select"
   .actions
     = f.submit
