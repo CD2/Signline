@@ -1,0 +1,13 @@
+%h1 Pull From Amazon 1
+
+%p
+  The new report id is
+  %b= @report_id
+= @error
+= form_tag check_generated_report_id_admin_products_path do
+  .field
+    = label_tag :report_id, 'Report Id'
+    = text_field_tag :report_id, @report_id
+
+  .actions
+    = submit_tag 'Next Step'

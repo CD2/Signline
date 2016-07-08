@@ -94,15 +94,91 @@ class Admin::ProductsController < AdminController
     redirect_to admin_products_path
   end
 
+
+  def pull_from_amazon
+    reports_client = MWS::Reports::Client.new(
+      primary_marketplace_id: "A1F83G8C2ARO7P",
+      merchant_id: ENV['merchant_id'],
+      aws_access_key_id: ENV['access_key'],
+      aws_secret_access_key: ENV['secret_key'],
+      auth_token: ENV['auth_token']
+    )
+    @report_id = reports_client.request_report('_GET_FLAT_FILE_OPEN_LISTINGS_DATA_').parse["ReportRequestInfo"]["ReportRequestId"]
+  end
+
+  def check_generated_report_id
+    reports_client = MWS::Reports::Client.new(
+      primary_marketplace_id: "A1F83G8C2ARO7P",
+      merchant_id: ENV['merchant_id'],
+      aws_access_key_id: ENV['access_key'],
+      aws_secret_access_key: ENV['secret_key'],
+      auth_token: ENV['auth_token']
+    )
+    @report_id = params[:report_id]
+    generated_report_id = reports_client.get_report_request_list(report_request_id_list: @report_id).parse["ReportRequestInfo"]["GeneratedReportId"]
+    @error = "The report is still processing"
+    if generated_report_id
+      redirect_to process_generated_report_admin_products_path(generated_report_id: generated_report_id)
+    else
+      render :pull_from_amazon
+    end
+  end
+
+  def process_generated_report
+    reports_client = MWS::Reports::Client.new(
+      primary_marketplace_id: "A1F83G8C2ARO7P",
+      merchant_id: ENV['merchant_id'],
+      aws_access_key_id: ENV['access_key'],
+      aws_secret_access_key: ENV['secret_key'],
+      auth_token: ENV['auth_token']
+    )
+    generated_report_id = params[:generated_report_id]
+    csv = reports_client.get_report(generated_report_id).parse
+    csv.by_col!
+    asins = csv["asin"]
+    csv.by_row!
+    products_client = MWS::Products::Client.new(
+      primary_marketplace_id: "A1F83G8C2ARO7P",
+      merchant_id: ENV['merchant_id'],
+      aws_access_key_id: ENV['access_key'],
+      aws_secret_access_key: ENV['secret_key'],
+      auth_token: ENV['auth_token']
+    )
+    results = []
+    asins.each_slice(10) do |a|
+      results << products_client.get_matching_product(*a).parse
+    end
+    results.flatten!
+
+    product_count_before = Product.count
+    results.each do |product_data|
+      product_data = product_data["Product"]
+      product_attributes = product_data["AttributeSets"]["ItemAttributes"]
+      csv_row = csv.find{|row| row["asin"]==product_data["Identifiers"]["MarketplaceASIN"]["ASIN"]}
+      product_sku = csv_row['sku']
+      product = Product.find_or_initialize_by(sku: product_sku)
+      product.unit_price = csv_row['price']
+      brand = Brand.find_or_create_by(name: product_attributes["Brand"])
+      product.brand = brand
+      product.name = product_attributes["Title"]
+      product.features = product_attributes["Feature"]
+      image_url = product_attributes["SmallImage"]["URL"].sub('_SL75_', '_SL1500_')
+      product.product_images.destroy_all
+      image = ProductImage.new
+      image.remote_image_url = image_url
+      image.save!
+      product.product_images << image
+      product.save!
+    end
+    product_count_after = Product.count
+    @products_added = product_count_after - product_count_before
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.friendly.find(params[:id])
       @object = @product
-    end
-
-    def set_new
-      @object = Product.new 
     end
 
     def set_features

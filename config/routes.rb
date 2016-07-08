@@ -50,7 +50,13 @@ Rails.application.routes.draw do
     end
     resources :users, except: :show
     resources :categories, except: :show
-    resources :products, except: :show
+    resources :products, except: :show do
+      collection do
+        get :pull_from_amazon
+        post :check_generated_report_id
+        get :process_generated_report
+      end
+    end
     resources :orders do
       collection { get :manage }
       member do
