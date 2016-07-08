@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 20160704100736) do
     t.string   "merchant_id"
     t.string   "access_key"
     t.string   "secret_key"
+    t.string   "amazon_auth_token"
     t.integer  "singleton_guard",      default: 0
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
