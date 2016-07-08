@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   include Carts
   helper_method :current_cart
+  helper_method :retrieve_or_create_cart
 
   private
 
