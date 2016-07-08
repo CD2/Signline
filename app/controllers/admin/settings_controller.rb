@@ -17,7 +17,7 @@ class Admin::SettingsController < AdminController
   private
 
     def setting_params
-      params.require(:setting).permit(:paypal_email_address, :postcode, :auth_token, :dev_id, :app_id, :cert_id, :ru_name, :merchant_id, :access_key, :secret_key)
+      params.require(:setting).permit(:paypal_email_address, :postcode, :auth_token, :dev_id, :app_id, :cert_id, :ru_name, :merchant_id, :access_key, :secret_key, :amazon_auth_token)
     end
 
 end
