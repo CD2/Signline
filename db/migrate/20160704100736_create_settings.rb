@@ -17,6 +17,7 @@ class CreateSettings < ActiveRecord::Migration
       t.string :merchant_id
       t.string :access_key
       t.string :secret_key
+      t.string :amazon_auth_token
 
       #Protect against multiple settings records
       t.integer :singleton_guard, default: 0, uniq: true

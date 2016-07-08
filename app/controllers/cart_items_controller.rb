@@ -23,7 +23,7 @@ class CartItemsController < ApplicationController
   private
 
   def set_cart
-    @cart = current_cart
+    @cart = retrieve_or_create_cart
   end
 
   def cart_item_params

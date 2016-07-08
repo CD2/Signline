@@ -19,25 +19,12 @@
         = raw @product.body
 
       .product_actions
-        - unless current_cart.include? @product
-          = form_for OrderItem.new, url: carts_items_path(product_id: @product.id) do |f|
-            .field
-              = f.label :quantity
-              = f.number_field :quantity
-            .actions
-              = f.submit "Add to Cart"
-        - else
-          - cart_item = current_cart.find_item(@product)
-          = form_for cart_item, url: carts_item_path(cart_item) do |f|
-            .field
-              = f.label :quantity
-              = f.number_field :quantity
-            .actions
-              = f.submit "Update"
-          = button_to "Delete", carts_item_path(cart_item), method: :delete
-           
-
-      
+        = form_for OrderItem.new, url: carts_items_path(product_id: @product.id) do |f|
+          .field
+            = f.label :quantity
+            = f.select :quantity, 1..20
+          .actions
+            = f.submit "Add to Cart"      
 
   #product_tab_area
     .tab_content

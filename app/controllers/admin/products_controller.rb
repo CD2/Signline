@@ -98,10 +98,10 @@ class Admin::ProductsController < AdminController
   def pull_from_amazon
     reports_client = MWS::Reports::Client.new(
       primary_marketplace_id: "A1F83G8C2ARO7P",
-      merchant_id: ENV['merchant_id'],
-      aws_access_key_id: ENV['access_key'],
-      aws_secret_access_key: ENV['secret_key'],
-      auth_token: ENV['auth_token']
+      merchant_id: Setting.first.merchant_id,
+      aws_access_key_id: Setting.first.access_key,
+      aws_secret_access_key: Setting.first.secret_key,
+      auth_token: Setting.first.amazon_auth_token
     )
     @report_id = reports_client.request_report('_GET_FLAT_FILE_OPEN_LISTINGS_DATA_').parse["ReportRequestInfo"]["ReportRequestId"]
   end
@@ -109,10 +109,10 @@ class Admin::ProductsController < AdminController
   def check_generated_report_id
     reports_client = MWS::Reports::Client.new(
       primary_marketplace_id: "A1F83G8C2ARO7P",
-      merchant_id: ENV['merchant_id'],
-      aws_access_key_id: ENV['access_key'],
-      aws_secret_access_key: ENV['secret_key'],
-      auth_token: ENV['auth_token']
+      merchant_id: Setting.first.merchant_id,
+      aws_access_key_id: Setting.first.access_key,
+      aws_secret_access_key: Setting.first.secret_key,
+      auth_token: Setting.first.amazon_auth_token
     )
     @report_id = params[:report_id]
     generated_report_id = reports_client.get_report_request_list(report_request_id_list: @report_id).parse["ReportRequestInfo"]["GeneratedReportId"]
@@ -127,10 +127,10 @@ class Admin::ProductsController < AdminController
   def process_generated_report
     reports_client = MWS::Reports::Client.new(
       primary_marketplace_id: "A1F83G8C2ARO7P",
-      merchant_id: ENV['merchant_id'],
-      aws_access_key_id: ENV['access_key'],
-      aws_secret_access_key: ENV['secret_key'],
-      auth_token: ENV['auth_token']
+      merchant_id: Setting.first.merchant_id,
+      aws_access_key_id: Setting.first.access_key,
+      aws_secret_access_key: Setting.first.secret_key,
+      auth_token: Setting.first.amazon_auth_token
     )
     generated_report_id = params[:generated_report_id]
     csv = reports_client.get_report(generated_report_id).parse
@@ -139,10 +139,10 @@ class Admin::ProductsController < AdminController
     csv.by_row!
     products_client = MWS::Products::Client.new(
       primary_marketplace_id: "A1F83G8C2ARO7P",
-      merchant_id: ENV['merchant_id'],
-      aws_access_key_id: ENV['access_key'],
-      aws_secret_access_key: ENV['secret_key'],
-      auth_token: ENV['auth_token']
+      merchant_id: Setting.first.merchant_id,
+      aws_access_key_id: Setting.first.access_key,
+      aws_secret_access_key: Setting.first.secret_key,
+      auth_token: Setting.first.amazon_auth_token
     )
     results = []
     asins.each_slice(10) do |a|
