@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704100736) do
+ActiveRecord::Schema.define(version: 20160718071529) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 20160704100736) do
     t.string   "ebay_item_id"
     t.string   "ebay_url"
     t.string   "ebay_category"
+    t.string   "amazon_asin"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -184,10 +185,10 @@ ActiveRecord::Schema.define(version: 20160704100736) do
     t.string   "merchant_id"
     t.string   "access_key"
     t.string   "secret_key"
-    t.string   "amazon_auth_token"
     t.integer  "singleton_guard",      default: 0
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "amazon_auth_token"
   end
 
   create_table "site_brands", force: :cascade do |t|

@@ -145,24 +145,31 @@ class Admin::ProductsController < AdminController
       auth_token: Setting.first.amazon_auth_token
     )
     results = []
-    asins.each_slice(10) do |a|
-      results << products_client.get_matching_product(*a).parse
+    (asins - Product.pluck(:amazon_asin)).each_slice(10) do |a|
+      begin
+        results << products_client.get_matching_product(*a).parse
+      rescue
+      end
     end
     results.flatten!
 
     product_count_before = Product.count
     results.each do |product_data|
       product_data = product_data["Product"]
-      product_attributes = product_data["AttributeSets"]["ItemAttributes"]
+      next unless product_data
+      product_attributes = product_data["AttributeSets"]["ns2:ItemAttributes"]
       csv_row = csv.find{|row| row["asin"]==product_data["Identifiers"]["MarketplaceASIN"]["ASIN"]}
-      product_sku = csv_row['sku']
-      product = Product.find_or_initialize_by(sku: product_sku)
+      sku = csv_row['sku']
+      product = Product.find_or_initialize_by(sku: sku)
+      product.sku = sku
+      product.amazon_asin = csv_row['asin']
       product.unit_price = csv_row['price']
-      brand = Brand.find_or_create_by(name: product_attributes["Brand"])
+      brand = Brand.find_or_create_by(name: product_attributes["ns2:Brand"].force_encoding('UTF-8')) rescue nil
       product.brand = brand
-      product.name = product_attributes["Title"]
-      product.features = product_attributes["Feature"]
-      image_url = product_attributes["SmallImage"]["URL"].sub('_SL75_', '_SL1500_')
+      product.category = 'Household'
+      product.name = product_attributes["ns2:Title"].force_encoding('UTF-8')
+      product.features = product_attributes["ns2:Feature"].map {|f| f.force_encoding('UTF-8')} rescue nil
+      image_url = product_attributes["ns2:SmallImage"]["ns2:URL"].sub('_SL75_', '_SL1500_')
       product.product_images.destroy_all
       image = ProductImage.new
       image.remote_image_url = image_url
