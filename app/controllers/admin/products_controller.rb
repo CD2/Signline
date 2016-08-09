@@ -8,6 +8,11 @@ class Admin::ProductsController < AdminController
     @products = Product.paginate(:page => params[:page], :per_page => 50)
   end
 
+  def amazon
+    @products = Product.where.not(amazon_asin: nil).paginate(:page => params[:page], :per_page => 50)
+    render :index
+  end
+
   def new
     @product = Product.new
   end

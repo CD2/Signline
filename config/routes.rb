@@ -44,6 +44,9 @@ Rails.application.routes.draw do
     resources :pages, except: :show
     resources :categories, only: :index
     resources :products, only: :index do
+      collection do
+        get :amazon
+      end
       member do
         get :ebay
       end
