@@ -18,12 +18,12 @@
         = f.text_field :sku
       .field
         = label_tag :brand_id
-        = select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name), class: "chosen-select"
+        = select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name)
       .field
         = label_tag :categories
-        = select_tag :categories, options_from_collection_for_select(Category.all, :id, :name, @product.categories.collect {|c| c.id}), {multiple: true, name: 'categories[category][]', class: "chosen-select"}
+        = select_tag :categories, options_from_collection_for_select(Category.all, :id, :name, @product.categories.collect {|c| c.id}), {multiple: true, name: 'categories[category][]'}
       .field
         = f.label :ebay_category
-        = f.select :ebay_category, Product.ebay_categories, prompt: '-- SELECT --', class: "chosen-select"
+        = f.select :ebay_category, Product.ebay_categories, prompt: '-- SELECT --'
   .actions
     = f.submit
