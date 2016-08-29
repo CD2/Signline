@@ -3,3 +3,5 @@
     - @products.each do |product|
       .product_grid_item_container
         = render 'products/teaser', product: product
+
+  = will_paginate @products
