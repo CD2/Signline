@@ -1,4 +1,8 @@
 #category_header
   %h1 Products
 
-= render 'common/product_list'
+#product_grid_container
+  #product_grid
+    - @products.each do |product|
+      .product_grid_item_container
+        = render 'products/teaser', product: product
