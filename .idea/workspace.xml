@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3973779-7b1d-4737-9a47-3b161daa64d2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/images/chosen-sprite.png" afterPath="$PROJECT_DIR$/app/assets/images/chosen-sprite.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/images/chosen-sprite@2x.png" afterPath="$PROJECT_DIR$/app/assets/images/chosen-sprite@2x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/FontAwesome-2eb27e3762db751753ecf04c5e567bf4.otf" afterPath="$PROJECT_DIR$/public/assets/FontAwesome-2eb27e3762db751753ecf04c5e567bf4.otf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/chosen-sprite-63f7113307a5ef8d2c050156e9ba9749.png" afterPath="$PROJECT_DIR$/public/assets/chosen-sprite-63f7113307a5ef8d2c050156e9ba9749.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/chosen-sprite@2x-c62a807d177950e021f73c722729f822.png" afterPath="$PROJECT_DIR$/public/assets/chosen-sprite@2x-c62a807d177950e021f73c722729f822.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/fontawesome-webfont-29bea78f38da11b04b491cffedaa992e.woff2" afterPath="$PROJECT_DIR$/public/assets/fontawesome-webfont-29bea78f38da11b04b491cffedaa992e.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/fontawesome-webfont-74e43d7984a20cc807e2848b7704581c.eot" afterPath="$PROJECT_DIR$/public/assets/fontawesome-webfont-74e43d7984a20cc807e2848b7704581c.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/fontawesome-webfont-acc1e63d03ba8d8dbef2a221b24a8a44.woff" afterPath="$PROJECT_DIR$/public/assets/fontawesome-webfont-acc1e63d03ba8d8dbef2a221b24a8a44.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/fontawesome-webfont-f6e5172c1486444f63c95b258e926606.ttf" afterPath="$PROJECT_DIR$/public/assets/fontawesome-webfont-f6e5172c1486444f63c95b258e926606.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/header.sass" afterPath="$PROJECT_DIR$/app/assets/stylesheets/header.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/common/_footer.html.haml" afterPath="$PROJECT_DIR$/app/views/common/_footer.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/common/_header.html.haml" afterPath="$PROJECT_DIR$/app/views/common/_header.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/enquiries/new.html.haml" afterPath="$PROJECT_DIR$/app/views/enquiries/new.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/bundle" afterPath="$PROJECT_DIR$/bin/bundle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/rails" afterPath="$PROJECT_DIR$/bin/rails" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/rake" afterPath="$PROJECT_DIR$/bin/rake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/setup" afterPath="$PROJECT_DIR$/bin/setup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/spring" afterPath="$PROJECT_DIR$/bin/spring" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/fontawesome-webfont-d7986d7f81e4cddbac417ce02b105d47.svg" afterPath="$PROJECT_DIR$/public/assets/fontawesome-webfont-d7986d7f81e4cddbac417ce02b105d47.svg" />
     </list>
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -175,11 +154,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new.html.haml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="new.html.haml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/enquiries/new.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+            <state relative-caret-position="270">
+              <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-162">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -993,12 +982,12 @@
       <workItem from="1468835923369" duration="808000" />
       <workItem from="1470738821400" duration="1283000" />
       <workItem from="1472469628593" duration="1759000" />
-      <workItem from="1487101829117" duration="234000" />
+      <workItem from="1487101829117" duration="597000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50012000" />
+    <option name="totallyTimeSpent" value="50375000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1011,7 +1000,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="23" width="1920" height="1011" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17412141" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32944915" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1019,7 +1008,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14483494" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.410582" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" x="1920" y="23" width="1920" height="1014" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.410582" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" x="1920" y="23" width="1920" height="1014" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1051,13 +1040,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/seed_html/shield/bikeprotection.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/enquiries_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1402,8 +1384,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/enquiries/new.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        <state relative-caret-position="270">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-162">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
