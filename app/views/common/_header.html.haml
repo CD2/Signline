@@ -6,12 +6,12 @@
     = link_to image_tag('logo.png'), root_path
   #header_menus
     #search_form
-      = form_tag products_path, method: :get do 
+      = form_tag products_path, method: :get do
         = text_field_tag :search, params[:search]
         = submit_tag "Search", name: nil
     #navigation_menu
       %ul
-        %li Tel: 01953 687 000 or 01379 677 699
+        %li Tel: 01953 711 881 or 01379 677 699
         %li Email: sales@signsandprinting.co.uk
 
         - if signed_in?
@@ -31,6 +31,3 @@
           - if page.menu_item_name
             %li= link_to page.menu_item_name, page
         %li= link_to "Contact Us", new_enquiry_path
-
-
-
