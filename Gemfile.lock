@@ -76,7 +76,7 @@ GEM
       activesupport (~> 4.0)
       ox (~> 2.2)
     erubis (2.7.0)
-    excon (0.50.1)
+    excon (0.71.0)
     execjs (2.7.0)
     figaro (1.1.1)
       thor (~> 0.14)
